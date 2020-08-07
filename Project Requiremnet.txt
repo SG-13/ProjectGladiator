@@ -1,0 +1,19 @@
+Phase 1:
+
+1. Understanding the project requirements.
+2. list all the requirements.
+  use case:
+   1. customer registration
+   2. customer login
+   3. apply loan
+   4. list transactions between dates
+3. based on use cases, identify number of entites(customer,employee,admin,account,
+   transaction) and fields.
+4. Relationship among entities
+5. database desgin
+
+Phase 2:
+
+    1. number of screens(angular,html,css) --- Front End
+    2. Start creating functionalities on the Server code (hibernate and spring, core        java) and connecting to the database.(Web APIs) - Back End
+    3. integrating front end and back and testing your use cases(functionalities)

@@ -1,0 +1,27 @@
+Tables
+
+User_details
+userid(pk),name,email,DOB,mobileNO,address(houseno,colony,pincode(FK)),password
+
+Address
+pincode(pk) city state
+
+VechileInsurance_details
+insuranceID(pk),RegNO(FK),InsurancePlan,Duration,Premium,paymentid(FK),amount,userid(fk)
+
+vehicle_details
+RegNO(pk),color,Type,model,manufacturer,PurchaseDate,EngineNO,ChassisNO,userID(fk)
+
+TravelInsurance_details
+insuranceID(pk),travelID(fk),InsurancePlan,Duration,Premium,paymentid(FK),amount,userid(fk)
+
+Travel_details
+travelID(pk),startDateofJourney,endDateofJourney,departurelocation,arrivallocation,Modeoftravel,userid(fk)
+
+ClaimTable
+claimID(pk),Claimdate,Status,reason,elaborateReason,Amount,policyID(fk)
+
+Payment
+paymentID(pk),Modeofpayment,amount,transactionDate,remarks
+
+

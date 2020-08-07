@@ -1,0 +1,19 @@
+User
+Registration
+Login
+forgot password
+Buy insurance
+Renew insurance (Only motor)
+Calculate insurance estimate
+Claim insurance
+payment
+claim history
+
+
+Admin 
+display active insurance
+claim history 
+
+
+
+
