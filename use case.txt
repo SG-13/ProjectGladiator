@@ -1,4 +1,5 @@
 User
+
 Registration
 Login
 forgot password
@@ -11,6 +12,7 @@ claim history
 
 
 Admin 
+
 display active insurance
 claim history 
 
