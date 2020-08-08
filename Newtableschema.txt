@@ -1,0 +1,14 @@
+Applied_Insurance
+
+ID(PK)
+insurance_id(fk)
+userID(fk)
+RegNO(fk),
+color,
+Type,
+model,
+manufacturer,
+PurchaseDate,
+EngineNO,
+ChassisNO,
+status
