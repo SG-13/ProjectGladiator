@@ -16,7 +16,6 @@ VehicleCost,
 
 
 
-
 VehicleInsurance_policy
 
 InsuranceplanID
@@ -40,7 +39,6 @@ password
 duration
 status
 Premium,(some % of vehicle cost && some % of insuranceplanid && duration)
-
 
 
 
@@ -85,6 +83,7 @@ Premium,(some % of travel cost && some % of insuranceplanid)
 ClaimTable
 
 claimID(pk),
+DateofIncident,
 Claimdate,
 Status,
 reason,
