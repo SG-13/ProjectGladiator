@@ -1,6 +1,6 @@
 package com.lti.model;
 
-import java.time.LocalDate;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -25,18 +26,6 @@ public class VehicleInsuranceDetails {
 	private String insuranceStatus;
 	@Column
 	private Double insurancePremium;
-	@Column
-	private String userName;
-	@Column
-	private String userEmail;
-	@Column
-	private LocalDate userDob;
-	@Column
-	private String userMobileNumber;
-	@Column
-	private String userAddress;
-	@Column
-	private String userPassword;
 	
 	@OneToOne(mappedBy = "vehicleinsurancedetails", cascade=CascadeType.ALL)
 	private ClaimDetails claimdetails;
@@ -48,6 +37,12 @@ public class VehicleInsuranceDetails {
 	@OneToOne
 	@JoinColumn(name = "insurance_planId")
 	private VehicleInsurancePlan vehicleinsuranceplan;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private UserDetails user;
+	
+	
 
 	public int getInsurancePolicyId() {
 		return insurancePolicyId;
@@ -81,54 +76,6 @@ public class VehicleInsuranceDetails {
 		this.insurancePremium = insurancePremium;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
-	public LocalDate getUserDob() {
-		return userDob;
-	}
-
-	public void setUserDob(LocalDate userDob) {
-		this.userDob = userDob;
-	}
-
-	public String getUserMobileNumber() {
-		return userMobileNumber;
-	}
-
-	public void setUserMobileNumber(String userMobileNumber) {
-		this.userMobileNumber = userMobileNumber;
-	}
-
-	public String getUserAddress() {
-		return userAddress;
-	}
-
-	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
-	}
-
-	public String getUserPassword() {
-		return userPassword;
-	}
-
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
 	public ClaimDetails getClaimdetails() {
 		return claimdetails;
 	}
@@ -152,20 +99,24 @@ public class VehicleInsuranceDetails {
 	public void setVehicleinsuranceplan(VehicleInsurancePlan vehicleinsuranceplan) {
 		this.vehicleinsuranceplan = vehicleinsuranceplan;
 	}
+	
+	public UserDetails getUser() {
+		return user;
+	}
 
-	
-	
+	public void setUser(UserDetails user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "VehicleInsuranceDetails [insurancePolicyId=" + insurancePolicyId + ", insuranceDuration="
 				+ insuranceDuration + ", insuranceStatus=" + insuranceStatus + ", insurancePremium=" + insurancePremium
-				+ ", userName=" + userName + ", userEmail=" + userEmail + ", userDob=" + userDob + ", userMobileNumber="
-				+ userMobileNumber + ", userAddress=" + userAddress + ", userPassword=" + userPassword
-				+ ", vehicledetails=" + vehicledetails + ", vehicleinsuranceplan=" + vehicleinsuranceplan + "]";
+				+ ", vehicledetails=" + vehicledetails + ", vehicleinsuranceplan=" + vehicleinsuranceplan + ", user="
+				+ user + "]";
 	}
+
 	
-	
-	
-	
+
 	
 }
