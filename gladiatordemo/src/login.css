@@ -1,0 +1,71 @@
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-image: url(purple.jpg);
+        font-size: larger;
+    }
+    
+    .formcard {
+        border: 25px outset;
+        padding: 15px;
+        margin-top: 80px;
+        margin-left: 200px;
+        margin-right: 200px;
+        margin-bottom: 200px;
+    }
+    
+    .tables {
+        background-color: white;
+        border: 2px outset;
+        border-radius: 20px;
+    }
+    
+    .formmain {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-left: 80px;
+    }
+    
+    .images {
+        width: 500px;
+        height: 400px;
+    }
+    
+    .formcontainer {
+        padding-right: 16px;
+        width: 350px;
+        text-align: center;
+        font-size: large;
+        height: 400px;
+    }
+    
+    .buttons {
+        background-color: lightgray;
+        color: black;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: 2px ridge;
+        border-radius: 15px;
+        cursor: pointer;
+        width: 80%;
+        font-size: 25px;
+    }
+    
+    .heading {
+        text-align: center;
+    }
+    /* Full-width inputs */
+    
+    input[type=email],
+    input[type=password] {
+        width: 100%;
+        background-color: whitesmoke;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 5px outset;
+        border-radius: 25px;
+        box-sizing: border-box;
+    }

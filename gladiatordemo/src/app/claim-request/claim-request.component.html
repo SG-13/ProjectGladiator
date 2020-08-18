@@ -1,0 +1,45 @@
+
+    <div class="row">
+        <div class="main">
+            <div class="card">
+                <h2 style="text-align: center;">Request Claim</h2>
+                <!-- <form onsubmit="validate();"> -->
+                <form>
+                    <div class="container" *ngIf='first'>
+                        <label for="policynumber"><b>Policy Number</b></label>
+                        <input type="text" placeholder="Enter Policy Number" name="policynumber" id="policynumber" required>
+
+                        <button type="submit" (click)="showform()">Submit</button>
+                    </div>
+                    
+                    <div class="container" *ngIf='show'>
+                        <label for="idate">Enter date of Incident:</label>
+                        <input type="date" id="idate" name="idate">
+                        
+                        
+                        <label for="reason">Reason for claim:</label>
+                             <select id="reason" name="reason">
+                                <option value=null selected>Select Reason</option>   
+                                <option value="Natural Disaster">Natural Disaster</option>  
+                                <option value="Man-made Disaster">Man-made Disaster</option>  
+                                <option value="Road Accident">Road Accident</option>  
+                                <option value="Theft">Theft</option>  
+                            </select>
+
+                    
+                        <label for="ereason"><b>Elaborate Incident:</b></label>
+                        <input type="text" style="height: 200px;" placeholder="Write text here" name="ereason" id="ereason" required>
+
+                        <button type="submit" (click)="showmsg()">Submit</button>
+                    </div>
+                    <div class="container" *ngIf='showm'>
+                        
+                        <p>Your Claim ID for this request is 125437</p>
+                       
+                        <a routerLink='/status'><button type="submit">Check Claim Status</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+

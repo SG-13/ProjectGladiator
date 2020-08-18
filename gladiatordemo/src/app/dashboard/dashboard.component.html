@@ -1,0 +1,57 @@
+<body>
+<div class="menu-navvv">
+    <button routerLink="/buyLink" class="bu">Buy</button>
+    <button routerLink="/renewLink" class="ren">Renew</button>
+    <button routerLink="/claimLink" class="cla">Claim</button>
+  </div>
+  
+  <div class="carimage">
+    <img src="../../assets/car.jpeg">
+    <router-outlet></router-outlet>
+    
+    <!--<img class="imgtrvl" src="assets/travel.jpg" style="width: 250px; height: 250px;">-->
+  </div>
+  <div>
+    <h1 class="act-policy">Active Policy</h1>
+    <div class="table">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>User Id</th>
+            <th>Policy Id</th>
+            <th>Premium</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Domenic</td>
+            <td>88,110</td>
+            <td>dcode</td>
+          </tr>
+          <tr class="active-row" >
+            <td>2</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="collection-images">
+      <img src="../../assets/first.png" >
+      <img src="../../assets/second.png" style="padding-left:13%; ">
+      <img src="../../assets/third.png" style="padding-left:13% ;">
+      <img src="../../assets/fourth.png" style="padding-top: 2%;">
+      <img src="../../assets/fifth.png" style="padding-left:13%;">
+      <img src="../../assets/sixth.png" style="padding-left:13% ;">
+    </div>
+    </div>
+  </body>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Travel Insurance</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+
+
+
+
+    <div class="formrow">
+        <div class="formmain">
+
+
+            <div class="formcard">
+                <h2 style="text-align: center; ">Fill the details related to your journey</h2><br><br>
+                <form #travelRegisterForm='ngForm' (ngSubmit)='travelRegister(travelRegisterForm)'>
+                    <div class="formcontainer">
+                        <label for="startingDate" class="labels "><b>Starting date of your journey</b></label><br>
+                        <input type="date" placeholder="Enter the date" id="startingDate " required><br><br>
+
+                        <label for="endingDate" class="labels "><b>Ending date of your journey</b></label><br>
+                        <input type="date" placeholder="Enter the date" id="endingDate " required><br><br>
+
+                        <label for="departureLocation"><b>Departure location</b></label><br>
+                        <input type="text" placeholder="Enter departure location" id="departureLocation" required><br><br>
+
+                        <label for="arrivalLocation"><b>Departure location</b></label><br>
+                        <input type="text" placeholder="Enter arrival location" id="arrivalLocation" required><br><br>
+
+                        <label for="modeOfTravel"><b>Mode of Travel</b></label><br>
+                        <input type="text" placeholder="Enter mode of travel" id="modeOfTravel" required><br><br>
+
+                        <label for="travelCost" class="labels"><b>Travel Cost</b></label><br>
+                        <input type="text" placeholder="Enter travel cost " id="travelCost " required><br><br>
+
+
+
+                        <a [routerLink]="['/travelRegisterlink']"><button class="buttons" [disabled]="travelRegisterForm.invalid" type="submit" ><h2> Submit</h2></button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

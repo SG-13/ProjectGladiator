@@ -1,0 +1,146 @@
+.topnav {
+    overflow: hidden;
+    background-color:steelblue;
+    width: 100%;
+    margin-left: -20px;
+    overflow: visible;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+  }
+  .topnav ul {
+    list-style-type: none;
+  }
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: larger;
+    letter-spacing: 1px;
+    height: 100%;
+    z-index: 15;
+    cursor: pointer;
+  }
+  .topnav a:hover {
+    text-decoration: none;
+    color: yellow;
+    z-index: 15;
+  }
+  .dropdown {
+    float: left;
+    display: inline-block;
+    
+  }
+  
+   .dropdown .dropbtn {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: larger;
+    letter-spacing: 1px;
+  }
+  .dropdown-content {
+    display: none;
+    margin-top:45px;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 11;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: steelblue;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    
+  }
+  
+  .footer {
+    background-color: steelblue;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: -18px;
+    margin-bottom: -15px;
+    overflow: hidden;
+    width: 105%;
+    color: white;
+    font-weight: bolder;
+    
+  }
+
+  * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+     background-image: url(../../assets/red.jpg);
+    font-size: larger;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.formcard {
+    border: 2px ridge;
+    border-radius: 100px;
+    background-color: rgb(236, 235, 229,0.8);  
+    padding: 5px;
+    margin-top: 150px;
+    margin-left: 350px;
+    margin-right: 350px;
+    margin-bottom: 350px;
+}
+.formmain {
+    width: 80%;
+    margin: auto;
+}
+.formcontainer {
+    padding: 16px;
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    font-size: large;
+}            
+.buttons {
+    background-color: rgb(235, 148, 19);
+    color: black;
+    padding: 6x 10px;
+    margin: 8px 0;
+    border: 2px ridge;
+    border-radius: 40px;
+    cursor: pointer;
+    width: 80%;
+}
+ input[type=text],input[type=date], select,textarea,:placeholder-shown {
+    width: 100%;
+    background-color: whitesmoke;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 5px outset;
+    border-radius: 25px;
+    box-sizing: border-box;
+}
+
+    
+

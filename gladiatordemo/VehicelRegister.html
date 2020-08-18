@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Vehicle Insurance</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <!-- <form #regForm='ngForm' (ngSubmit)='register(regForm)'>
+        <div class="container">
+
+            <input type="text" placeholder="Enter Username" name="username" required ngModel>
+
+            <input type="text" placeholder="Enter Password" name="password" pattern="^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[$,@,!]).{8,}$" required ngModel>
+
+            <input type="email" placeholder="Enter Email Address" name="email" email required ngModel>
+
+            <input type="text" placeholder="Enter City" name="city" required ngModel>
+
+            <input type="tel" placeholder="Enter Mobile Number" pattern="[0-9]*" name="mobile" minlength="10" maxlength="10" required ngModel>
+
+            <a [routerLink]="['/loginlink']"><button [disabled]="regForm.invalid" type="submit" >Register</button></a>
+        </div>
+    </form> -->
+
+
+
+    <div class="formrow">
+        <div class="formmain">
+
+
+            <div class="formcard">
+                <h2 style="text-align: center; ">Fill the details related to your vehicle</h2><br><br>
+                <form #vehicleRegisterForm='ngForm' (ngSubmit)='vehicleRegister(vehicleRegisterForm)'>
+                    <div class="formcontainer">
+                        <label for="registrationNo" class="labels "><b>Registration number</b></label><br>
+                        <input type="text" placeholder="Enter the Registration number * " id="registrationNo " required><br><br>
+
+                        <label for="color" class="labels "><b>Color of the vehicle</b></label><br>
+                        <input type="text" placeholder="Enter color " id="color " required><br><br>
+
+                        <label for="vehicleType" class="labels "><b>Type of the vehicle</b></label><br><br>
+                        <div>
+                            <input type="radio" id="twoWheeler " name="vehicleType " value="twoWheeler ">
+                            <label for="twoWheeler ">2 Wheeler</label><br>
+                            <input type="radio" id="fourWheeler " name="vehicleType " value="fourWheeler ">
+                            <label for="fourWheeler ">4 Wheeler</label>
+                        </div><br><br>
+
+                        <label for="model"><b>Model</b></label><br>
+                        <input type="text" placeholder="Enter model * " id="model " required><br><br>
+
+
+                        <label for="purchaseDate" class="labels"><b>Purchase Date</b></label><br>
+                        <input type="date" placeholder="Enter purchase date " id="purchaseDate " required><br><br>
+
+
+                        <label for="manufacturer " class="labels"><b>Manufacturer</b></label><br>
+                        <input type="text" placeholder="Enter Manufacturer " id="manufacturer " required><br><br>
+
+
+                        <label for="engineNo " class="labels"><b>Engine Number</b></label><br>
+                        <input type="text" placeholder="Enter engine number " id="engineNo " required><br><br>
+
+
+                        <label for="chassisNo " class="labels"><b>Chassis Number</b></label><br>
+                        <input type="text" placeholder="Enter chassis number " id="chassisNo " required><br><br>
+
+
+                        <label for="vehicleCost " class="labels"><b>Vehicle Cost</b></label><br>
+                        <input type="text" placeholder="Enter vehicle cost " id="vehicleCost " required><br><br>
+
+
+
+                        <a [routerLink]="['/vehicleRegisterlink']"><button class="buttons" [disabled]="vehcileRegisterForm.invalid" type="submit" ><h2> Submit</h2></button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="yellorow ">
+        <div class="yellowmain ">
+
+
+            <div class="yellowcard ">
+                <div class="yellowcontainer ">
+
+                    <h1>Key Benefits </h1>
+                    <p>Royal Sundaram offers Car Shield, a comprehensive package policy which covers Loss or Damage to your car, to third parties and provides personal accident cover to the Owner/Driver.</p>
+
+                    <table class="tableRow ">
+                        <tr class="tableRow ">
+                            <td>
+                                <img src="damage.jpg " alt=" " class="yellowimage">
+                                <p>Loss or Damage Protection Protection from loss of car or damage to your car.</p>
+                            </td>
+                            <td>
+                                <img src="temp.png" alt=" " class="yellowimage">
+                                <p>Unlimited Liablity Unlimited Liability for Third Party death/ injury Claims.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="tableRow ">
+                            <td>
+                                <img src="indem.png " alt=" " class="yellowimage">
+                                <p>Indemnity for third party property Indemnity for third party property damage up to a limit of Rs. 7.5 lakhs.</p>
+                            </td>
+                            <td>
+                                <img src="4thone.jpg " alt=" " class="yellowimage">
+                                <p>Personal Accident Cover Personal Accident Cover for you, your paid driver and the occupants in the car..</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bluerow">
+        <div class="bluemain">
+
+
+            <div class="bluecard">
+                <div class="bluecontainer">
+
+                    <h1>Why Royal Sundaram Car Insurance? </h1>
+                    <h4>
+                        <p>Our Car Insurance policies come with a wide range of feature</p>
+                    </h4>
+
+
+                    <table class="tableRow">
+                        <tr class="tableRow">
+                            <td class="cells">
+                                <img src="garage.jpg " alt=" " class="blueimage">
+
+                                <h4>4600+ Garages List</h4>
+                                <p>We provide cashless claims across several garages in the country so that you don’t have to struggle with finding one during an emergency.
+                                </p>
+                            </td>
+                            <td class="cells">
+                                <img src="roadside.jpg " alt=" " class="blueimage">
+                                <h4>Free Road side Assistance</h4>
+                                <p>
+
+                                    We provide roadside assistance during emergency. Please reach out to customer care for more details.
+
+                                </p>
+                            </td>
+
+                        </tr>
+                        <tr class="tableRow">
+                            <td>
+                                <p class="second" style="margin-left:60px">
+                                    Free Flat Tyre Service!
+
+                                </p>
+
+                            </td>
+                            <td class="cells">
+                                <p class="second ">
+                                    Free Emergency fuel Delivery!
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

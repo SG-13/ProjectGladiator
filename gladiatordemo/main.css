@@ -1,0 +1,146 @@
+            * {
+                box-sizing: border-box;
+                /* it will be a box and content will be adjusted*/
+            }
+            
+            body {
+                /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    */
+                /*font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                */
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                background-image: url(back4.jpg);
+                font-size: larger;
+            }
+            
+            .formcard {
+                border: 2px ridge;
+                border-radius: 100px;
+                background-color: white;
+                padding: 15px;
+                margin-top: 80px;
+                margin-left: 200px;
+                margin-right: 200px;
+                margin-bottom: 200px;
+            }
+            
+            .formmain {
+                width: 80%;
+                margin: auto;
+            }
+            
+            .formcontainer {
+                padding: 16px;
+                width: 350px;
+                margin: auto;
+                text-align: center;
+                font-size: large;
+            }
+            
+            .yellowcard {
+                background-image: url(yellow.jpg);
+                width: 1500px;
+                border: 2px ridge;
+                border-radius: 100px;
+                margin-top: 80px;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-bottom: 200px;
+            }
+            
+            .yellowmain {
+                margin-left: 0px;
+                margin-right: 0px;
+                width: 1500px;
+                margin: auto;
+            }
+            
+            .yellowcontainer {
+                color: black;
+                padding: 16px;
+                width: 800px;
+                margin: auto;
+                text-align: center;
+                font-size: large;
+            }
+            
+            .bluecard {
+                background-image: url(blue.jpg);
+                width: 1500px;
+                border: 2px ridge;
+                border-radius: 100px;
+                margin-top: 80px;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-bottom: 200px;
+            }
+            
+            .bluemain {
+                margin-left: 0px;
+                margin-right: 0px;
+                width: 1500px;
+                margin: auto;
+            }
+            
+            .bluecontainer {
+                color: whitesmoke;
+                padding: 16px;
+                width: 800px;
+                margin: auto;
+                text-align: center;
+                font-size: large;
+            }
+            
+            .blueimage {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .yellowimage {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .cells {
+                padding-inline: 20px;
+                padding-left: 20px;
+            }
+            
+            labels {
+                padding: 5px;
+            }
+            
+            .second {
+                background-color: blue;
+                width: 300px;
+                height: 70px;
+                padding-top: 15px;
+                border: 2px outset;
+                border-radius: 15px;
+                margin-left: 20px;
+            }
+            
+            .buttons {
+                background-color: lightblue;
+                color: black;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: 2px ridge;
+                border-radius: 50px;
+                cursor: pointer;
+                width: 100%;
+            }
+            /* Full-width inputs */
+            
+            input[type=text],
+            input[type=email],
+            input[type=password],
+            input[type=date] {
+                width: 100%;
+                background-color: whitesmoke;
+                padding: 12px 20px;
+                margin: 8px 0;
+                border: 5px outset;
+                border-radius: 25px;
+                box-sizing: border-box;
+            }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div>
+        <div>
+            <div class="formmain">
+
+                <table class="tables">
+                    <tr>
+                        <td>
+
+                            <div class="formcard">
+
+
+
+                                <h2 class="heading">Fill the details to login</h2>
+                                <form #loginForm='ngForm' (ngSubmit)='login(loginForm)'>
+                                    <div class="formcontainer">
+
+                                        <label><b>Email </b></label><br>
+                                        <input type="email" placeholder="Enter the email" id="email" required><br><br>
+
+                                        <label><b>Password</b></label><br>
+                                        <input type="password" placeholder="Enter the password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$,@,!]).{8,}$" id="password" required><br><br>
+
+                                        <button class="buttons" [disabled]="loginForm.invalid" type="submit"><b>Submit the details</b></button>
+                                        <button class="buttons"><b>Forgot password?</b></button>
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </td>
+                        <td>
+                            <img class="images" src="person.jpg" alt="Image is unable to load">
+
+                        </td>
+                    </tr>
+
+
+
+                </table>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

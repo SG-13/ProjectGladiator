@@ -1,0 +1,98 @@
+* {  
+    /*box-sizing: border-box;  /* it will be a box and content will be adjusted*/
+    font-family: 'Muli', 'Baloo Da 2', 'Montserrat', sans-serif;  
+    }  
+     
+    body {  
+    font-family: Arial;  
+    /* padding: 10px;   */
+    background: yellow;  
+    }
+    
+
+
+/* Style the top navigation bar */  
+.topnav {  
+    overflow: hidden;  /*content if exceeds the size of spc, it will not dsply the cntnt*/
+    background-color: darkblue;  
+    width: 70%;  
+    margin: auto;
+    height: 40%;  
+    }
+
+    .topnav ul{
+        list-style-type: none;
+    }
+/* Style the topnav links */  
+.topnav a {
+    border: 10px ;  
+    float: left;  
+    color: #f2f2f2;  
+    text-align: center;   
+    padding: 10px 100px 10px 10px; 
+    text-decoration: none; /*will remove hyperlink*/  
+    letter-spacing: 1px;  
+    height: 70px;  
+    }
+
+    .row:after {  
+        content: "";  
+        display: table;  
+        clear: both;  
+        }  
+/* Add a card effect for articles */ 
+        .card 
+        {  
+            
+            background-color: white;  
+            padding: 20px;  
+            margin-top: 20px;  
+            }        
+        
+            /* .cc {  
+                float: left;  
+                padding: 5px;  
+                }  
+                */
+                /*.image 
+                {  
+                width: auto;  
+                max-width: 185px;  
+                height: auto;  
+                } */ 
+            .main {  
+                width: 80%;  
+                margin: auto;  
+                }
+
+
+                /* Add padding to containers */  
+.container {  
+    padding: 16px;  
+    width: 350px;  
+    margin: auto;  
+    }
+    /* Set a style for all buttons */  
+.buttons {  
+    background-color: darkblue;  
+    color: white;  
+    padding: 14px 20px;  
+    margin: 8px 0;  
+    border: groove;  
+    cursor: pointer;  
+    width: 100%;  
+    }  
+
+/* Full-width inputs */  
+input[type=text], input[type=password], input[type=email], input[type=tel] {  
+    width: 100%;  
+    padding: 12px 20px;  
+    margin: 8px 0;  
+    display: inline-block;  
+    border: 1px solid #ccc;  
+    box-sizing: border-box;  
+    }
+
+
+        
+        

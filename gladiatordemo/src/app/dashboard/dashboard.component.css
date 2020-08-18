@@ -1,0 +1,231 @@
+body {
+    background-color: white;
+    font: normal 300 18px "Roboto", sans-serif;
+  }
+  #menu-nav {
+    margin: 130px auto;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width:50%;
+  }
+
+  #navigation-bar ul {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  #navigation-bar li {
+    float: left;
+    width: 25%;
+  }
+  #navigation-bar li:hover a::before {
+    right: 0;
+    left: 0;
+  }
+  #navigation-bar button {
+    color: #848484;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px 0;
+    display: block;
+    position: relative;
+    background-color: #ecf0f1; ;
+    transition: all 0.3s ease;
+  }
+  #navigation-bar button:hover {
+    color: #e74c3c;
+  }
+  #navigation-bar button::before {
+    content: "";
+    transition: all 0.4s ease-in-out;
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    height: 2px;
+    background-color: #e74c3c;
+  }
+  #navigation-bar button:hover::before {
+    right: 0;
+    left: 0;
+  }
+   
+  li {
+      list-style: none;
+  }
+  .carimage{
+      overflow: hidden;
+  }
+  .imgtrvl{
+      float: right;
+        margin-bottom: 10%;
+    }
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        padding: 45%;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      
+      .content-table thead tr {
+        background-color: green;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      .content-table th,
+      .content-table td {
+        padding: 12px 15px;
+      }
+      
+      .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+      
+      .content-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+      
+      .content-table tbody tr:last-of-type {
+        border-bottom: 2px solid green;
+      }
+      
+      .content-table tbody tr:hover{
+        font-weight: bold;
+        color: green;
+      }
+      .table{
+          margin-left: 8%;
+      }
+      .collection-images{
+  
+          margin-left: 10%;
+          margin-top: 4%;
+      }
+      .act-policy{
+          text-align: center;
+      }
+
+      .menu-navvv{
+          margin-left: 30%;
+          margin-top: 5%;
+      }
+      button{
+        width:20%;
+        padding: 1%;
+        font-size: 20px;
+        background-color: rgb(66, 66, 66);
+        color: white;
+      }
+      button:hover{
+        background-color: green;
+      }
+      .topnav {
+        overflow: hidden;
+        background-color:steelblue;
+        width: 100%;
+        margin-left: -20px;
+        overflow: visible;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        z-index: 1;
+      }
+      
+      
+      .topnav ul {
+        list-style-type: none;
+        
+      }
+      
+      /* Style the topnav links */
+      .topnav a {
+        
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-size: larger;
+        letter-spacing: 1px;
+        height: 100%;
+        z-index: 15;
+        cursor: pointer;
+        
+      }
+      
+      .topnav a:hover {
+        text-decoration: none;
+        color: yellow;
+        z-index: 15;
+      }
+        
+      .dropdown {
+        float: left;
+        display: inline-block;
+        
+      }
+      
+       .dropdown .dropbtn {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-size: larger;
+        letter-spacing: 1px;
+       
+      }
+      
+      .dropdown-content {
+        display: none;
+        margin-top:45px;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 11;
+       
+      }
+      
+      .dropdown-content a {
+        float: none;
+        color: steelblue;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+        
+      }
+      
+      .footer {
+        background-color: steelblue;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+        margin-left: -18px;
+        margin-bottom: -15px;
+        overflow: hidden;
+        width: 105%;
+        color: white;
+        font-weight: bolder;
+        
+      }

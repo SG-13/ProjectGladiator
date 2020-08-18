@@ -1,0 +1,50 @@
+
+  .press{
+
+    overflow: hidden;
+  
+  }
+  h1{
+      font-weight: normal;
+  }
+  h2{
+    width: 13%;
+    background-color: rgb(146, 146, 146,0.6);
+    margin-left: 9%;
+    font-weight: normal;
+  }
+  #first-press{
+
+    background-color: steelblue;
+    color: white;
+    float: left;
+    width:40%;
+    margin-left: 9%;
+  }
+  #second-press{
+    color: white;
+    background-color: steelblue;
+    float:right;
+    width: 40%;
+    margin-right: 6%;
+  }
+
+h3{
+  color:white;
+  font-weight: normal;
+  margin-left: 2%;
+}
+h4{
+  font-weight: normal;
+  margin-left: 2%;
+}
+h1{
+    text-align: center;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+body{
+    background-color:rgb(209, 209, 209,0.4);
+    padding-bottom: 15%;
+    padding-top: 5%;
+}
