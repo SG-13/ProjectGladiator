@@ -1,14 +1,18 @@
 package com.lti.model;
 
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -26,18 +30,18 @@ public class TravelInsuranceDetails {
 	@Column
 	private Double insurancePremium;
 	
-	@OneToOne(mappedBy = "travelinsurancedetails", cascade=CascadeType.ALL)
-	private ClaimDetails claimdetails;
+	@OneToMany(mappedBy = "travelinsurancedetails", cascade=CascadeType.ALL)
+	private List<ClaimDetails> claimdetails;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "travel_id")
 	private TravelDetails traveldetails;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "insurance_planId")
 	private TravelInsurancePlan travelinsuranceplan;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private UserDetails user;
 
@@ -74,11 +78,11 @@ public class TravelInsuranceDetails {
 		this.insurancePremium = insurancePremium;
 	}
 
-	public ClaimDetails getClaimdetails() {
+	public List<ClaimDetails> getClaimdetails() {
 		return claimdetails;
 	}
 
-	public void setClaimdetails(ClaimDetails claimdetails) {
+	public void setClaimdetails(List<ClaimDetails> claimdetails) {
 		this.claimdetails = claimdetails;
 	}
 

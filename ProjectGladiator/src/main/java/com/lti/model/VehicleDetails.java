@@ -97,11 +97,11 @@ public class VehicleDetails {
 		this.vehicleChassisNumber = vehicleChassisNumber;
 	}
 
-	public Double getVehicleCost() {
+	public double getVehicleCost() {
 		return vehicleCost;
 	}
 
-	public void setVehicleCost(Double vehicleCost) {
+	public void setVehicleCost(double vehicleCost) {
 		this.vehicleCost = vehicleCost;
 	}
 

@@ -4,10 +4,13 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -29,13 +32,13 @@ public class ClaimDetails {
 	@Column
 	private String elaborateReason;
 	@Column
-	private int Double;
+	private double claimAmount;
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "t_insurance_policyid")
 	private TravelInsuranceDetails travelinsurancedetails;
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "v_insurance_policyid")
 	private VehicleInsuranceDetails vehicleinsurancedetails;
 
@@ -87,12 +90,13 @@ public class ClaimDetails {
 		this.elaborateReason = elaborateReason;
 	}
 
-	public int getDouble() {
-		return Double;
+	
+	public double getClaimAmount() {
+		return claimAmount;
 	}
 
-	public void setDouble(int d) {
-		Double = d;
+	public void setClaimAmount(double claimAmount) {
+		this.claimAmount = claimAmount;
 	}
 
 	public TravelInsuranceDetails getTravelinsurancedetails() {
@@ -114,8 +118,8 @@ public class ClaimDetails {
 	@Override
 	public String toString() {
 		return "ClaimDetails [claimId=" + claimId + ", dateOfIncident=" + dateOfIncident + ", claimDate=" + claimDate
-				+ ", Status=" + Status + ", Reason=" + Reason + ", elaborateReason=" + elaborateReason + ", Double="
-				+ Double + ", travelinsurancedetails=" + travelinsurancedetails + ", vehicleinsurancedetails="
+				+ ", Status=" + Status + ", Reason=" + Reason + ", elaborateReason=" + elaborateReason + ", claimAmount="
+				+ claimAmount + ", travelinsurancedetails=" + travelinsurancedetails + ", vehicleinsurancedetails="
 				+ vehicleinsurancedetails + "]";
 	}
 	
