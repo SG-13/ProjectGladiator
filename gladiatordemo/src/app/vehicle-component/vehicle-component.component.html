@@ -17,153 +17,81 @@
         <div class="formmain">
 
 
-            <div class="formcard">
-                <h2 style="text-align: center; ">Fill the details related to your vehicle</h2><br><br>
-                <form #vehicleRegisterForm='ngForm' (ngSubmit)='vehicleRegister(vehicleRegisterForm)'>
+            <div class="formcard" *ngIf='showRegisterForm'>
+                <h2 style="text-align: center; ">Fill Details Of Your Vehicle</h2><br><br>
+                <form #vehicleRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="registrationNo" class="labels "><b>Registration number</b></label><br>
-                        <input type="text" placeholder="Enter the Registration number * " id="registrationNo " required><br><br>
+                        <input type="text" placeholder="Enter the Registration number * " name="registrationNo" [(ngModel)]="vehicle.registrationNumber" required><br><br>
 
                         <label for="color" class="labels "><b>Color of the vehicle</b></label><br>
-                        <input type="text" placeholder="Enter color " id="color " required><br><br>
+                        <input type="text" placeholder="Enter color " name="color" [(ngModel)]="vehicle.vehicleColour" required><br><br>
 
-                        <label for="vehicleType" class="labels "><b>Type of the vehicle</b></label><br><br>
+                        <label for="vehicleType" class="labels" ><b>Type of the vehicle</b></label><br><br>
                         <div>
-                            <input type="radio" id="twoWheeler " name="vehicleType " value="twoWheeler ">
-                            <label for="twoWheeler ">2 Wheeler</label><br>
-                            <input type="radio" id="fourWheeler " name="vehicleType " value="fourWheeler ">
-                            <label for="fourWheeler ">4 Wheeler</label>
-                        </div><br><br>
+                            <input type="radio" id="twoWheeler" name="vehicleType" value="Two Wheeler" [(ngModel)]="vehicle.vehicleType" required>
+                            <label for="vehicleType">2 Wheeler</label><br>
+                            <input type="radio" id="fourWheeler " name="vehicleType" value="Four Wheeler" [(ngModel)]="vehicle.vehicleType" required>
+                            <label for="vehicleType">4 Wheeler</label>
+                        </div><br>
 
                         <label for="model"><b>Model</b></label><br>
-                        <input type="text" placeholder="Enter model * " id="model " required><br><br>
+                        <input type="text" placeholder="Enter model * " name="model" [(ngModel)]="vehicle.vehicleModel" required><br><br>
 
 
                         <label for="purchaseDate" class="labels"><b>Purchase Date</b></label><br>
-                        <input type="date" placeholder="Enter purchase date " id="purchaseDate " required><br><br>
+                        <input type="date" placeholder="Enter purchase date " name="purchaseDate " [(ngModel)]="vehicle.vehiclePurchaseDate" required><br><br>
 
 
                         <label for="manufacturer " class="labels"><b>Manufacturer</b></label><br>
-                        <input type="text" placeholder="Enter Manufacturer " id="manufacturer " required><br><br>
+                        <input type="text" placeholder="Enter Manufacturer " name="manufacturer " [(ngModel)]="vehicle.vehicleManufacturer" required><br><br>
 
 
                         <label for="engineNo " class="labels"><b>Engine Number</b></label><br>
-                        <input type="text" placeholder="Enter engine number " id="engineNo " required><br><br>
+                        <input type="text" placeholder="Enter engine number " name="engineNo " [(ngModel)]="vehicle.vehicleEngineNumber" required><br><br>
 
 
                         <label for="chassisNo " class="labels"><b>Chassis Number</b></label><br>
-                        <input type="text" placeholder="Enter chassis number " id="chassisNo " required><br><br>
+                        <input type="text" placeholder="Enter chassis number " name="chassisNo " [(ngModel)]="vehicle.vehicleChassisNumber" required><br><br>
 
 
                         <label for="vehicleCost " class="labels"><b>Vehicle Cost</b></label><br>
-                        <input type="text" placeholder="Enter vehicle cost " id="vehicleCost " required><br><br>
+                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost " [(ngModel)]="vehicle.vehicleCost" required><br><br>
 
 
 
-                      <a [routerLink]="['/']"><button class="buttons" [disabled]="vehicleRegisterForm.invalid" type="submit" ><h2> Submit</h2></button></a> 
+                      <button class="buttons" [disabled]="vehicleRegisterForm.invalid" type="submit" ><h2> Submit</h2></button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
+            <div class="formcard" *ngIf='showPlanForm'>
+                <form #insurancePlanForm='ngForm'>
+                    <div class="formcontainer">
+                        
+                        <div class="Form-radio" *ngFor='let p of policy'>
+                            <h1><input type="radio" name="policyId" value={{p.insurancePlanId}} [(ngModel)]=buyinsurance.insurancePlanId required>
+                            <label for="policyId " class="labels">{{p.insurancePlan}}</label></h1><br>
+                            <h2>Maximum Coverage Amount : {{(p.insuranceCoverageAmount*vehicle.vehicleCost)/100}}</h2>
+                        </div>
+                        <label for="duration"><b>Insurance Duration</b></label><br>
+                        <select id="duration" name="duration" [(ngModel)]=buyinsurance.duration required>
+                        <option value=1>1 Year 
+                        <option value=2>2 Year 
+                        <option value=3>3 Year
+                        </select><br><br>
+                        
+                        <div *ngIf='showPremium'>
+                        <label for="insurancePremium" class="labels"><b><h2>Premium</h2></b></label>
+                        <h3>{{buyinsurance.insurancePremium}}</h3><br>
+                        </div>
+                        
+                        <!-- {{buyinsurance.insurancePlanId}}
+                        {{buyinsurance.duration}} -->
 
-
-
-
-
-
-
-
-
-
-
-    <div class="yellorow ">
-        <div class="yellowmain ">
-
-
-            <div class="yellowcard ">
-                <div class="yellowcontainer ">
-
-                    <h1>Key Benefits </h1>
-                    <p>LTI Insurance offers Car Shield, a comprehensive package policy which covers Loss or Damage to your car, to third parties and provides personal accident cover to the Owner/Driver.</p>
-
-                    <table class="tableRow ">
-                        <tr class="tableRow ">
-                            <td>
-                                <img src="../../assets/damage.jpg " alt=" " class="yellowimage">
-                                <p>Loss or Damage Protection Protection from loss of car or damage to your car.</p>
-                            </td>
-                            <td>
-                                <img src="../../assets/temp.png" alt=" " class="yellowimage">
-                                <p>Unlimited Liablity Unlimited Liability for Third Party death/ injury Claims.
-                                </p>
-                            </td>
-                        </tr>
-                        <tr class="tableRow ">
-                            <td>
-                                <img src="../../assets/indem.png " alt=" " class="yellowimage">
-                                <p>Indemnity for third party property Indemnity for third party property damage up to a limit of Rs. 7.5 lakhs.</p>
-                            </td>
-                            <td>
-                                <img src="../../assets/4thone.jpg " alt=" " class="yellowimage">
-                                <p>Personal Accident Cover Personal Accident Cover for you, your paid driver and the occupants in the car..</p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bluerow">
-        <div class="bluemain">
-
-
-            <div class="bluecard">
-                <div class="bluecontainer">
-
-                    <h1>Why LTI Insurance Car Insurance? </h1>
-                    <h4>
-                        <p>Our Car Insurance policies come with a wide range of feature</p>
-                    </h4>
-
-
-                    <table class="tableRow">
-                        <tr class="tableRow">
-                            <td class="cells">
-                                <img src="../../assets/garage.jpg " alt=" " class="blueimage">
-
-                                <h4>4600+ Garages List</h4>
-                                <p>We provide cashless claims across several garages in the country so that you don’t have to struggle with finding one during an emergency.
-                                </p>
-                            </td>
-                            <td class="cells">
-                                <img src="../../assets/roadside.jpg " alt=" " class="blueimage">
-                                <h4>Free Road side Assistance</h4>
-                                <p>
-
-                                    We provide roadside assistance during emergency. Please reach out to customer care for more details.
-
-                                </p>
-                            </td>
-
-                        </tr>
-                        <tr class="tableRow">
-                            <td>
-                                <p class="second" style="margin-left:60px">
-                                    Free Flat Tyre Service!
-
-                                </p>
-
-                            </td>
-                            <td class="cells">
-                                <p class="second ">
-                                    Free Emergency fuel Delivery!
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                        <button class="buttons" type="submit" [disabled]="insurancePlanForm.invalid" (click)='calcPremium()'><h2> Calculate Premium</h2></button>
+                        <button class="buttons" type="submit" [disabled]="insurancePlanForm.invalid" (click)='buyInsurance()'><h2> Buy Insurance</h2></button>
+                    </div>
+                </form> 
             </div>
         </div>
     </div>

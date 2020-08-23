@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -36,9 +39,10 @@ public class UserDetails {
 	@Column
 	private String userPassword;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 	private List<VehicleInsuranceDetails> vechileinsurancedetails;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 	private List<TravelInsuranceDetails> travelinsurancedetails;
 
@@ -115,14 +119,6 @@ public class UserDetails {
 		this.travelinsurancedetails = travelinsurancedetails;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "UserDetails [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userDob="
-				+ userDob + ", userMobileNumber=" + userMobileNumber + ", userAddress=" + userAddress
-				+ ", userPassword=" + userPassword + "]";
-	}
-	
 	
 	
 }

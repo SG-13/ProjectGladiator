@@ -1,10 +1,21 @@
 package com.lti.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.BuyTravelInsuranceDto;
+import com.lti.dto.BuyVehicleInsuranceDto;
+import com.lti.dto.SendId;
+import com.lti.dto.SendVehicleId;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -15,7 +26,8 @@ import com.lti.model.VehicleInsuranceDetails;
 import com.lti.model.VehicleInsurancePlan;
 import com.lti.service.ProjectService;
 
-@Controller
+@RestController
+@CrossOrigin
 public class ControllerImpl {
 
 	@Autowired
@@ -28,31 +40,54 @@ public class ControllerImpl {
 	public int isValidUser(int userId, String password) {
 		return service.isValidUser(userId, password);
 	}
-
-	public int buyVehicleInsurance(int userId, String regno, int planId, VehicleInsuranceDetails vid) {
-		return service.buyVehicleInsurance(userId, regno, planId, vid);
+	
+	@RequestMapping(path = "/buyVehicleInsurance", method = RequestMethod.POST)
+	public SendId buyVehicleInsurance(@RequestBody BuyVehicleInsuranceDto buyvehicleinsurancedto) {
+		//System.out.println(buyvehicleinsurancedto.getUserId()+" "+ buyvehicleinsurancedto.getRegistrationNumber());
+		SendId sendId = new SendId();
+		VehicleInsuranceDetails vid = new VehicleInsuranceDetails();
+		vid.setInsurancePremium(buyvehicleinsurancedto.getInsurancePremium());
+		vid.setInsuranceDuration(LocalDate.now().plusYears(buyvehicleinsurancedto.getDuration()));
+		sendId.setId(service.buyVehicleInsurance(buyvehicleinsurancedto.getUserId(), buyvehicleinsurancedto.getRegistrationNumber(), buyvehicleinsurancedto.getInsurancePlanId(), vid));
+		return sendId;
 	}
-
-	public int buyTravelInsurance(int userId, int travelId, int planId, TravelInsuranceDetails tid) {
-		return service.buyTravelInsurance(userId, travelId, planId, tid);
+	
+	@RequestMapping(path = "/buyTravelInsurance", method = RequestMethod.POST)
+	public SendId buyTravelInsurance(@RequestBody BuyTravelInsuranceDto buytravelinsurancedto) {
+		//System.out.println(buytravelinsurancedto.getTravelinsurancedetails());
+		SendId sendId = new SendId();
+		TravelInsuranceDetails tid = new TravelInsuranceDetails();
+		tid.setInsurancePremium(buytravelinsurancedto.getInsurancePremium());
+		tid.setInsuranceDuration(buytravelinsurancedto.getInsuranceDuration());
+		sendId.setId(service.buyTravelInsurance(buytravelinsurancedto.getUserId(), buytravelinsurancedto.getTravelId(), buytravelinsurancedto.getInsurancePlanId(), tid));
+		return sendId;
 	}
 
 	public int renewInsurance(int policyId, int duration) {
 		return service.renewInsurance(policyId, duration);
 	}
-
-	public String addVehicleDetails(VehicleDetails vehicle) {
-		return service.addVehicleDetails(vehicle);
-	}
-
-	public int addTravelDetails(TravelDetails travel) {
-		return service.addTravelDetails(travel);
+	
+	@RequestMapping(path = "/addVehicleDetails", method = RequestMethod.POST)
+	public SendVehicleId addVehicleDetails(@RequestBody VehicleDetails vehicle) {
+		System.out.println(vehicle.getRegistrationNumber());
+		SendVehicleId vehicleId = new SendVehicleId();
+		vehicleId.setVehicleId(service.addVehicleDetails(vehicle));
+		return vehicleId;
 	}
 	
+	@RequestMapping(path = "/addTravelDetails", method = RequestMethod.POST)
+	public SendId addTravelDetails(@RequestBody TravelDetails travel) {
+		SendId sendId = new SendId(); 
+		sendId.setId(service.addTravelDetails(travel));
+		return sendId;
+	}
+	
+	@RequestMapping(path = "/showVehicleInsurancePlan", method = RequestMethod.GET)
 	public List<VehicleInsurancePlan> showVehicleInsurancePlan() {
 		return service.showVehicleInsurancePlan();
 	}
 
+	@RequestMapping(path = "/showTravelInsurancePlan", method = RequestMethod.GET)
 	public List<TravelInsurancePlan> showTravelInsurancePlan() {
 		return service.showTravelInsurancePlan();
 	}
@@ -77,14 +112,16 @@ public class ControllerImpl {
 		return service.showClaimDetails(claimId);
 	}
 
+	@RequestMapping(path = "/showAllClaimDetails", method = RequestMethod.GET)
 	public List<ClaimDetails> showAllClaimDetails() {
 		return service.showAllClaimDetails();
 	}
 
+	@RequestMapping(path = "/showTravelInsuranceDetails", method = RequestMethod.GET)
 	public List<TravelInsuranceDetails> showTravelInsuranceDetails() {
 		return service.showTravelInsuranceDetails();
 	}
-
+	@RequestMapping(path = "/showVehicleInsuranceDetails", method = RequestMethod.GET)
 	public List<VehicleInsuranceDetails> showVehicleInsuranceDetails() {
 		return service.showVehicleInsuranceDetails();
 	}

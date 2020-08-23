@@ -5,14 +5,17 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class VehicleDetails {
 
 	@Id
-	private String RegistrationNumber;
+	private String registrationNumber;
 	@Column
 	private String vehicleColour;
 	@Column
@@ -29,16 +32,16 @@ public class VehicleDetails {
 	private String vehicleChassisNumber;
 	@Column
 	private Double vehicleCost;
-	
-	@OneToOne(mappedBy = "vehicledetails", cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToOne(mappedBy = "vehicledetails", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private VehicleInsuranceDetails vehicleinsurancedetails;
 
 	public String getRegistrationNumber() {
-		return RegistrationNumber;
+		return registrationNumber;
 	}
 
 	public void setRegistrationNumber(String registrationNumber) {
-		RegistrationNumber = registrationNumber;
+		this.registrationNumber = registrationNumber;
 	}
 
 	public String getVehicleColour() {
@@ -112,17 +115,5 @@ public class VehicleDetails {
 	public void setVehicleinsurancedetails(VehicleInsuranceDetails vehicleinsurancedetails) {
 		this.vehicleinsurancedetails = vehicleinsurancedetails;
 	}
-
-	@Override
-	public String toString() {
-		return "VehicleDetails [RegistrationNumber=" + RegistrationNumber + ", vehicleColour=" + vehicleColour
-				+ ", vehicleType=" + vehicleType + ", vehicleModel=" + vehicleModel + ", vehicleManufacturer="
-				+ vehicleManufacturer + ", vehiclePurchaseDate=" + vehiclePurchaseDate + ", vehicleEngineNumber="
-				+ vehicleEngineNumber + ", vehicleChassisNumber=" + vehicleChassisNumber + ", vehicleCost="
-				+ vehicleCost + "]";
-	}
-	
-	
-	
 	
 }

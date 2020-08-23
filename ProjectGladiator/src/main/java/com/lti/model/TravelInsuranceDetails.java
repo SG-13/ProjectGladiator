@@ -1,6 +1,7 @@
 package com.lti.model;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TravelInsuranceDetails {
 
@@ -26,21 +29,22 @@ public class TravelInsuranceDetails {
 	@Column
 	private String insuranceStatus;
 	@Column
-	private int insuranceDuration;
+	private LocalDate insuranceDuration;
 	@Column
-	private Double insurancePremium;
+	private double insurancePremium;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "travelinsurancedetails", cascade=CascadeType.ALL)
 	private List<ClaimDetails> claimdetails;
-	
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "travel_id")
 	private TravelDetails traveldetails;
-	
-	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "insurance_planId")
 	private TravelInsurancePlan travelinsuranceplan;
-	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private UserDetails user;
@@ -62,19 +66,19 @@ public class TravelInsuranceDetails {
 		this.insuranceStatus = insuranceStatus;
 	}
 
-	public int getInsuranceDuration() {
+	public LocalDate getInsuranceDuration() {
 		return insuranceDuration;
 	}
 
-	public void setInsuranceDuration(int insuranceDuration) {
+	public void setInsuranceDuration(LocalDate insuranceDuration) {
 		this.insuranceDuration = insuranceDuration;
 	}
 
-	public Double getInsurancePremium() {
+	public double getInsurancePremium() {
 		return insurancePremium;
 	}
 
-	public void setInsurancePremium(Double insurancePremium) {
+	public void setInsurancePremium(double insurancePremium) {
 		this.insurancePremium = insurancePremium;
 	}
 
@@ -110,13 +114,5 @@ public class TravelInsuranceDetails {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "TravelInsuranceDetails [insurancePolicyId=" + insurancePolicyId + ", insuranceStatus=" + insuranceStatus
-				+ ", insuranceDuration=" + insuranceDuration + ", insurancePremium=" + insurancePremium
-				+ ", traveldetails=" + traveldetails + ", travelinsuranceplan=" + travelinsuranceplan + ", user=" + user
-				+ "]";
-	}
 
-	
 }

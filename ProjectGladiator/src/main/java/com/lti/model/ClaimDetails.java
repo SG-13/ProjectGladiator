@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ClaimDetails {
 
@@ -34,10 +36,12 @@ public class ClaimDetails {
 	@Column
 	private double claimAmount;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "t_insurance_policyid")
 	private TravelInsuranceDetails travelinsurancedetails;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "v_insurance_policyid")
 	private VehicleInsuranceDetails vehicleinsurancedetails;
@@ -115,13 +119,6 @@ public class ClaimDetails {
 		this.vehicleinsurancedetails = vehicleinsurancedetails;
 	}
 
-	@Override
-	public String toString() {
-		return "ClaimDetails [claimId=" + claimId + ", dateOfIncident=" + dateOfIncident + ", claimDate=" + claimDate
-				+ ", Status=" + Status + ", Reason=" + Reason + ", elaborateReason=" + elaborateReason + ", claimAmount="
-				+ claimAmount + ", travelinsurancedetails=" + travelinsurancedetails + ", vehicleinsurancedetails="
-				+ vehicleinsurancedetails + "]";
-	}
 	
 
 }

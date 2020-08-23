@@ -18,6 +18,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jdk.nashorn.internal.scripts.JS;
+
 @Entity
 public class VehicleInsuranceDetails {
 
@@ -30,19 +35,20 @@ public class VehicleInsuranceDetails {
 	@Column
 	private String insuranceStatus;
 	@Column
-	private Double insurancePremium;
+	private double insurancePremium;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "vehicleinsurancedetails", cascade=CascadeType.ALL)
 	private List<ClaimDetails> claimdetails;
-	
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "vehicle_regNo")
 	private VehicleDetails vehicledetails;
-	
-	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "insurance_planId")
 	private VehicleInsurancePlan vehicleinsuranceplan;
-	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private UserDetails user;
@@ -73,11 +79,11 @@ public class VehicleInsuranceDetails {
 		this.insuranceStatus = insuranceStatus;
 	}
 
-	public Double getInsurancePremium() {
+	public double getInsurancePremium() {
 		return insurancePremium;
 	}
 
-	public void setInsurancePremium(Double insurancePremium) {
+	public void setInsurancePremium(double insurancePremium) {
 		this.insurancePremium = insurancePremium;
 	}
 
@@ -112,16 +118,6 @@ public class VehicleInsuranceDetails {
 	public void setUser(UserDetails user) {
 		this.user = user;
 	}
-
-	@Override
-	public String toString() {
-		return "VehicleInsuranceDetails [insurancePolicyId=" + insurancePolicyId + ", insuranceDuration="
-				+ insuranceDuration + ", insuranceStatus=" + insuranceStatus + ", insurancePremium=" + insurancePremium
-				+ ", vehicledetails=" + vehicledetails + ", vehicleinsuranceplan=" + vehicleinsuranceplan + ", user="
-				+ user + "]";
-	}
-
-	
 
 	
 }

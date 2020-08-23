@@ -38,7 +38,7 @@ public class RepositoryImpl implements ProjectRepository {
 
 	public int isValidUser(int userId, String password) {
 		UserDetails user=em.find(UserDetails.class, userId);
-		
+		//System.out.println(user.getUserPassword());
 		if(user!=null && user.getUserPassword().equals(password))
 			return userId;
 		
@@ -57,7 +57,7 @@ public class RepositoryImpl implements ProjectRepository {
 		
 		user.setVechileinsurancedetails(vidlist);
 		vd.setVehicleinsurancedetails(vid);
-		vip.setVehicleinsurancedetails(vid);
+		vip.setVehicleinsurancedetails(vidlist);
 		
 		vid.setUser(user);
 		vid.setVehicledetails(vd);
@@ -81,7 +81,7 @@ public class RepositoryImpl implements ProjectRepository {
 		
 		user.setTravelinsurancedetails(tidlist);
 		td.setTravelinsurancedetails(tid);
-		tip.setTravelinsurancedetails(tid);
+		tip.setTravelinsurancedetails(tidlist);
 		
 		tid.setUser(user);
 		tid.setTraveldetails(td);

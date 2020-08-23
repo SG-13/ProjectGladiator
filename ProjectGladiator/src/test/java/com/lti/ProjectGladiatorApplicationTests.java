@@ -1,13 +1,11 @@
-package com.lti.test;
-
-import static org.junit.Assert.*;
+package com.lti;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.lti.controller.ControllerImpl;
 import com.lti.model.ClaimDetails;
@@ -20,23 +18,23 @@ import com.lti.model.VehicleInsuranceDetails;
 import com.lti.model.VehicleInsurancePlan;
 import com.lti.repo.RepositoryImpl;
 
-public class RepoTest {
+@SpringBootTest
+class ProjectGladiatorApplicationTests {
 
-	//RepositoryImpl repo = new RepositoryImpl();
+	@Autowired
+	private ControllerImpl controller;
 	
-	ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
-	ControllerImpl controller=ctx.getBean(ControllerImpl.class);
 	
 	@Test
 	public void addUser() {
 		UserDetails user = new UserDetails();
 		
-		user.setUserName("Dinesh Yadav");
-		user.setUserPassword("dinesh@1234");
-		user.setUserEmail("dinesh@gmail.com");
-		user.setUserAddress("Rohtak, Haryana");
-		user.setUserMobileNumber("7879890033");
-		user.setUserDob(LocalDate.of(2007, 6, 14));
+		user.setUserName("Yash Arora");
+		user.setUserPassword("yash@1234");
+		user.setUserEmail("yash@gmail.com");
+		user.setUserAddress("Chandigarh, Haryana");
+		user.setUserMobileNumber("3432890033");
+		user.setUserDob(LocalDate.of(2003, 3, 21));
 		
 		System.out.println(controller.addNewUser(user));
 
@@ -47,15 +45,15 @@ public class RepoTest {
 	public void addvehicle() {
 		
 		VehicleDetails vd = new VehicleDetails();
-		vd.setRegistrationNumber("RJ40CA0013");
-		vd.setVehicleColour("White");
-		vd.setVehicleType("4 wheeler");
-		vd.setVehicleModel("Creta");
-		vd.setVehicleManufacturer("Hyundai");
-		vd.setVehiclePurchaseDate(LocalDate.of(2018, 4, 19));
-		vd.setVehicleEngineNumber("Hy678");
-		vd.setVehicleChassisNumber("32379Hy");
-		vd.setVehicleCost(1100000);
+		vd.setRegistrationNumber("RJ40SE1278");
+		vd.setVehicleColour("Black");
+		vd.setVehicleType("2 wheeler");
+		vd.setVehicleModel("Activa");
+		vd.setVehicleManufacturer("Honda");
+		vd.setVehiclePurchaseDate(LocalDate.of(2019, 1, 05));
+		vd.setVehicleEngineNumber("HO182");
+		vd.setVehicleChassisNumber("98329HO");
+		vd.setVehicleCost(54000);
 		
 		System.out.println(controller.addVehicleDetails(vd));
 	}
@@ -65,19 +63,19 @@ public class RepoTest {
 	public void addtravel() {
 		
 		TravelDetails td = new TravelDetails();
-		td.setArrivalLocation("Mumbai");
+		td.setArrivalLocation("Dehradun");
 		td.setDepartureLocation("Delhi");
-		td.setStartDateOfJourney(LocalDate.of(2004, 03, 11));
-		td.setEndDateOfJourney(LocalDate.of(2004, 03, 12));
-		td.setModeOfTravel("Airplane");
-		td.setTravelCost(3260.0);
+		td.setStartDateOfJourney(LocalDate.of(2018, 03, 11));
+		td.setEndDateOfJourney(LocalDate.of(2018, 03, 12));
+		td.setModeOfTravel("Bus");
+		td.setTravelCost(820);
 		
 		System.out.println(controller.addTravelDetails(td));
 	}
 	
 	@Test
 	public void isValidUser() {
-		System.out.println(controller.isValidUser(1109, "diesh@1234"));
+		System.out.println(controller.isValidUser(1105, "dinesh@1234"));
 	}
 
 	@Test
@@ -86,17 +84,18 @@ public class RepoTest {
 		vid.setInsuranceDuration(LocalDate.of(2023, 03, 20));
 		vid.setInsurancePremium(4585.0);
 		
-		System.out.println(controller.buyVehicleInsurance(1108, "RJ40CA0013",20204, vid));
+		//System.out.println(controller.buyVehicleInsurance(1105, "RJ40CA0013",20204, vid));
 	}
 	
 	
 	@Test
 	public void buyTravelInsurance() {
+		RepositoryImpl repo = new RepositoryImpl();
 		TravelInsuranceDetails tid = new TravelInsuranceDetails();
-		tid.setInsuranceDuration(2);
+		tid.setInsuranceDuration(LocalDate.now());
 		tid.setInsurancePremium(1200.0);
 		
-		System.out.println(controller.buyTravelInsurance(1107,30207,21205, tid));
+		System.out.println(repo.buyTravelInsurance(1105,30202,21202, tid));
 	}
 	
 	@Test
@@ -218,8 +217,8 @@ public class RepoTest {
 	@Test
 	public void addVehicleInsurancePlan() {
 		VehicleInsurancePlan vip = new VehicleInsurancePlan();
-		vip.setInsurancePlan("Third Party");
-		vip.setInsuranceCoverageAmount(200000.0);
+		vip.setInsurancePlan("Comprehensive Zero D");
+		vip.setInsuranceCoverageAmount(100);
 		
 		System.out.println(controller.addVehicleInsurancePlan(vip));
 		
@@ -228,13 +227,11 @@ public class RepoTest {
 	@Test
 	public void addTravelInsurancePlan() {
 		TravelInsurancePlan tip = new TravelInsurancePlan();
-		tip.setInsurancePlan("Platinum");
-		tip.setInsuranceCoverageAmount(7000000.0);
+		tip.setInsurancePlan("Silver");
+		tip.setInsuranceCoverageAmount(1000000.0);
 		
 		System.out.println(controller.addTravelInsurancePlan(tip));
 		
 	}
-	
-	
-	
+
 }

@@ -1,13 +1,19 @@
 package com.lti.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TravelInsurancePlan {
@@ -19,10 +25,10 @@ public class TravelInsurancePlan {
 	@Column
 	private String insurancePlan;
 	@Column
-	private Double insuranceCoverageAmount;
-	
-	@OneToOne(mappedBy = "travelinsuranceplan", cascade=CascadeType.ALL)
-	private TravelInsuranceDetails travelinsurancedetails;
+	private double insuranceCoverageAmount;
+	@JsonIgnore
+	@OneToMany(mappedBy = "travelinsuranceplan", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<TravelInsuranceDetails> travelinsurancedetails;
 
 	
 	
@@ -42,28 +48,21 @@ public class TravelInsurancePlan {
 		this.insurancePlan = insurancePlan;
 	}
 
-	public Double getInsuranceCoverageAmount() {
+	public double getInsuranceCoverageAmount() {
 		return insuranceCoverageAmount;
 	}
 
-	public void setInsuranceCoverageAmount(Double insuranceCoverageAmount) {
+	public void setInsuranceCoverageAmount(double insuranceCoverageAmount) {
 		this.insuranceCoverageAmount = insuranceCoverageAmount;
 	}
 
-	public TravelInsuranceDetails getTravelinsurancedetails() {
+	public List<TravelInsuranceDetails> getTravelinsurancedetails() {
 		return travelinsurancedetails;
 	}
 
-	public void setTravelinsurancedetails(TravelInsuranceDetails travelinsurancedetails) {
+	public void setTravelinsurancedetails(List<TravelInsuranceDetails> travelinsurancedetails) {
 		this.travelinsurancedetails = travelinsurancedetails;
 	}
 
-	@Override
-	public String toString() {
-		return "TravelInsurancePlan [insurancePlanId=" + insurancePlanId + ", insurancePlan=" + insurancePlan
-				+ ", insuranceCoverageAmount=" + insuranceCoverageAmount + "]";
-	}
-	
-	
 	
 }

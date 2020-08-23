@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TravelDetails {
@@ -29,9 +32,10 @@ public class TravelDetails {
 	@Column
 	private String modeOfTravel;
 	@Column
-	private Double TravelCost;
+	private double travelCost;
 	
-	@OneToOne(mappedBy = "traveldetails", cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToOne(mappedBy = "traveldetails", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private TravelInsuranceDetails travelinsurancedetails;
 
 	
@@ -83,12 +87,12 @@ public class TravelDetails {
 		this.modeOfTravel = modeOfTravel;
 	}
 
-	public Double getTravelCost() {
-		return TravelCost;
+	public double getTravelCost() {
+		return travelCost;
 	}
 
-	public void setTravelCost(Double travelCost) {
-		TravelCost = travelCost;
+	public void setTravelCost(double travelCost) {
+		this.travelCost = travelCost;
 	}
 
 	public TravelInsuranceDetails getTravelinsurancedetails() {
@@ -99,15 +103,7 @@ public class TravelDetails {
 		this.travelinsurancedetails = travelinsurancedetails;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "TravelDetails [travelId=" + travelId + ", startDateOfJourney=" + startDateOfJourney
-				+ ", endDateOfJourney=" + endDateOfJourney + ", departureLocation=" + departureLocation
-				+ ", arrivalLocation=" + arrivalLocation + ", modeOfTravel=" + modeOfTravel + ", TravelCost="
-				+ TravelCost + "]";
-	}
-	
+
 	
 	
 }

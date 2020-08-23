@@ -17,46 +17,63 @@
         <div class="formmain">
 
 
-            <div class="formcard">
-                <h2 style="text-align: center; ">Fill the details related to your journey</h2><br><br>
-                <form #travelRegisterForm='ngForm' (ngSubmit)='travelRegister(travelRegisterForm)'>
+            <div class="formcard" *ngIf='showRegisterForm'>
+                <h2 style="text-align: center; ">Fill Details Of Your Travel</h2><br><br>
+                <form #travelRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="startingDate" class="labels "><b>Starting date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" id="startingDate " required><br><br>
+                        <input type="date" placeholder="Enter the date" name="startingDate " [(ngModel)]=travel.startDateOfJourney required><br><br>
 
                         <label for="endingDate" class="labels "><b>Ending date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" id="endingDate " required><br><br>
+                        <input type="date" placeholder="Enter the date" name="endingDate " [(ngModel)]=travel.endDateOfJourney required><br><br>
 
                         <label for="departureLocation"><b>Departure location</b></label><br>
-                        <input type="text" placeholder="Enter departure location" id="departureLocation" required><br><br>
+                        <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation required><br><br>
 
-                        <label for="arrivalLocation"><b>Departure location</b></label><br>
-                        <input type="text" placeholder="Enter arrival location" id="arrivalLocation" required><br><br>
+                        <label for="arrivalLocation"><b>Arrival location</b></label><br>
+                        <input type="text" placeholder="Enter arrival location" name="arrivalLocation" [(ngModel)]=travel.arrivalLocation required><br><br>
 
                         <label for="modeOfTravel"><b>Mode of Travel</b></label><br>
-                        <input type="text" placeholder="Enter mode of travel" id="modeOfTravel" required><br><br>
-
+                        <select id="modeOfTravel" name="modeOfTravel" [(ngModel)]=travel.modeOfTravel required>
+                        <option value="Bus">Bus 
+                        <option value="Car">Car 
+                        <option value="Train">Train
+                        <option value="Airplane">Airplane
+                        <option value="Ship">Ship
+                        </select><br><br>
                         <label for="travelCost" class="labels"><b>Travel Cost</b></label><br>
-                        <input type="text" placeholder="Enter travel cost " id="travelCost " required><br><br>
+                        <input type="number" placeholder="Enter travel cost " name="travelCost" [(ngModel)]=travel.travelCost required><br><br>
 
 
 
-                        <a [routerLink]="['/travelRegisterlink']"><button class="buttons" [disabled]="travelRegisterForm.invalid" type="submit" ><h2> Submit</h2></button></a>
+                        <button class="buttons" [disabled]="travelRegisterForm.invalid" type="submit" ><h2> Submit</h2></button>
                     </div>
                 </form>
             </div>
+            <div class="formcard" *ngIf='showPlanForm'>
+                <form #insurancePlanForm='ngForm'>
+                    <div class="formcontainer">
+                        
+                        <div class="Form-radio" *ngFor='let p of policy'>
+                            <h1><input type="radio" name="policyId" value={{p.insurancePlanId}} [(ngModel)]=buyinsurance.insurancePlanId required>
+                            <label for="policyId " class="labels">{{p.insurancePlan}}</label></h1><br>
+                            <h2>Coverage Amount : {{p.insuranceCoverageAmount}}</h2>
+                        </div>
+                        
+                        <!-- {{buyinsurance.insurancePlanId}} -->
+
+                        <div *ngIf='showPremium'>
+                            <label for="insurancePremium" class="labels"><b><h2>Premium</h2></b></label>
+                            <h3>{{buyinsurance.insurancePremium}}</h3><br>
+                        </div>
+
+                        <button class="buttons" type="submit" [disabled]="insurancePlanForm.invalid" (click)='calcPremium()'><h2> Calculate Premium</h2></button>
+                        <button class="buttons" type="submit" [disabled]="insurancePlanForm.invalid" (click)='buyInsurance()'><h2> Buy Insurance</h2></button>
+                    </div>
+                </form> 
+            </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
