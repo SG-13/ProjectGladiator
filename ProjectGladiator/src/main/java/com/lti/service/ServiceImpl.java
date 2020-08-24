@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.lti.exception.ServiceException;
+import com.lti.function.Calculate;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -149,6 +150,30 @@ public class ServiceImpl implements ProjectService {
 		}
 	} 
 
+	
+	@Override
+	public boolean checkPolicyId(int policyId) {
+		return repo.checkPolicyId(policyId);
+	}
+
+	@Override
+	public int addClaim(int policyId, ClaimDetails claimDetails) {
+		int pid=policyId;
+		Calculate calc=new Calculate();
+		int n=calc.firstDigit(pid);
+		if(n==5) {
+		return repo.addVehicleClaimdetails(policyId, claimDetails);
+		}
+		else if(n==6) {
+		return repo.addTravelClaimdetails(policyId, claimDetails);
+		}
+		return 0;
+
+	}
+	@Override
+	public List<ClaimDetails> getAllClaim(int userId){
+		return repo.getAllClaim(userId);
+	}
 	
 
 }

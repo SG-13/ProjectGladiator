@@ -39,4 +39,7 @@ public interface ProjectService {
 	  int addTravelInsurancePlan(TravelInsurancePlan vip);
 	  int register(UserDetails userDetails);
 	  UserDetails login(int userId, String password);
+	  boolean checkPolicyId(int policyId) ;//add new 
+	  int addClaim(int policyId,ClaimDetails claimDetails);
+	  public List<ClaimDetails> getAllClaim(int userId);
 }

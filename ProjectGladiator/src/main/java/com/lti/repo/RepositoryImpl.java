@@ -315,5 +315,59 @@ public class RepositoryImpl implements ProjectRepository {
 		return a;
 	}
 	
+	
+	@Transactional
+	public boolean checkPolicyId(int policyId) {
+		VehicleInsuranceDetails vid=em.find(VehicleInsuranceDetails.class, policyId);
+		TravelInsuranceDetails tid=em.find(TravelInsuranceDetails.class, policyId);
+		if(vid!=null||tid!=null)
+			return true;
+		return false;
+	}
+
+
+	
+	
+	public List<ClaimDetails> getAllClaim(int userId) {
+		List<ClaimDetails> obj=new ArrayList<ClaimDetails>();
+		//List<ClaimDetails> allClaim = new ArrayList<ClaimDetails>();
+		
+		UserDetails userObj = em.find(UserDetails.class,userId);
+		System.out.println("Email is "+userObj.getUserEmail());
+		
+		List<TravelInsuranceDetails> list = userObj.getTravelinsurancedetails();
+		System.out.println(list.size());
+		
+		for(TravelInsuranceDetails policyNum : list) {
+			String hql = "select I from TravelInsuranceDetails I where I.insurancePolicyId=:number ";
+			Query query = em.createQuery(hql);
+			query.setParameter("number",policyNum.getInsurancePolicyId());
+			List<TravelInsuranceDetails> allInsurance = query.getResultList();
+			System.out.println(allInsurance.get(0).getClass().getName());
+			for(TravelInsuranceDetails ins:allInsurance) {
+				 obj =  ins.getClaimdetails();
+				//allClaim.add(obj);
+				}
+			
+			}
+		
+		List<VehicleInsuranceDetails> list1 = userObj.getVechileinsurancedetails();
+		System.out.println(list1.size());
+		
+		for(VehicleInsuranceDetails policyNum:list1) {
+			String hql = "select V from VehicleInsuranceDetails V where V.insurancePolicyId=:number ";
+			Query query = em.createQuery(hql);
+			query.setParameter("number",policyNum.getInsurancePolicyId());
+			List<VehicleInsuranceDetails> allInsurance = query.getResultList();
+			System.out.println(allInsurance.get(0).getClass().getName());
+			for(VehicleInsuranceDetails ins:allInsurance) {
+				 obj =  ins.getClaimdetails();
+				//allClaim.add(obj);
+			}
+			
+		}
+		return obj;
+		
+	}
 
 }

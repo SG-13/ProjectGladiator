@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.controller.ControllerImpl.Status.StatusType;
+import com.lti.controller.ControllerImpl.Status1.StatusType1;
 import com.lti.dto.BuyTravelInsuranceDto;
 import com.lti.dto.BuyVehicleInsuranceDto;
+import com.lti.dto.CheckDto;
+import com.lti.dto.ClaimDto;
 import com.lti.dto.LoginDto;
 import com.lti.dto.SendId;
 import com.lti.dto.SendVehicleId;
+import com.lti.dto.ShowDto;
 import com.lti.dto.UserDto;
 import com.lti.exception.ServiceException;
 import com.lti.model.ClaimDetails;
@@ -250,8 +254,7 @@ public class ControllerImpl {
     	
     }
 	
-	public static class Status 
-	{
+	public static class Status {
 		private int userId;
 		public int getUserId() {
 			return userId;
@@ -284,9 +287,97 @@ public class ControllerImpl {
 			this.message = message;
 		}
 
+	}
+	
+	@PostMapping(path="/check")
+	public Status1 checkPolicyId(@RequestBody CheckDto checkdto) {
+		if(service.checkPolicyId(checkdto.getPolicyId())) {
+			Status1 status=new Status1();
+			status.setStatus(StatusType1.Success);
+			status.setMessage("OK");
+			return status;
+		}
+		else {
+			Status1 status=new Status1();
+			status.setStatus(StatusType1.Failure);
+			status.setMessage("Fail");
+			return status;
+		}
+		
+	}
+	
+	public static class Status1{
+		  
+		  private StatusType1 status;
+		  private String message;
+		  int claimId;
+		
+
+		public int getClaimId() {
+			return claimId;
+		}
+
+		public void setClaimId(int claimId) {
+			this.claimId = claimId;
+		}
+
+		public static enum StatusType1{
+			  Success,Failure
+		  }
+
+		public StatusType1 getStatus() {
+			return status;
+		}
+
+		public void setStatus(StatusType1 status) {
+			this.status = status;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+		  
+	  }
+	
+	@PostMapping(path="/add")
+	public Status1 add(@RequestBody ClaimDto claimDto) {
+		
+		System.out.println(claimDto.getReason());
+		System.out.println(claimDto.getPolicyId());
+		ClaimDetails claimDetails=new ClaimDetails();
+		claimDetails.setDateOfIncident(claimDto.getDateOfIncident());
+		claimDetails.setClaimDate(claimDto.getClaimDate());
+		claimDetails.setReason(claimDto.getReason());
+		claimDetails.setElaborateReason(claimDto.getElaborateReason());
+		claimDetails.setStatus("Pending");
+		if(service.addClaim(claimDto.getPolicyId(), claimDetails)!=0) {
+			Status1 status=new Status1();
+			status.setStatus(StatusType1.Success);
+			status.setMessage("OK");
+			status.setClaimId(claimDetails.getClaimId());
+			System.out.println(claimDetails.getClaimId());
+			return status;
+			
+		}
+		else {
+			Status1 status=new Status1();
+			status.setStatus(StatusType1.Failure);
+			status.setMessage("Fail");
+			return status;
+			
+		}
 		
 		
-		
+	}
+	@PostMapping(path="/list")
+	public List<ClaimDetails> getAllClaim(@RequestBody ShowDto showdto){
+		System.out.println(showdto.getUserId());
+		System.out.println(service.getAllClaim(showdto.getUserId()));
+		return service.getAllClaim(showdto.getUserId());
 	}
 	
 	

@@ -70,5 +70,10 @@ public interface ProjectRepository {
 	int findByIdAndPassword(int userId, String password);
 
 	boolean findByEmail(String email);
+	
+	boolean checkPolicyId(int policyId) ;
+	
+	public List<ClaimDetails> getAllClaim(int userId);
+	  
 
 }
