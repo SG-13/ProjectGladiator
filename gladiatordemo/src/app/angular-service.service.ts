@@ -5,6 +5,8 @@ import { VehicleDetails } from "./vehicle-details";
 import { BuyVehicleInsurance } from "./buy-vehicle-insurance";
 import { TravelDetails } from "./travel-details";
 import { BuyTravelInsurance } from "./buy-travel-insurance";
+import { Login } from "./login-details";
+import { UserDetails } from "./user-details";
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +45,15 @@ export class AngularServiceService {
     let url='http://localhost:8080/buyTravelInsurance';
     return this.http.post(url,bti);
   }
+
+  login(login:Login):Observable<any>
+  {
+      return this.http.post("http://localhost:8080/login",login);
+  }  
+
+  register(userDetails:UserDetails):Observable<any>
+  {
+      return this.http.post("http://localhost:8080/register",userDetails);
+  }  
 
 }

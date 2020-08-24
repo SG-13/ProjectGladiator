@@ -268,7 +268,52 @@ public class RepositoryImpl implements ProjectRepository {
 		   int Id=tip.getInsurancePlanId();
 		   System.out.println("Travel insurance plan added"); 
 		   return Id; 	
-	}	
+	}
+
+	@Override
+	@Transactional
+	public boolean checkVehicleExist(String registrationNumber) {
+		return  (Long) em.createQuery("select count(vd.registrationNumber) from VehicleDetails vd where vd.registrationNumber=:rn")
+				.setParameter("rn",registrationNumber)
+				.getSingleResult()==1 ? true : false;
+	}
+	
+	
+	@Override
+	public UserDetails findById(int userId) 
+	{
+		return em.find(UserDetails.class, userId);
+	}
+	
+	@Override
+	public List<UserDetails> findAll() 
+	{
+		return em.createNamedQuery("fetch-all").getResultList();
+		
+	}
+	
+	@Override
+	public boolean findByEmail(String email) 
+	{
+		return (long)em
+				.createQuery("select count(userDetails.userId) from UserDetails userDetails where userDetails.userEmail=:em ")
+				.setParameter("em", email)
+				.getSingleResult() == 1? true : false;
+		
+	}
+	
+	@Override	
+	public int findByIdAndPassword(int userId, String password) {
+		System.out.println(userId);
+		System.out.println(password);
+		
+		int a=(int)em.createQuery("select u.userId from UserDetails u where u.userId=:id and u.userPassword=:pass")
+				.setParameter("id", userId)
+				.setParameter("pass", password)
+				.getSingleResult();
+		System.out.println(a);
+		return a;
+	}
 	
 
 }

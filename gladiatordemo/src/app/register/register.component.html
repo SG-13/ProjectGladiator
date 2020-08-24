@@ -1,0 +1,75 @@
+
+
+<body>
+
+
+    <div class="formrow">
+        <div class="formmain">
+            <div class="formcard">
+                <h2 style="text-align: center; ">Register Here</h2><br><br>
+                <form #registerForm='ngForm' (ngSubmit)='register()'>
+                    <div class="formcontainer">
+
+
+                        <label class="labels"><b>User Name</b></label><br>
+                        <input type="text" placeholder="Enter Username" name="userName" required [(ngModel)]="userDetails.userName" #userNameControl="ngModel">
+                        <span style="color: red;" *ngIf="userNameControl.invalid && userNameControl.touched"> 
+                                <b>User Name is required</b>
+
+                            </span><br><br>
+
+                        <label class="labels"><b>Date Of Birth</b></label><br>
+                        <div>
+                            <input type="date" name="userDob" value="2012-07-22 " min="1900-01-01" max="2016-12-31" [(ngModel)]="userDetails.userDob" required #dobControl="ngModel">
+                        </div>
+                        <span style="color: red;" *ngIf="dobControl.invalid && dobControl.touched"> 
+                                <b>Date of Birth is required</b>
+
+                            </span><br>
+
+                        <label class="labels"><b>User Email</b></label><br>
+                        <input type="email" placeholder="Enter email" name="userEmail" required [(ngModel)]="userDetails.userEmail" #userEmailControl="ngModel">
+                        <span style="color: red;" *ngIf="userEmailControl.invalid && userEmailControl.touched"> 
+                                <b>Email is required!</b>
+
+                            </span><br><br>
+
+
+                        <label class="labels"><b>User Password</b></label><br>
+                        <input type="password" placeholder="Enter your Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$,@,!]).{8,}$" name="userPassword" required [(ngModel)]="userDetails.userPassword " #userPassControl="ngModel">
+                        <span style="color: red;" *ngIf="userPassControl.invalid && userPassControl.touched"> 
+                                <b>Password is required!</b>
+
+                            </span><br><br>
+
+
+                        <label class="labels"><b>Confirm Password</b></label><br>
+                        <input type="password" placeholder="Enter your Password again" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$,@,!]).{8,}$" name="userPassword1" required [(ngModel)]="userPassword1" #userPass1Control="ngModel">
+                        <span style="color: red;" *ngIf="userPass1Control.invalid && userPass1Control.touched "> 
+                                <b>Password confirmation is required!</b>
+
+                            </span><br><br>
+
+
+                        <label class="labels"><b>User Mobile</b></label><br>
+                        <input type="number" placeholder="Enter Mobile Number" pattern="[0-9]*" name="userMobile" minlength="10" maxlength="10" required [(ngModel)]="userDetails.userMobile" #userMobileControl="ngModel">
+                        <span style="color: red;" *ngIf="userMobileControl.invalid && userMobileControl.touched"> 
+                                <b>Mobile number is required!</b>
+
+                            </span><br><br>
+
+                        <label class="labels"><b>User Address</b></label><br>
+                        <input type="text" placeholder="Enter Address" name="userAddress" required [(ngModel)]="userDetails.userAddress" #userAddressControl="ngModel">
+                        <span style="color: red;" *ngIf="userAddressControl.invalid && userAddressControl.touched"> 
+                                <b>Address is required!</b>
+
+                            </span><br><br>
+
+                        <button type="submit" [disabled]="registerForm.invalid" class="buttons">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+

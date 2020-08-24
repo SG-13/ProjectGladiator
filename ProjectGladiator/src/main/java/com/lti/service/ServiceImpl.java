@@ -3,8 +3,10 @@ package com.lti.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.lti.exception.ServiceException;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -119,6 +121,33 @@ public class ServiceImpl implements ProjectService {
 	public int addTravelInsurancePlan(TravelInsurancePlan vip) {
 		return repo.addTravelInsurancePlan(vip);
 	}
+
+	@Override
+	public int register(UserDetails userDetails) 
+	{
+		if(!repo.findByEmail(userDetails.getUserEmail()))
+		  {
+			return repo.addNewUser(userDetails);
+			
+		  }
+		else
+			throw new ServiceException("User already registerd");
+	}
+	
+	@Override
+	public UserDetails login(int userId, String password) {
+		
+		try {
+			
+			int id=repo.findByIdAndPassword(userId, password);
+			UserDetails userDetails=repo.findById(id);
+			System.out.println(userDetails.getUserId());
+			return userDetails;
+			
+		} catch( EmptyResultDataAccessException e) {
+			throw new ServiceException("Incorrect userId/Password");
+		}
+	} 
 
 	
 

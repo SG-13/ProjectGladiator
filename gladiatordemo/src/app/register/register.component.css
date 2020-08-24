@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    /* it will be a box and content will be adjusted*/
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* background-image: url(car.jpg);  */
+    background-image: url(../../assets/im11.jpg);
+    font-size: larger;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+ /* *{
+    box-sizing: border-box;
+    font-family: 'Muli', 'Baloo Da 2', 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    overflow-x: hidden;
+} */
+
+.formcard {
+    border: 2px ridge;
+    border-radius: 100px;
+    background-color: rgb(236, 235, 229, 0.8);
+    padding: 5px;
+    margin-top: 150px;
+    margin-left: 350px;
+    margin-right: 350px;
+    margin-bottom: 350px;
+}
+
+.formmain {
+    width: 100%;
+    margin: auto;
+}
+
+
+.formcontainer {
+    padding: 16px;
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    font-size: large;
+}
+
+.buttons {
+    background-color: steelblue;
+    color: white;
+    padding: 14px 20px;
+    margin: 25px 0;
+    border: 2px ridge;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 60%;
+    font-size: 30px;
+}
+
+.buttons:hover {
+    background-color: green;
+}
+
+.buttons:focus {
+    outline: none;
+}
+
+
+/* Full-width inputs */
+
+input[type=text],
+input[type=date],
+input[type=password],
+input[type=email],
+input[type=number],
+select,
+textarea,
+:placeholder-shown {
+    width: 100%;
+    background-color: whitesmoke;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 5px outset;
+    border-radius: 25px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+select.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.buttons[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+input:focus,
+select {
+    outline: none;
+}

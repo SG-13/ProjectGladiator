@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./vehicle-component.component.css']
 })
 export class VehicleComponentComponent {
-
-  message:string;
-  amount:number;
+  date : Date = new Date();
+  FromDate = this.date.getFullYear() + '-' + ('0' + (this.date.getMonth() + 1)).slice(-2) + '-' + ('0' + this.date.getDate()).slice(-2);
+  minCost:number=30000;
   showRegisterForm:boolean=true;
   showPlanForm:boolean=false;
   showPremium:boolean=false;
@@ -57,7 +57,7 @@ export class VehicleComponentComponent {
     this.service.saveVehicleInsuranceDetails(this.buyinsurance).subscribe( data =>{
       //alert(JSON.stringify(data));
     })
-
+    
     this.router.navigate(['dashLink']);
   }
 

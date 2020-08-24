@@ -13,6 +13,10 @@ import { Router } from '@angular/router';
 })
 export class TravelComponentComponent {
 
+  //todayDate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+ 
+  date : Date = new Date();
+  FromDate = this.date.getFullYear() + '-' + ('0' + (this.date.getMonth() + 1)).slice(-2) + '-' + ('0' + this.date.getDate()).slice(-2);
   message:string;
   amount:number;
   showRegisterForm:boolean=true;

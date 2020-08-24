@@ -13,29 +13,62 @@ import com.lti.model.VehicleInsurancePlan;
 
 public interface ProjectRepository {
 
-	  int addNewUser(UserDetails user);
-	  int isValidUser(int userId,String password);
-	  int buyVehicleInsurance(int userId, String regno, int planId,VehicleInsuranceDetails vid);
-	  int buyTravelInsurance(int userId, int travelId, int planId,TravelInsuranceDetails tid);
-	  int renewInsurance(int policyId,int duration);
-	  String addVehicleDetails(VehicleDetails vehicle);
-	  public int addTravelDetails(TravelDetails travel);
-	  List<VehicleInsurancePlan> showVehicleInsurancePlan();
-	  List<TravelInsurancePlan> showTravelInsurancePlan();     	
-	  int addVehicleClaimdetails(int policyId,ClaimDetails claimdetails);
-	  int addTravelClaimdetails(int policyId,ClaimDetails claimdetails);
-	  boolean checkVehiclePolicyId(int policyId);
-	  boolean checkTravelPolicyId(int policyId);
-	  ClaimDetails showClaimDetails(int claimId);
-	  List<ClaimDetails> showAllClaimDetails();
-	  List <TravelInsuranceDetails>showTravelInsuranceDetails();
-	  List <VehicleInsuranceDetails> showVehicleInsuranceDetails();
-	  List <VehicleInsuranceDetails> showUserVehicleInsurance(int userId);
-	  List<TravelInsuranceDetails> showUserTravelInsurance(int userId);
-	  void updateVehicleInsuranceStatus(int policyId,String status);
-	  void updateTravelInsuranceStatus(int policyId,String status);
-	  void updateClaimStatus(int claimId,String status);
-	  int addVehicleInsurancePlan(VehicleInsurancePlan vip);
-	  int addTravelInsurancePlan(TravelInsurancePlan vip);
-	
+	int addNewUser(UserDetails user);
+
+	int isValidUser(int userId, String password);
+
+	int buyVehicleInsurance(int userId, String regno, int planId, VehicleInsuranceDetails vid);
+
+	int buyTravelInsurance(int userId, int travelId, int planId, TravelInsuranceDetails tid);
+
+	int renewInsurance(int policyId, int duration);
+
+	String addVehicleDetails(VehicleDetails vehicle);
+
+	public int addTravelDetails(TravelDetails travel);
+
+	List<VehicleInsurancePlan> showVehicleInsurancePlan();
+
+	List<TravelInsurancePlan> showTravelInsurancePlan();
+
+	int addVehicleClaimdetails(int policyId, ClaimDetails claimdetails);
+
+	int addTravelClaimdetails(int policyId, ClaimDetails claimdetails);
+
+	boolean checkVehiclePolicyId(int policyId);
+
+	boolean checkTravelPolicyId(int policyId);
+
+	ClaimDetails showClaimDetails(int claimId);
+
+	List<ClaimDetails> showAllClaimDetails();
+
+	List<TravelInsuranceDetails> showTravelInsuranceDetails();
+
+	List<VehicleInsuranceDetails> showVehicleInsuranceDetails();
+
+	List<VehicleInsuranceDetails> showUserVehicleInsurance(int userId);
+
+	List<TravelInsuranceDetails> showUserTravelInsurance(int userId);
+
+	void updateVehicleInsuranceStatus(int policyId, String status);
+
+	void updateTravelInsuranceStatus(int policyId, String status);
+
+	void updateClaimStatus(int claimId, String status);
+
+	int addVehicleInsurancePlan(VehicleInsurancePlan vip);
+
+	int addTravelInsurancePlan(TravelInsurancePlan vip);
+
+	boolean checkVehicleExist(String registrationNumber);
+
+	UserDetails findById(int userId);
+
+	List<UserDetails> findAll();
+
+	int findByIdAndPassword(int userId, String password);
+
+	boolean findByEmail(String email);
+
 }

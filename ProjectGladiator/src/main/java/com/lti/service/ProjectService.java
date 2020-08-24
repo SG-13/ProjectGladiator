@@ -37,4 +37,6 @@ public interface ProjectService {
 	  void updateClaimStatus(int claimId,String status);
 	  int addVehicleInsurancePlan(VehicleInsurancePlan vip);
 	  int addTravelInsurancePlan(TravelInsurancePlan vip);
+	  int register(UserDetails userDetails);
+	  UserDetails login(int userId, String password);
 }

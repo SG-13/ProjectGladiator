@@ -1,6 +1,37 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Muli', 'Baloo Da 2', 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    overflow-x: hidden;
+    background-color: steelblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    top: 0;
+    padding: 10px;
+    text-align: center;
+    color: steelblue;
+    width: 105%;
+    margin-left: -18px;
+    background-color: white;
+    margin-top: 42px;
+    height: 200px;
+    vertical-align: middle;
+    font-size: xx-large;
+    z-index: 0;
+}
+/* Style the top navigation bar */
+
 .topnav {
     overflow: hidden;
-    background-color:steelblue;
+    background-color: steelblue;
     width: 100%;
     margin-left: -20px;
     overflow: visible;
@@ -8,17 +39,14 @@
     position: fixed;
     top: 0;
     z-index: 1;
-  }
-  
-  
-  .topnav ul {
+}
+
+.topnav ul {
     list-style-type: none;
-    
-  }
-  
-  /* Style the topnav links */
-  .topnav a {
-    
+}
+/* Style the topnav links */
+
+.topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -30,22 +58,20 @@
     height: 100%;
     z-index: 15;
     cursor: pointer;
-    
-  }
-  
-  .topnav a:hover {
+}
+
+.topnav a:hover {
     text-decoration: none;
     color: yellow;
     z-index: 15;
-  }
-    
-  .dropdown {
+}
+
+.dropdown {
     float: left;
     display: inline-block;
-    
-  }
-  
-   .dropdown .dropbtn {
+}
+
+.dropdown .dropbtn {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -54,39 +80,35 @@
     font-weight: bolder;
     font-size: larger;
     letter-spacing: 1px;
-   
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
-    margin-top:45px;
+    margin-top: 45px;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 11;
-   
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     float: none;
     color: steelblue;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  
-  }
-  
-  .dropdown-content a:hover {
+}
+
+.dropdown-content a:hover {
     background-color: #ddd;
-  }
-  
-  .dropdown:hover .dropdown-content {
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-    
-  }
-  
-  .footer {
+}
+
+.footer {
     background-color: steelblue;
     padding: 20px;
     text-align: center;
@@ -97,23 +119,13 @@
     width: 105%;
     color: white;
     font-weight: bolder;
-    
-  }
-  * {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-image: url(../../assets/purple.jpg);
-    font-size: larger;
 }
 
 .formcard {
     border: 25px outset;
     padding: 15px;
     margin-top: 80px;
-    margin-left: 200px;
+    margin-left: 100px;
     margin-right: 200px;
     margin-bottom: 200px;
 }
@@ -144,15 +156,23 @@ body {
 }
 
 .buttons {
-    background-color: lightgray;
-    color: black;
+    background-color: steelblue;
+    color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 25px 0;
     border: 2px ridge;
-    border-radius: 15px;
+    border-radius: 50px;
     cursor: pointer;
-    width: 80%;
-    font-size: 25px;
+    width: 50%;
+    font-size: 15px;
+}
+
+.buttons:hover {
+    background-color: green;
+}
+
+.buttons:focus {
+    outline: none;
 }
 
 .heading {
@@ -160,7 +180,7 @@ body {
 }
 /* Full-width inputs */
 
-input[type=email],
+input[type=number],
 input[type=password] {
     width: 100%;
     background-color: whitesmoke;
@@ -169,4 +189,23 @@ input[type=password] {
     border: 5px outset;
     border-radius: 25px;
     box-sizing: border-box;
+    outline: none;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+select.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.buttons[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+input:focus,
+select {
+    outline: none;
 }

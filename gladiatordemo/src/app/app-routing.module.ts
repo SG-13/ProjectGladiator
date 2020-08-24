@@ -13,6 +13,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AboutUsComponent } from "./about-us/about-us.component";
 import { ContactUsComponent } from "./contact-us/contact-us.component";
+import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
     path:'buyLink', component:ChooseInsuranceComponentComponent
@@ -52,6 +53,9 @@ const routes: Routes = [
   },
   {
   path:'contactLink',component:ContactUsComponent
+  },
+  {
+    path:'registerLink',component:RegisterComponent
   }
 ];
 

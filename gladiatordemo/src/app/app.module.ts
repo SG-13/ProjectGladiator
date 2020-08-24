@@ -16,6 +16,7 @@ import { RenewComponent } from './renew/renew.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RenewComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

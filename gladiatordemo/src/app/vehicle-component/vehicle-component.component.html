@@ -22,7 +22,7 @@
                 <form #vehicleRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="registrationNo" class="labels "><b>Registration number</b></label><br>
-                        <input type="text" placeholder="Enter the Registration number * " name="registrationNo" [(ngModel)]="vehicle.registrationNumber" required><br><br>
+                        <input type="text" placeholder="Enter the Registration number * " name="registrationNo" [(ngModel)]="vehicle.registrationNumber" minlength="9" maxlength="10" required><br><br>
 
                         <label for="color" class="labels "><b>Color of the vehicle</b></label><br>
                         <input type="text" placeholder="Enter color " name="color" [(ngModel)]="vehicle.vehicleColour" required><br><br>
@@ -40,7 +40,7 @@
 
 
                         <label for="purchaseDate" class="labels"><b>Purchase Date</b></label><br>
-                        <input type="date" placeholder="Enter purchase date " name="purchaseDate " [(ngModel)]="vehicle.vehiclePurchaseDate" required><br><br>
+                        <input type="date" placeholder="Enter purchase date " name="purchaseDate " [(ngModel)]="vehicle.vehiclePurchaseDate" max={{FromDate}} required><br><br>
 
 
                         <label for="manufacturer " class="labels"><b>Manufacturer</b></label><br>
@@ -56,7 +56,7 @@
 
 
                         <label for="vehicleCost " class="labels"><b>Vehicle Cost</b></label><br>
-                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost " [(ngModel)]="vehicle.vehicleCost" required><br><br>
+                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost " [(ngModel)]="vehicle.vehicleCost" min="40000" max="50000000" required><br><br>
 
 
 

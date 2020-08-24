@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['../app.component.css']
+  styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent  {
   show2:boolean=true
@@ -20,7 +20,8 @@ export class ForgotPasswordComponent  {
     this.show1=true;
 
   }
-  login(loginForm){
+  forgotPassword()
+  {
     
   }
 }

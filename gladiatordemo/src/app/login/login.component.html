@@ -9,58 +9,61 @@
 
 <body>
 
-    <div>
-        <div>
-            <div class="formmain">
+    <div class="formmain">
+        <table class="tables">
+            <tr>
+                <td>
+                    <div class="formcard">
+                        <h2 class="heading">Fill the details to login</h2>
+                        <form #loginForm='ngForm' (ngSubmit)='login()'>
+                            <div class="formcontainer">
 
-                <table class="tables">
-                    <tr>
-                        <td>
+                                <label><b>User ID </b></label><br>
+                                <input type="number" placeholder="Enter the ID" name="userId" required [(ngModel)]="loginDetails.userId" #userIdControl="ngModel">
+                                <span style="color: red;" *ngIf="userIdControl.invalid && userIdControl.touched"> 
+                                <b>User ID is required!</b>
 
-                            <div class="formcard">
+                                </span><br><br>
 
+                                <label><b>Password</b></label><br>
+                                <input type="password" placeholder="Enter the password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$,@,!]).{8,}$" name="password" required [(ngModel)]="loginDetails.userPassword" #userPassControl="ngModel">
+                                <span style="color: red;" *ngIf="userPassControl.invalid && userPassControl.touched"> 
+                                <b>Password is required!</b>
 
+                                </span><br><br>
+                                <span id="spanRegister">
+                                    Not Registered?
+                                    <a [routerLink]="['/registerLink']">Register Now</a>
+                                </span>
 
-                                <h2 class="heading">Fill the details to login</h2>
-                                <form #loginForm='ngForm' (ngSubmit)='login(loginForm)'>
-                                    <div class="formcontainer">
-
-                                        <label><b>Email </b></label><br>
-                                        <input type="email" placeholder="Enter the email" id="email" required><br><br>
-
-                                        <label><b>Password</b></label><br>
-                                        <input type="password" placeholder="Enter the password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$,@,!]).{8,}$" id="password" required><br><br>
-
-                                        <button [routerLink]="['/dashLink']" class="buttons" [disabled]="loginForm.invalid" type="submit"><b>Submit the details</b></button>
-                                        <button [routerLink]="['/forgotLink']" class="buttons"><b>Forgot password?</b></button>
-
-                                    </div>
-                                </form>
+                                <button class="buttons" [disabled]="loginForm.invalid" type="submit"><b>Submit the details</b></button>
+                                <button [routerLink]="['/forgotLink']" class="buttons"><b>Forgot password?</b></button>
 
                             </div>
-                        </td>
-                        <td>
-                            <img class="images" src="../../assets/person.jpg" alt="Image is unable to load">
+                        </form>
 
-                        </td>
-                    </tr>
-
-
-
-                </table>
+                    </div>
+                </td>
+                <td>
+                    <img class="images" src="../../assets/person.jpg" alt="Image is unable to load">
+                </td>
+            </tr>
 
 
 
-
-            </div>
-
+        </table>
 
 
-        </div>
+
 
     </div>
+
+
+
 
 
 </body>
 
 </html>
+<!-- 
+ -->

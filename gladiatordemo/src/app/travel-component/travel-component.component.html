@@ -22,10 +22,10 @@
                 <form #travelRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="startingDate" class="labels "><b>Starting date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" name="startingDate " [(ngModel)]=travel.startDateOfJourney required><br><br>
-
+                        <input type="date" placeholder="Enter the date" name="startingDate " [(ngModel)]=travel.startDateOfJourney min={{FromDate}} required><br><br>
+                        
                         <label for="endingDate" class="labels "><b>Ending date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" name="endingDate " [(ngModel)]=travel.endDateOfJourney required><br><br>
+                        <input type="date" placeholder="Enter the date" name="endingDate " [(ngModel)]=travel.endDateOfJourney min={{FromDate}} required><br><br>
 
                         <label for="departureLocation"><b>Departure location</b></label><br>
                         <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation required><br><br>
@@ -42,7 +42,7 @@
                         <option value="Ship">Ship
                         </select><br><br>
                         <label for="travelCost" class="labels"><b>Travel Cost</b></label><br>
-                        <input type="number" placeholder="Enter travel cost " name="travelCost" [(ngModel)]=travel.travelCost required><br><br>
+                        <input type="number" placeholder="Enter travel cost " id="travelCost" name="travelCost" min="500" max="1000000" [(ngModel)]=travel.travelCost required><br><br>
 
 
 
