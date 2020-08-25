@@ -33,7 +33,7 @@ export class RenewComponent implements OnInit {
 
   userName: String;
   policyType:String;
-duration:any;
+  duration:number;
   renew(renewForm){
 
   }
@@ -42,10 +42,14 @@ policyName:any = "Motor Insurance";
 renewDetails=new RenewDetails();
   myFunc()
   {
+    this.policyId.userId=parseInt(sessionStorage.getItem("userId"));
+    console.log(this.policyId.userId);
+
   this.service.checkPolicyId(this.policyId).subscribe(
   data =>{
-  if (data===false)
+  if (data.Status=="SUCCESS")
   {
+  alert(data.Status);
     this.first=true;
     this.show= false;
     this.showerr=true;   
@@ -74,7 +78,7 @@ this.service.getUserNameAndPolicyType(this.policyId).subscribe(
 this.show= false;
 this.service.addDuration(this.policyId).subscribe(
   data => { 
-   this.duration= data.insuranceDuration;
+   this.duration= data;
   //alert("Your new insurance duration is extended by "+ this.duration+" years.")
   })
   }

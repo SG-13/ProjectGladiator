@@ -1,0 +1,121 @@
+<body>
+    <div class="portal-head"><h1>ADMIN PORTAL</h1></div>
+    <div class="menu-navvv">
+        <button (click)="showdiv1()" >Show Vehicle Policies</button>
+        <button (click)="showdiv2()" >Show Travel Policies</button>
+        <button (click)="showdiv3()" >Show Claim Details</button>
+    </div>
+
+    <div *ngIf="show1" style="text-align: center;">
+        <div>
+            <h1 class="act-policy">Vehicle Insurance Details</h1>
+            <div class="table">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Policy Id</th>
+                            <th>Duration</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>UserId</th>
+                            <th>Registration Number</th>
+                            <th>Plan Id</th>
+                            <th>Accept/Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of vehicleList'>
+                            <td>{{v[0]}}</td>
+                            <td>{{v[1]}}</td>
+                            <td>&#8377;{{v[2]}}.00/-</td>
+                            <td>{{v[3]}}</td>
+                            <td>{{v[4]}}</td>
+                            <td>{{v[5]}}</td>
+                            <td>{{v[6]}}</td>
+                            <td><button class="accept-button" (click)='setVehicleInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setVehicleInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+        
+    </div>
+    <div *ngIf="show2" style="text-align: center;">
+        <div>
+            <h1 class="act-policy">Travel Insurance Details</h1>
+            <div class="table">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Policy Id</th>
+                            <th>Duration</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>UserId</th>
+                            <th>Travel ID</th>
+                            <th>Plan Id</th>
+                            <th>Accept/Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of travelList'>
+                            <td>{{v[0]}}</td>
+                            <td>{{v[1]}}</td>
+                            <td>&#8377;{{v[2]}}.00/-</td>
+                            <td>{{v[3]}}</td>
+                            <td>{{v[4]}}</td>
+                            <td>{{v[5]}}</td>
+                            <td>{{v[6]}}</td>
+                            <td><button class="accept-button" (click)='setTravelInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setTravelInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+        
+    </div>
+    <div *ngIf="show3" style="text-align: center;">
+        <div>
+            <h1 class="act-policy">Claim Details</h1>
+            <div class="table">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Claim Id</th>
+                            <th>Date of Incident</th>
+                            <th>Date of Claim</th>
+                            <th>Reason</th>
+                            <th>Elaborate Reason</th>
+                            <th>Claim Amount</th>
+                            <th>Status</th>
+                            <th>Accept/Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let c of claimdetails'>
+                            <td>{{c.claimId}}</td>
+                            <td>{{c.dateOfIncident}}</td>
+                            <td>{{c.claimDate}}</td>
+                            <td>{{c.reason}}</td>
+                            <td>{{c.elaborateReason}}</td>
+                            <td><input type="number" name="claimAmount" [(ngModel)]=c.claimAmount></td>
+                            <td>{{c.status}}</td>
+                            <td><button class="accept-button" (click)='setClaimStatus(c.claimId,"Accepted",c.claimAmount)'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setClaimStatus(c.claimId,"Rejected",c.claimAmount)'><i class="fa fa-times"></i></button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+        
+    </div>
+
+    <!--<img class="imgtrvl" src="assets/travel.jpg" style="width: 250px; height: 250px;">-->
+
+    
+</body>

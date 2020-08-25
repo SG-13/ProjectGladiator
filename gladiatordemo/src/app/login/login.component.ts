@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Login } from "../login-details";
 import { Router } from "@angular/router";
 import { AngularServiceService } from "../angular-service.service";
+import { BuyVehicleInsurance } from "../buy-vehicle-insurance";
+import { BuyTravelInsurance } from '../buy-travel-insurance';
 
 
 @Component({
@@ -10,8 +12,6 @@ import { AngularServiceService } from "../angular-service.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  onClick
 
   message:string;
     userId:string;
@@ -24,15 +24,37 @@ export class LoginComponent implements OnInit {
   this.service.login(this.loginDetails).subscribe(
      data=>{
        if(data.status=='SUCCESS')
-       {
+       { 
          //alert(JSON.stringify(data))
         this.userId=data.userId;
         this.userName=data.userName;
 
-      
       sessionStorage.setItem("userId",this.userId);
       sessionStorage.setItem("userName",this.userName);
+      window.location.reload();
+      
+      if(localStorage.getItem("buyinsurance") !== null){
+       var buyinsurance : BuyVehicleInsurance = JSON.parse(localStorage.getItem("buyinsurance"));
+       buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
+       this.service.saveVehicleInsuranceDetails(buyinsurance).subscribe( data =>{
+         //alert(JSON.stringify(data));
+       })
+       localStorage.clear();
+      }
+
+
+      if(localStorage.getItem("buyinsurance1") !== null){
+        var buyinsurance1 : BuyTravelInsurance = JSON.parse(localStorage.getItem("buyinsurance1"));
+        buyinsurance1.userId=parseInt(sessionStorage.getItem("userId"));
+        this.service.saveTravelInsuranceDetails(buyinsurance1).subscribe( data =>{
+          //alert(JSON.stringify(data));
+        })
+        localStorage.clear();
+       }
+
       this.router.navigate(['dashLink']);
+      
+   
    }
        else
        {
@@ -43,5 +65,9 @@ export class LoginComponent implements OnInit {
 
     }
     ngOnInit(): void {
+      if(sessionStorage.getItem("userId")!=null)
+    {   this.router.navigate(['dashLink']);
+    }
+
   }
 }

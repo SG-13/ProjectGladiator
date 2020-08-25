@@ -200,17 +200,17 @@ class ProjectGladiatorApplicationTests {
 	
 	@Test
 	public void updatevehiclestatus() {
-	controller.updateVehicleInsuranceStatus(50206, "Approved");
+	//controller.updateVehicleInsuranceStatus(50206, "Approved");
 	}
 	
 	@Test
 	public void updatetravelstatus() {
-	controller.updateTravelInsuranceStatus(60203, "Approved");
+	//controller.updateTravelInsuranceStatus(60203, "Approved");
 	}
 	
 	@Test
 	public void updateclaimstatus() {
-	controller.updateClaimStatus(70006, "Approved");
+	//controller.updateClaimStatus(70006, "Approved");
 	}
 	
 	

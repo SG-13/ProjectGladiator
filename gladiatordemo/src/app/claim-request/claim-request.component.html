@@ -57,6 +57,9 @@
                             <label for="Elaborate"><b>Elaborate Reason</b></label><br> 
                             <textarea  type="text" id="reason" name="reason" placeholder="Elaborate your reason" rows="2" cols="20" required [(ngModel)]=claim.elaborateReason required>
                             </textarea><br><br> 
+                            <label for="Amount"><b>Claim Amount</b></label><br> 
+                            <input  type="number" id="amt" name="am" placeholder="Claim Ammount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required>
+                        <br><br> 
 
 
                          <button class="buttons " type="submit " (click)="register()"[disabled]="vehicleRegisterForm.invalid"><h2>Submit</h2> </button>

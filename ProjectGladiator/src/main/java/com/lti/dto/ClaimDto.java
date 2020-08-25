@@ -10,6 +10,8 @@ public class ClaimDto {
   private LocalDate claimDate;
   private String reason;
   private String elaborateReason;
+  private int userId;
+  
 public int getPolicyId() {
 	return policyId;
 }
@@ -40,6 +42,13 @@ public String getElaborateReason() {
 public void setElaborateReason(String elaborateReason) {
 	this.elaborateReason = elaborateReason;
 }
+public int getUserId() {
+	return userId;
+}
+public void setUserId(int userId) {
+	this.userId = userId;
+}
  
-  
+
+
 }

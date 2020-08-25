@@ -32,14 +32,14 @@
 
           <div class="formcontainer" *ngIf='show'>
             <label for="username " class="labels"><b>User Name</b></label><br>
-            <input type="text" placeholder="userName " name="userName" [(ngModel)]="userName"><br><br>
+            <input type="text" placeholder="userName " name="userName" [(ngModel)]="userName"  disabled><br><br>
 
             <label for="policyName " class="labels"><b>Policy Name</b></label><br>
-            <input type="text" name="policyName" [(ngModel)]="policyName"><br><br>
+            <input type="text" name="policyName" [(ngModel)]="policyName"  disabled><br><br>
 
 
             <label for="policyType " class="labels"><b>Policy Type</b></label><br>
-            <input type="text" placeholder="policyType" name="policyType" [(ngModel)]="policyType"><br><br>
+            <input type="text" placeholder="policyType" name="policyType" [(ngModel)]="policyType"  disabled><br><br>
 
             <label for="Duration"  class="labels " required><b>Duration</b></label><br><br>
             <div>
@@ -65,7 +65,7 @@
 
 
           <div class="formcontainer" *ngIf='showm'>
-            <p> <b>Thank you! Your Insurance is extended by {{duration}} year. </b></p>
+            <p> <b>Thank you! Your Insurance is extended by {{duration| date: 'dd-MM-yyyy'}}. </b></p>
           </div>
         </form>
 

@@ -1,6 +1,7 @@
 export class PolicyId{
-    insurancePolicyId:any;
+    insurancePolicyId:number;
     insuranceDuration:any;
+    userId:number;
 }
 
 

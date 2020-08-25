@@ -14,8 +14,11 @@ export class AppComponent {
   
   logout(){
     sessionStorage.clear();
-    this.router.navigate(['']);
+    this.router.navigate(['homeLink']);
+    window.location.reload();
   }
+
+
 
   constructor(private router: Router) {
     if(sessionStorage.getItem("userId")==null)

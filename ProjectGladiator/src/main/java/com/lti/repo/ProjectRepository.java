@@ -2,6 +2,7 @@ package com.lti.repo;
 
 import java.util.List;
 
+import com.lti.dto.AllVehiclePolicies;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -53,7 +54,7 @@ public interface ProjectRepository {
 
 	void updateTravelInsuranceStatus(int policyId, String status);
 
-	void updateClaimStatus(int claimId, String status);
+	void updateClaimStatus(int claimId, double claimAmount, String status);
 
 	int addVehicleInsurancePlan(VehicleInsurancePlan vip);
 
@@ -78,5 +79,15 @@ public interface ProjectRepository {
 	String findInsuranceByPolicyId(int insurancePolicyId);
 
 	VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceD);
+	
+	UserDetails findUserById(int userId);
+	
+	List<Object> getAllVehiclePolicies();
+	
+	List<Object> getAllTravelPolicies();
+	
+	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId);
+	
+	public void forgotPassword(String userEmail, String newPassword);
 
 }

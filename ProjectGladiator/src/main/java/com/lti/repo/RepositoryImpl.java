@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.dto.AllVehiclePolicies;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -237,9 +238,10 @@ public class RepositoryImpl implements ProjectRepository {
 	}
 
 	@Transactional
-	public void updateClaimStatus(int claimId, String status) {
+	public void updateClaimStatus(int claimId, double claimAmount, String status) {
 		ClaimDetails cd = em.find(ClaimDetails.class, claimId);
 		cd.setStatus(status);
+		cd.setClaimAmount(claimAmount);
 	}
 	
 	@Transactional
@@ -279,7 +281,6 @@ public class RepositoryImpl implements ProjectRepository {
 	public List<UserDetails> findAll() 
 	{
 		return em.createNamedQuery("fetch-all").getResultList();
-		
 	}
 	
 	@Override
@@ -407,6 +408,56 @@ public class RepositoryImpl implements ProjectRepository {
 		em.merge(vid);
 
 		return vid;
+	}
+	
+	
+	@Override
+	public UserDetails findUserById(int userId) {
+		UserDetails user = em.find(UserDetails.class, userId);
+		return user;
+	}
+	
+	@Transactional
+	public List<Object> getAllVehiclePolicies() {
+		String hql1 = "select vid.insurancePolicyId, vid.insuranceDuration, vid.insurancePremium, vid.insuranceStatus, vid.user.userId , vid.vehicledetails.registrationNumber, vid.vehicleinsuranceplan.insurancePlanId from VehicleInsuranceDetails vid";
+		Query query1 = em.createQuery(hql1);
+		return query1.getResultList();
+
+	}
+	
+	@Transactional
+	public List<Object> getAllTravelPolicies() {
+		String hql1 = "select tid.insurancePolicyId, tid.insuranceDuration, tid.insurancePremium, tid.insuranceStatus, tid.user.userId , tid.traveldetails.travelId, tid.travelinsuranceplan.insurancePlanId from TravelInsuranceDetails tid";
+		Query query1 = em.createQuery(hql1);
+		return query1.getResultList();
+
+	}
+	
+	@Override
+	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId)
+	{
+		VehicleInsuranceDetails vid= em.find(VehicleInsuranceDetails.class, insurancePolicyId);
+		// System.out.println(vid.getUser()); 
+		UserDetails user=vid.getUser(); 
+		return  user;
+	}
+	
+	@Override
+	@Transactional
+	public void forgotPassword(String userEmail, String newPassword)
+	{
+		String sql="select ud.userId from UserDetails ud where ud.userEmail=:email";
+		Query qry=em.createQuery(sql);
+        qry.setParameter("email", userEmail);
+        int id=(int) qry.getSingleResult();
+        
+        UserDetails ud=em.find(UserDetails.class, id);
+        System.out.println(id);
+        System.out.println(ud.toString());
+        ud.setUserPassword(newPassword);
+        
+        em.merge(ud);
+        
 	}
 
 

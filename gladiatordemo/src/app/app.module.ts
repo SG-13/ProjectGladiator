@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LogoutComponent } from './logout/logout.component';
     ForgotPasswordComponent,
     DashboardComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,8 @@ sucsMsg=false;
 polDiv=true;
 showerr=false;
 id:number;
-errMsg:string="Invalid PolicyId";
+userId:number=parseInt(sessionStorage.getItem("userId"))
+errMsg:string="This Policy Id is Not registerd with you!!";
   
 constructor(private service:AngularServiceService,private router: Router) {}
 
@@ -29,6 +30,7 @@ constructor(private service:AngularServiceService,private router: Router) {}
     }
   }
   check(){
+    this.claim.userId=this.userId;
     //alert(JSON.stringify(this.claim))
     this.service.exist(this.claim).subscribe(data=>{
      // alert(JSON.stringify(data));

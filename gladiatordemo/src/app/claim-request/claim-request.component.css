@@ -152,7 +152,7 @@ body {
 /* Full-width inputs */
 
 
-input[type=text],input[type=date], select,textarea,:placeholder-shown {
+input[type=text],input[type=date],input[type=number], select,textarea,:placeholder-shown {
   width: 100%;
   background-color: whitesmoke;
   padding: 12px 20px;

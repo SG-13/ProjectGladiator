@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.lti.dto.AllVehiclePolicies;
 import com.lti.exception.ServiceException;
 import com.lti.function.Calculate;
 import com.lti.model.ClaimDetails;
@@ -106,8 +107,8 @@ public class ServiceImpl implements ProjectService {
 
 	}
 
-	public void updateClaimStatus(int claimId, String status) {
-		repo.updateClaimStatus(claimId, status);
+	public void updateClaimStatus(int claimId, double claimAmount, String status) {
+		repo.updateClaimStatus(claimId, claimAmount, status);
 
 	}
 
@@ -181,6 +182,43 @@ public class ServiceImpl implements ProjectService {
 	@Override
 	public VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceDuration) {
 		return repo.renewInsurance(insurancePolicyId, insuranceDuration);
+	}
+
+	@Override
+	public UserDetails findUserById(int userId) {
+		return repo.findUserById(userId);
+	}
+
+	public List<Object> getAllVehiclePolicies() {
+		return repo.getAllVehiclePolicies();
+	}
+
+	public List<Object> getAllTravelPolicies() {
+		return repo.getAllTravelPolicies();
+	}
+
+	@Override
+	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId) {
+		// TODO Auto-generated method stub
+		return repo.findUserByVehiclePolicyId(insurancePolicyId);
+	}
+
+	@Override
+	public int findByEmailforOTP(String userEmail) {
+
+		if (repo.findByEmail(userEmail)) {
+			return 451215;
+		} else {
+			throw new ServiceException("Incorrect Email Provided");
+		}
+
+	}
+
+	@Override
+	public boolean forgotPassword(String userEmail, String newPassword) {
+		repo.forgotPassword(userEmail, newPassword);
+		return true;
+
 	}
 
 }

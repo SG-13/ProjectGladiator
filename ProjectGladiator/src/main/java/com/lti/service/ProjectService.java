@@ -2,6 +2,7 @@ package com.lti.service;
 
 import java.util.List;
 
+import com.lti.dto.AllVehiclePolicies;
 import com.lti.model.ClaimDetails;
 import com.lti.model.TravelDetails;
 import com.lti.model.TravelInsuranceDetails;
@@ -33,7 +34,7 @@ public interface ProjectService {
 	  List<TravelInsuranceDetails> showUserTravelInsurance(int userId);
 	  void updateVehicleInsuranceStatus(int policyId,String status);
 	  void updateTravelInsuranceStatus(int policyId,String status);
-	  void updateClaimStatus(int claimId,String status);
+	  void updateClaimStatus(int claimId, double claimAmount,String status);
 	  int addVehicleInsurancePlan(VehicleInsurancePlan vip);
 	  int addTravelInsurancePlan(TravelInsurancePlan vip);
 	  int register(UserDetails userDetails);
@@ -45,4 +46,11 @@ public interface ProjectService {
 	  VehicleInsuranceDetails renewInsurance(int insurancePolicyId,int insuranceDuration);
 	  String findUserByPolicyId(int insurancePolicyId);
 	  String findInsuranceByPolicyId(int insurancePolicyId);
+	  UserDetails findUserById(int userId);
+	  public List<Object> getAllVehiclePolicies();
+	  List<Object> getAllTravelPolicies();
+	  /////////////////////////////////////////////
+	  public UserDetails findUserByVehiclePolicyId(int insurancePolicyId);
+	  public int findByEmailforOTP(String userEmail);
+	  public boolean forgotPassword(String userEmail, String newPassword);
 }

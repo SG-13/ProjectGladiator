@@ -30,7 +30,7 @@
             <li><a [routerLink]="['/loginLink']" style="float: right; margin-right: 100px;">Login</a></li>
             </h4>
             <h4 *ngIf='showlogout'>
-            <li><a [routerLink]="['/logoutLink']" style="float: right; margin-right: 100px;"><button (click)='logout()'>Logout</button></a></li>
+            <li><a style="float: right; margin-right: 100px;" (click)='logout()'>Logout</a></li>
             <li><a [routerLink]="['/dashLink']" style="float: right; margin-right: 30px;">Hi, {{user}}</a></li>
             </h4>
 

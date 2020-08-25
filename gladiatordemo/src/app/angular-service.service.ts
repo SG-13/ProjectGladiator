@@ -11,6 +11,10 @@ import { IdStatus } from "./IdStatus";
 import { Claim } from "./claim";
 import { List } from "./listl";;
 import { User } from "./user";
+import { UpdatedClaimStatus } from "./claim-status-update";
+import { InsuranceStatus } from "./insurance-status-update";
+import { Dash } from "./dash";
+import { ForgotPassword } from "./forgotPassword";
 
 @Injectable({
   providedIn: 'root'
@@ -74,5 +78,50 @@ export class AngularServiceService {
     let url="http://localhost:8080/list"
     return this.http.post<List>(url,user);
   }
+
+  fetchAllVehicleInsurance():Observable<any>{
+    let url='http://localhost:8080/getAllVehiclePolicies';
+    return this.http.get(url);
+  }
+
+  fetchAllTravelInsurance():Observable<any>{
+    let url='http://localhost:8080/getAllTravelPolicies';
+    return this.http.get(url);
+  }
+
+  fetchAllClaimInsuranceDetails():Observable<any>{
+    let url='http://localhost:8080/showAllClaimDetails';
+    return this.http.get(url);
+  }
+
+  sendUpdatedClaimStatus(newClaimStatus:UpdatedClaimStatus):Observable<any>{
+    let url='http://localhost:8080/updateClaimStatus';
+    return this.http.post(url,newClaimStatus);
+  }
+
+  sendUpdatedTravelInsuranceStatus(newInsuranceStatus:InsuranceStatus):Observable<any>{
+    let url='http://localhost:8080/updateTravelInsuranceStatus';
+    return this.http.post(url,newInsuranceStatus);
+  }
+
+  sendUpdatedVehicleInsuranceStatus(newInsuranceStatus:InsuranceStatus):Observable<any>{
+    let url='http://localhost:8080/updateVehicleInsuranceStatus';
+    return this.http.post(url,newInsuranceStatus);
+  }
+
+  dashs(user:User):Observable<any>{
+    let url="http://localhost:8080/getAllInsurance"
+    return this.http.post<Dash>(url,user);
+  }
+
+  verifyEmail(forgotPasswordDetails:ForgotPassword):Observable<any>
+  {
+      return this.http.post("http://localhost:8080/verifyEmail",forgotPasswordDetails);
+  }
+  forgotPassword(forgotPasswordDetails:ForgotPassword):Observable<any>
+  {
+      return this.http.post("http://localhost:8080/forgotPassword",forgotPasswordDetails);
+  }  
+
 
 }

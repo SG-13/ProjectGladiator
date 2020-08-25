@@ -4,4 +4,6 @@ export class Claim{
     claimDate:string;
     reason:string;
     elaborateReason:string;
+    claimAmount:number;
+    userId:number;
 }

@@ -28,9 +28,9 @@ public class ClaimDetails {
 	@Column
 	private LocalDate claimDate;
 	@Column
-	private String Status;
+	private String status;
 	@Column
-	private String Reason;
+	private String reason;
 	@Column
 	private String elaborateReason;
 	@Column
@@ -71,19 +71,19 @@ public class ClaimDetails {
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public String getReason() {
-		return Reason;
+		return reason;
 	}
 
 	public void setReason(String reason) {
-		Reason = reason;
+		this.reason = reason;
 	}
 
 	public String getElaborateReason() {
