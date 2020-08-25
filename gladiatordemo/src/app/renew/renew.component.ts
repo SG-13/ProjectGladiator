@@ -4,6 +4,7 @@ import { RenewService } from "../service";
 import { RenewDetails  } from "../renew";
 import { PolicyId  } from "../policy";
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-renew',
   templateUrl: './renew.component.html',
@@ -11,7 +12,16 @@ import { Router } from '@angular/router';
 })
 
 
-export class RenewComponent  {
+export class RenewComponent implements OnInit {
+
+
+  ngOnInit(): void {
+    if(sessionStorage.getItem("userId")==null)
+    {   this.router.navigate(['loginLink']);
+    }
+  }
+
+  constructor(private service:RenewService, private router: Router){}
 
   public show:boolean = false;
   public first:boolean = true;
@@ -54,12 +64,10 @@ this.service.getUserNameAndPolicyType(this.policyId).subscribe(
   data => { 
    this.userName= data.userName;
    this.policyType= data.policyType;
+  })
   }
-)
-
-
-
-  }
+  
+  
   myFunc2()
   {
     this.showm=true;
@@ -67,11 +75,8 @@ this.show= false;
 this.service.addDuration(this.policyId).subscribe(
   data => { 
    this.duration= data.insuranceDuration;
-//alert("Your new insurance duration is extended by "+ this.duration+" years.")
-
+  //alert("Your new insurance duration is extended by "+ this.duration+" years.")
+  })
   }
-)
-
-  }
-  constructor(private service:RenewService, private router: Router){}
+  
 }

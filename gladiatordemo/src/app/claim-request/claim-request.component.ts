@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from "../claim";
 import { AngularServiceService } from "../angular-service.service";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-claim-request',
   templateUrl: './claim-request.component.html',
@@ -20,12 +21,12 @@ showerr=false;
 id:number;
 errMsg:string="Invalid PolicyId";
   
-constructor(private service:AngularServiceService ) {}
-  
-
-  
+constructor(private service:AngularServiceService,private router: Router) {}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("userId")==null)
+    {   this.router.navigate(['loginLink']);
+    }
   }
   check(){
     //alert(JSON.stringify(this.claim))
