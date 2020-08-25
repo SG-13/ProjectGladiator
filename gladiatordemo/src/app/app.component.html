@@ -22,11 +22,17 @@
                 <a [routerLink]="['/vehicleLink']">Vehicle Insurance</a>
                 <a [routerLink]="['/travelLink']">Travel Insurance</a>
               </div></div></li>
-            <li><a [routerLink]="['/claimLink']" >Claim</a></li>
+            <li><a [routerLink]="['/request']" >Claim</a></li>
             <li><a [routerLink]="['/renewLink']" >Renew</a></li>
             <li><a [routerLink]="['/aboutLink']" >About</a></li>
             <li><a [routerLink]="['/contactLink']" >Contact</a></li>
+            <h4 *ngIf='!showlogout'>
             <li><a [routerLink]="['/loginLink']" style="float: right; margin-right: 100px;">Login</a></li>
+            </h4>
+            <h4 *ngIf='showlogout'>
+            <li><a [routerLink]="['/logoutLink']" style="float: right; margin-right: 100px;"><button (click)='logout()'>Logout</button></a></li>
+            <li><a [routerLink]="['/dashLink']" style="float: right; margin-right: 30px;">Hi, {{user}}</a></li>
+            </h4>
 
         </ul>
     </div>

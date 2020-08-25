@@ -21,8 +21,6 @@ public interface ProjectRepository {
 
 	int buyTravelInsurance(int userId, int travelId, int planId, TravelInsuranceDetails tid);
 
-	int renewInsurance(int policyId, int duration);
-
 	String addVehicleDetails(VehicleDetails vehicle);
 
 	public int addTravelDetails(TravelDetails travel);
@@ -70,10 +68,15 @@ public interface ProjectRepository {
 	int findByIdAndPassword(int userId, String password);
 
 	boolean findByEmail(String email);
-	
-	boolean checkPolicyId(int policyId) ;
-	
+
+	boolean checkPolicyId(int policyId);
+
 	public List<ClaimDetails> getAllClaim(int userId);
-	  
+
+	String findUserByPolicyId(int insurancePolicyId);
+
+	String findInsuranceByPolicyId(int insurancePolicyId);
+
+	VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceD);
 
 }

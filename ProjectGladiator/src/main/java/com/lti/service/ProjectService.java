@@ -17,7 +17,6 @@ public interface ProjectService {
 	  int isValidUser(int userId,String password);
 	  int buyVehicleInsurance(int userId, String regno, int planId,VehicleInsuranceDetails vid);
 	  int buyTravelInsurance(int userId, int travelId, int planId,TravelInsuranceDetails tid);
-	  int renewInsurance(int policyId,int duration);
 	  String addVehicleDetails(VehicleDetails vehicle);
 	  public int addTravelDetails(TravelDetails travel);
 	  List<VehicleInsurancePlan> showVehicleInsurancePlan();
@@ -42,4 +41,8 @@ public interface ProjectService {
 	  boolean checkPolicyId(int policyId) ;//add new 
 	  int addClaim(int policyId,ClaimDetails claimDetails);
 	  public List<ClaimDetails> getAllClaim(int userId);
+	  ////////////////////////////////
+	  VehicleInsuranceDetails renewInsurance(int insurancePolicyId,int insuranceDuration);
+	  String findUserByPolicyId(int insurancePolicyId);
+	  String findInsuranceByPolicyId(int insurancePolicyId);
 }

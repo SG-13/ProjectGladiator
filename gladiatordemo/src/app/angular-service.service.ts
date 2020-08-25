@@ -7,6 +7,10 @@ import { TravelDetails } from "./travel-details";
 import { BuyTravelInsurance } from "./buy-travel-insurance";
 import { Login } from "./login-details";
 import { UserDetails } from "./user-details";
+import { IdStatus } from "./IdStatus";
+import { Claim } from "./claim";
+import { List } from "./listl";;
+import { User } from "./user";
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +59,20 @@ export class AngularServiceService {
   {
       return this.http.post("http://localhost:8080/register",userDetails);
   }  
+
+  exist(claim:Claim):Observable<any>{
+    let url="http://localhost:8080/check";
+    return this.http.post<IdStatus>(url,claim);
+  }
+  
+  add(claim:Claim):Observable<any>{
+    let url="http://localhost:8080/add";
+    return this.http.post<IdStatus>(url,claim);
+  }
+  
+  list(user:User):Observable<any>{
+    let url="http://localhost:8080/list"
+    return this.http.post<List>(url,user);
+  }
 
 }

@@ -26,9 +26,10 @@ export class LoginComponent implements OnInit {
        if(data.status=='SUCCESS')
        {
          //alert(JSON.stringify(data))
-      this.userId=data.userId;
-        this.userName=data.name;
+        this.userId=data.userId;
+        this.userName=data.userName;
 
+      
       sessionStorage.setItem("userId",this.userId);
       sessionStorage.setItem("userName",this.userName);
       this.router.navigate(['dashLink']);

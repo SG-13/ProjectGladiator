@@ -1,36 +1,29 @@
+<body>
 
-
-    <div class="row">
-        <div class="main">
-            <div class="card">
-                
-                <form>
-
-                    <div class="container" *ngIf='first'>
-                        <label for="uname"><b>Claim ID</b></label>
-                        <input type="text" placeholder="Enter Claim ID" name="uname" id="uname">
-                        <p id="userspan" style="color: crimson;"> </p>
-                        
-                        <button type="submit" (click)="showtable()">Submit</button>
-                        
-                    </div>
-                    <div class="tableshow" *ngIf='showt'>
-                        <table>
-                            <tr>
-                                <th>Claim ID</th>
-                                <th>Claim Date</th>
-                                <th>Policy ID</th>
-                                <th>Reason</th>
-                                <th>Incident</th>
-                                <th>Status</th>
-                                <th>Amount</th>
-                            </tr>
-                        </table>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-
+    <h1 style="text-align: center;">Claim Table</h1>
+    
+    <table>
+      <tr>
+        <th>Claim Id</th>
+        <th>Claim Date</th>
+        <th>Date OfIncident</th>
+        <th>Reason</th>
+        <th>Elaborate</th>
+        <th>Claim Ammount</th>
+        <th>Status</th>
+        <hr>
+        
+      </tr>
+      <tr *ngFor="let c of list1">
+        <td>{{c.claimId}}</td>
+        <td>{{c.claimDate}}</td>
+        <td>{{c.dateOfIncident}}</td>
+        <td>{{c.reason}}</td>
+        <td>{{c.elaborateReason}}</td>
+        <td>{{c.claimAmount}}</td>
+        <td>{{c.status}}</td>
+        
+      </tr>
+    </table>
+    
+    </body>

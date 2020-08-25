@@ -1,45 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="row">
-        <div class="main">
-            <div class="card">
-                <h2 style="text-align: center;">Request Claim</h2>
-                <!-- <form onsubmit="validate();"> -->
-                <form>
-                    <div class="container" *ngIf='first'>
-                        <label for="policynumber"><b>Policy Number</b></label>
-                        <input type="text" placeholder="Enter Policy Number" name="policynumber" id="policynumber" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-                        <button type="submit" (click)="showform()">Submit</button>
-                    </div>
+<body>
+   
+
+   <div class="formrow">
+        <div class="formmain">
+
+
+            <div class="formcard">
+                <h2 style="text-align: center; ">Claim Your Request</h2><br><br>
+                <form #vehicleRegisterForm='ngForm'>
+                    <div class="formcontainer">
+                        <div *ngIf="polDiv">
+                        <label for="policy Id" class="labels "><b>Policy Id</b></label><br>
+                        <div>
+                        <input type="text" id="policy" name="id" [(ngModel)]=claim.policyId required>
+                        </div><br><br>
                     
-                    <div class="container" *ngIf='show'>
-                        <label for="idate">Enter date of Incident:</label>
-                        <input type="date" id="idate" name="idate">
+                        <button class="buttons " type="submit "(click)="check()"[disabled]="vehicleRegisterForm.invalid"><h2>Check</h2> </button>
+                        </div>
                         
+                        <h2 *ngIf='showerr' style="color: red;">{{errMsg}}</h2>
                         
-                        <label for="reason">Reason for claim:</label>
-                             <select id="reason" name="reason">
-                                <option value=null selected>Select Reason</option>   
-                                <option value="Natural Disaster">Natural Disaster</option>  
-                                <option value="Man-made Disaster">Man-made Disaster</option>  
-                                <option value="Road Accident">Road Accident</option>  
-                                <option value="Theft">Theft</option>  
-                            </select>
+                        <div *ngIf="visible">
+                        <label for="DateOfIncident" class="labels"><b>Date of Incident</b></label><br>
+                        <div>
+                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.dateOfIncident max={{FromDate}} required>
+                        </div><br><br>
+                      
 
-                    
-                        <label for="ereason"><b>Elaborate Incident:</b></label>
-                        <input type="text" style="height: 200px;" placeholder="Write text here" name="ereason" id="ereason" required>
-
-                        <button type="submit" (click)="showmsg()">Submit</button>
-                    </div>
-                    <div class="container" *ngIf='showm'>
-                        
-                        <p>Your Claim ID for this request is 125437</p>
+                      
+                        <label for="ClaimDate" class="labels "><b>Claim Date</b></label><br>
+                        <div>
+                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.claimDate min={{FromDate}} max={{FromDate}} required>
+                        </div><br><br>
                        
-                        <a routerLink='/status'><button type="submit">Check Claim Status</button></a>
+                       
+
+                        <label for="Reason" class="labels "><b>Reason for claim</b></label><br><br>
+                        <div>
+                            <select name="Reason" id="Reason" [(ngModel)]=claim.reason required>
+                                <option value="NaturalDisaster">Natural Disaster</option>
+                                <option value="Man-MadeDisaster">Man-Made Disaster</option>
+                                <option value="RoadAccident">Road Accident</option>
+                                <option value="Theft">Theft</option>
+                              </select>
+                        </div><br><br>
+                        
+                            <label for="Elaborate"><b>Elaborate Reason</b></label><br> 
+                            <textarea  type="text" id="reason" name="reason" placeholder="Elaborate your reason" rows="2" cols="20" required [(ngModel)]=claim.elaborateReason required>
+                            </textarea><br><br> 
+
+
+                         <button class="buttons " type="submit " (click)="register()"[disabled]="vehicleRegisterForm.invalid"><h2>Submit</h2> </button>
                     </div>
+                  </div>
+                  <div class="sucmsg" *ngIf="sucsMsg">
+                  <h3 style="text-align: center;">Claim registered with claimId {{id}}</h3>
+                </div>
                 </form>
             </div>
         </div>
     </div>
+    
 
+
+
+
+
+
+
+  
+   
+
+
+</body>
+
+</html>

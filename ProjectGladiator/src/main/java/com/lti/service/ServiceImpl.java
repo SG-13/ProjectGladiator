@@ -23,7 +23,7 @@ public class ServiceImpl implements ProjectService {
 
 	@Autowired
 	ProjectRepository repo;
-	
+
 	public int addNewUser(UserDetails user) {
 		return repo.addNewUser(user);
 	}
@@ -40,14 +40,10 @@ public class ServiceImpl implements ProjectService {
 		return repo.buyTravelInsurance(userId, travelId, planId, tid);
 	}
 
-	public int renewInsurance(int policyId, int duration) {
-		return repo.renewInsurance(policyId, duration);
-	}
-
 	public String addVehicleDetails(VehicleDetails vehicle) {
 		return repo.addVehicleDetails(vehicle);
 	}
-	
+
 	public int addTravelDetails(TravelDetails travel) {
 		return repo.addTravelDetails(travel);
 	}
@@ -124,33 +120,29 @@ public class ServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public int register(UserDetails userDetails) 
-	{
-		if(!repo.findByEmail(userDetails.getUserEmail()))
-		  {
+	public int register(UserDetails userDetails) {
+		if (!repo.findByEmail(userDetails.getUserEmail())) {
 			return repo.addNewUser(userDetails);
-			
-		  }
-		else
+
+		} else
 			throw new ServiceException("User already registerd");
 	}
-	
+
 	@Override
 	public UserDetails login(int userId, String password) {
-		
+
 		try {
-			
-			int id=repo.findByIdAndPassword(userId, password);
-			UserDetails userDetails=repo.findById(id);
+
+			int id = repo.findByIdAndPassword(userId, password);
+			UserDetails userDetails = repo.findById(id);
 			System.out.println(userDetails.getUserId());
 			return userDetails;
-			
-		} catch( EmptyResultDataAccessException e) {
+
+		} catch (EmptyResultDataAccessException e) {
 			throw new ServiceException("Incorrect userId/Password");
 		}
-	} 
+	}
 
-	
 	@Override
 	public boolean checkPolicyId(int policyId) {
 		return repo.checkPolicyId(policyId);
@@ -158,22 +150,37 @@ public class ServiceImpl implements ProjectService {
 
 	@Override
 	public int addClaim(int policyId, ClaimDetails claimDetails) {
-		int pid=policyId;
-		Calculate calc=new Calculate();
-		int n=calc.firstDigit(pid);
-		if(n==5) {
-		return repo.addVehicleClaimdetails(policyId, claimDetails);
-		}
-		else if(n==6) {
-		return repo.addTravelClaimdetails(policyId, claimDetails);
+		int pid = policyId;
+		Calculate calc = new Calculate();
+		int n = calc.firstDigit(pid);
+		if (n == 5) {
+			return repo.addVehicleClaimdetails(policyId, claimDetails);
+		} else if (n == 6) {
+			return repo.addTravelClaimdetails(policyId, claimDetails);
 		}
 		return 0;
 
 	}
+
 	@Override
-	public List<ClaimDetails> getAllClaim(int userId){
+	public List<ClaimDetails> getAllClaim(int userId) {
 		return repo.getAllClaim(userId);
 	}
-	
+
+	@Override
+	public String findInsuranceByPolicyId(int insurancePolicyId) {
+		return repo.findInsuranceByPolicyId(insurancePolicyId);
+	}
+
+	@Override
+	public String findUserByPolicyId(int insurancePolicyId) {
+		System.out.println(repo.findUserByPolicyId(insurancePolicyId));
+		return repo.findUserByPolicyId(insurancePolicyId);
+	}
+
+	@Override
+	public VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceDuration) {
+		return repo.renewInsurance(insurancePolicyId, insuranceDuration);
+	}
 
 }

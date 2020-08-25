@@ -22,6 +22,8 @@ import com.lti.dto.BuyVehicleInsuranceDto;
 import com.lti.dto.CheckDto;
 import com.lti.dto.ClaimDto;
 import com.lti.dto.LoginDto;
+import com.lti.dto.PolicyIdObject;
+import com.lti.dto.RenewObject;
 import com.lti.dto.SendId;
 import com.lti.dto.SendVehicleId;
 import com.lti.dto.ShowDto;
@@ -78,9 +80,6 @@ public class ControllerImpl {
 		return sendId;
 	}
 
-	public int renewInsurance(int policyId, int duration) {
-		return service.renewInsurance(policyId, duration);
-	}
 	
 	@RequestMapping(path = "/addVehicleDetails", method = RequestMethod.POST)
 	public SendVehicleId addVehicleDetails(@RequestBody VehicleDetails vehicle) {
@@ -380,5 +379,36 @@ public class ControllerImpl {
 		return service.getAllClaim(showdto.getUserId());
 	}
 	
+	@PostMapping(path="/renewInsurance")
+	public PolicyIdObject renewInsurance(@RequestBody  PolicyIdObject pio) {
+		VehicleInsuranceDetails vehicle= service.renewInsurance(pio.getInsurancePolicyId(),pio.getInsuranceDuration());
+		PolicyIdObject pid= new PolicyIdObject();
+	System.out.println(pio.getInsurancePolicyId());
+	System.out.println(pio.getInsuranceDuration());
+	     pid.setInsuranceDuration(pio.getInsuranceDuration());
+	     pid.setInsurancePolicyId(pio.getInsurancePolicyId());
+	    
+			return pid ;
+	}
 	
+	
+	 @PostMapping(path="/findUserByPolicyId") 
+	 public RenewObject findUserByPolicyId(@RequestBody PolicyIdObject pio ) {
+	  RenewObject renew= new RenewObject();
+	  renew.setUserName(service.findUserByPolicyId(pio.getInsurancePolicyId()));
+	  renew.setPolicyType(service.findInsuranceByPolicyId(pio.getInsurancePolicyId()));
+	  return renew;
+	  
+	 
+	 }
+	
+	 
+	 @PostMapping(path="/checkVehiclePolicyId")
+		public boolean checkVehiclePolicyId(@RequestBody PolicyIdObject pio) {
+			
+			return service.checkVehiclePolicyId(pio.getInsurancePolicyId());
+		}
+	 
+	 
+		
 }

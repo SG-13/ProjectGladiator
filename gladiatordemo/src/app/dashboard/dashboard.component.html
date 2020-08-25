@@ -1,13 +1,30 @@
 <body>
 <div class="menu-navvv">
-    <button routerLink="/buyLink" class="bu">Buy</button>
+    <button (click)="showdivb()" class="bu">Buy</button>
     <button routerLink="/renewLink" class="ren">Renew</button>
-    <button routerLink="/claimLink" class="cla">Claim</button>
+    <button (click)="showdiv()" class="cla">Claim</button>
   </div>
   
   <div class="carimage">
     <img src="../../assets/car.jpeg">
-    <router-outlet></router-outlet>
+    <div *ngIf="show" style="text-align: center;">
+      <h1 class="claim-head">Claim Request</h1>
+<form class="form-style-9">
+<ul>
+   <li><button type="submit"[routerLink]="'/request'" class="but">Claim Request</button></li> 
+   <li><button type="submit" [routerLink]="'/status'" class="but">Claim Status</button></li> 
+</ul>
+</form>
+    </div>
+    <div *ngIf="showb" style="text-align: center;">
+      <h1 class="claim-head">Buy Insurance</h1>
+<form class="form-style-9">
+<ul>
+   <li><button type="submit"[routerLink]="'/vehicleLink'" class="but">Vehicle Insurance</button></li> 
+   <li><button type="submit" [routerLink]="'/travelLink'" class="but">Travel Insurance</button></li> 
+</ul>
+</form>
+    </div>
     
     <!--<img class="imgtrvl" src="assets/travel.jpg" style="width: 250px; height: 250px;">-->
   </div>

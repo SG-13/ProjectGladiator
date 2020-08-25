@@ -100,7 +100,7 @@ class ProjectGladiatorApplicationTests {
 	
 	@Test
 	public void renewinsurance() {
-		System.out.println(controller.renewInsurance(50207, 2));
+		//System.out.println(controller.renewInsurance(50207, 2));
 	}
 	
 	@Test

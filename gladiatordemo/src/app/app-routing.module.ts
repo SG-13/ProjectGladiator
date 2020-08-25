@@ -14,6 +14,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AboutUsComponent } from "./about-us/about-us.component";
 import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 const routes: Routes = [
   {
     path:'buyLink', component:ChooseInsuranceComponentComponent
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path:'registerLink',component:RegisterComponent
+  },
+  {
+    path:'logoutLink',component:LogoutComponent
   }
 ];
 
