@@ -27,6 +27,7 @@ export class RenewComponent implements OnInit {
   public showm: boolean = false;
   showerr1: boolean = false;
   showerr2: boolean = false;
+  showerr3: boolean = false;
 
 
   policyId = new PolicyId();
@@ -39,41 +40,21 @@ export class RenewComponent implements OnInit {
   renew(renewForm) {
   }
 
-  policyName: any = "Motor Insurance";
+  policyName: string = "Vehicle Insurance";
   renewDetails = new RenewDetails();
-  checkUser() {
-    this.policyId.userId = parseInt(sessionStorage.getItem("userId"));
-
-    this.service.checkUser(this.policyId).subscribe(
-      data => {
-        if (data.status == "SUCCESS") {
-          //alert(data.status);
-          this.first = false;
-          this.show = true;
-          this.showerr1 = false;
-          this.showerr2 = false;
-        }
-        else {
-          this.showerr1 = false;
-          this.showerr2 = true;
-        }
-      }
-    )
-  }
 
   myFunc() {
     this.service.checkPolicyId(this.policyId).subscribe(
       data => {
-        //alert(JSON.stringify(data));
         if (data == true) {
           this.checkUser();
-          //alert(" You entered wrong Policy Id");
         }
         else {
           this.first = true;
           this.show = false;
           this.showerr1 = true;
           this.showerr2 = false;
+          this.showerr3 = false;
         }
       }
     )
@@ -84,13 +65,51 @@ export class RenewComponent implements OnInit {
       })
   }
 
+  checkUser() {
+    this.policyId.userId = parseInt(sessionStorage.getItem("userId"));
+
+    this.service.checkUser(this.policyId).subscribe(
+      data => {
+        if (data.status == "SUCCESS") {
+          //alert(data.status);
+          this.checkDuration();
+        }
+        else {
+          this.showerr1 = false;
+          this.showerr2 = true;
+          this.showerr3 = false;
+        }
+      }
+    )
+  }
+
+
+checkDuration(){
+
+  this.service.checkIfRenewable(this.policyId).subscribe( data => {
+    if(data==true){
+      this.first = false;
+      this.showerr1 = false;
+      this.showerr2 = false;
+      this.showerr3 = false;
+      this.show = true;
+    }
+    else{
+      this.showerr1 = false;
+      this.showerr2 = false;
+      this.showerr3 = true;
+    }
+  })
+
+}
+
 
   myFunc2() {
     this.showm = true;
     this.show = false;
     this.service.addDuration(this.policyId).subscribe( data => {
         this.duration = data;
-        //alert("Your new insurance duration is extended by "+ this.duration+" years.")
+        
       })
   }
 

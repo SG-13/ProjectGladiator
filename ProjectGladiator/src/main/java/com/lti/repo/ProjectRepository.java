@@ -101,5 +101,7 @@ public interface ProjectRepository {
 	long chekTravelClaimOnBasisOfStatus(int policyId);
 
 	int findPolicyIdByUserId(int insurancePolicyId);
+	
+	VehicleInsuranceDetails getVehicleInsuranceFromPolicyId(int insurancePolicyId);
 
 }

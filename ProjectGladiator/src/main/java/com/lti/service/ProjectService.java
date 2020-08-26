@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.lti.dto.AllVehiclePolicies;
@@ -101,4 +102,6 @@ public interface ProjectService {
 	long checkTravelClaimOnBasisOfStatus(int policyId);
 
 	boolean findPolicyIdByUserId(int insurancePolicyId, int userId);
+	
+	boolean checkIfRenewable(int insurancePolicyId);
 }

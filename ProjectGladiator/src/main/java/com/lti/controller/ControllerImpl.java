@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.controller.ControllerImpl.Status.StatusType;
-import com.lti.controller.ControllerImpl.Status1.StatusType1;
 import com.lti.dto.AllVehiclePolicies;
 import com.lti.dto.BuyTravelInsuranceDto;
 import com.lti.dto.BuyVehicleInsuranceDto;
@@ -45,6 +43,12 @@ import com.lti.model.VehicleDetails;
 import com.lti.model.VehicleInsuranceDetails;
 import com.lti.model.VehicleInsurancePlan;
 import com.lti.service.ProjectService;
+import com.lti.status.ClaimStatus;
+import com.lti.status.ClaimStatus.ClaimStatusType;
+import com.lti.status.EmailStatus;
+import com.lti.status.LoginStatus;
+import com.lti.status.Status;
+import com.lti.status.Status.StatusType;
 import com.lti.utility.EmailUtility;
 
 @RestController
@@ -57,18 +61,8 @@ public class ControllerImpl {
 	@Autowired
 	private MailSender mailSender;
 
-	public int addNewUser(UserDetails user) {
-		return service.addNewUser(user);
-	}
-
-	public int isValidUser(int userId, String password) {
-		return service.isValidUser(userId, password);
-	}
-
-	@RequestMapping(path = "/buyVehicleInsurance", method = RequestMethod.POST)
+	@PostMapping("/buyVehicleInsurance")
 	public SendId buyVehicleInsurance(@RequestBody BuyVehicleInsuranceDto buyvehicleinsurancedto) {
-		// System.out.println(buyvehicleinsurancedto.getUserId()+" "+
-		// buyvehicleinsurancedto.getRegistrationNumber());
 		SendId sendId = new SendId();
 		VehicleInsuranceDetails vid = new VehicleInsuranceDetails();
 		vid.setInsurancePremium(buyvehicleinsurancedto.getInsurancePremium());
@@ -76,25 +70,21 @@ public class ControllerImpl {
 		vid.setInsuranceDuration(date.plusYears(buyvehicleinsurancedto.getDuration()));
 		vid.setInsuranceStatus("Pending");
 		UserDetails user = service.findUserById(buyvehicleinsurancedto.getUserId());
-
 		sendId.setId(service.buyVehicleInsurance(buyvehicleinsurancedto.getUserId(),
 				buyvehicleinsurancedto.getRegistrationNumber(), buyvehicleinsurancedto.getInsurancePlanId(), vid));
 		EmailUtility eutility = new EmailUtility();
 		eutility.BuyVehicleInsuraceEmail(mailSender, buyvehicleinsurancedto, user, sendId.getId());
-
 		return sendId;
 	}
 
-	@RequestMapping(path = "/buyTravelInsurance", method = RequestMethod.POST)
+	@PostMapping("/buyTravelInsurance")
 	public SendId buyTravelInsurance(@RequestBody BuyTravelInsuranceDto buytravelinsurancedto) {
-		// System.out.println(buytravelinsurancedto.getTravelinsurancedetails());
 		SendId sendId = new SendId();
 		TravelInsuranceDetails tid = new TravelInsuranceDetails();
 		tid.setInsurancePremium(buytravelinsurancedto.getInsurancePremium());
 		tid.setInsuranceDuration(buytravelinsurancedto.getInsuranceDuration());
 		tid.setInsuranceStatus("Pending");
 		UserDetails user = service.findUserById(buytravelinsurancedto.getUserId());
-
 		sendId.setId(service.buyTravelInsurance(buytravelinsurancedto.getUserId(), buytravelinsurancedto.getTravelId(),
 				buytravelinsurancedto.getInsurancePlanId(), tid));
 		EmailUtility eutility = new EmailUtility();
@@ -102,9 +92,8 @@ public class ControllerImpl {
 		return sendId;
 	}
 
-	@RequestMapping(path = "/addVehicleDetails", method = RequestMethod.POST)
+	@PostMapping("/addVehicleDetails")
 	public Status addVehicleDetails(@RequestBody VehicleDetails vehicle) {
-		// System.out.println(vehicle.getRegistrationNumber());
 		Status status = new Status();
 		try {
 			if (service.checkIfVehicleExist(vehicle.getRegistrationNumber())) {
@@ -115,117 +104,71 @@ public class ControllerImpl {
 			status.setMessage(e.getMessage());
 			status.setStatus(StatusType.FAILURE);
 		}
-
 		return status;
 	}
 
-	@RequestMapping(path = "/addTravelDetails", method = RequestMethod.POST)
+	@PostMapping("/addTravelDetails")
 	public SendId addTravelDetails(@RequestBody TravelDetails travel) {
 		SendId sendId = new SendId();
 		sendId.setId(service.addTravelDetails(travel));
 		return sendId;
 	}
 
-	@RequestMapping(path = "/showVehicleInsurancePlan", method = RequestMethod.GET)
+	@GetMapping("/showVehicleInsurancePlan")
 	public List<VehicleInsurancePlan> showVehicleInsurancePlan() {
 		return service.showVehicleInsurancePlan();
 	}
 
-	@RequestMapping(path = "/showTravelInsurancePlan", method = RequestMethod.GET)
+	@GetMapping("/showTravelInsurancePlan")
 	public List<TravelInsurancePlan> showTravelInsurancePlan() {
 		return service.showTravelInsurancePlan();
 	}
 
-	public int addVehicleClaimdetails(int policyId, ClaimDetails claimdetails) {
-		return service.addVehicleClaimdetails(policyId, claimdetails);
-	}
-
-	public int addTravelClaimdetails(int policyId, ClaimDetails claimdetails) {
-		return service.addTravelClaimdetails(policyId, claimdetails);
-	}
-
-	public boolean checkVehiclePolicyId(int policyId) {
-		return service.checkVehiclePolicyId(policyId);
-	}
-
-	public boolean checkTravelPolicyId(int policyId) {
-		return service.checkTravelPolicyId(policyId);
-	}
-
-	public ClaimDetails showClaimDetails(int claimId) {
-		return service.showClaimDetails(claimId);
-	}
-
-	@RequestMapping(path = "/showAllClaimDetails", method = RequestMethod.GET)
+	@GetMapping("/showAllClaimDetails")
 	public List<ClaimDetails> showAllClaimDetails() {
 		return service.showAllClaimDetails();
 	}
 
-	@RequestMapping(path = "/showTravelInsuranceDetails", method = RequestMethod.GET)
+	@GetMapping("/showTravelInsuranceDetails")
 	public List<TravelInsuranceDetails> showTravelInsuranceDetails() {
 		return service.showTravelInsuranceDetails();
 	}
 
-	@RequestMapping(path = "/showVehicleInsuranceDetails", method = RequestMethod.GET)
+	@GetMapping("/showVehicleInsuranceDetails")
 	public List<VehicleInsuranceDetails> showVehicleInsuranceDetails() {
 		return service.showVehicleInsuranceDetails();
 	}
 
-	public List<VehicleInsuranceDetails> showUserVehicleInsurance(int userId) {
-		return service.showUserVehicleInsurance(userId);
-	}
-
-	public List<TravelInsuranceDetails> showUserTravelInsurance(int userId) {
-		return service.showUserTravelInsurance(userId);
-	}
-
-	@PostMapping(path = "/updateVehicleInsuranceStatus")
+	@PostMapping("/updateVehicleInsuranceStatus")
 	public void updateVehicleInsuranceStatus(@RequestBody NewInsuranceStatusDto dto) {
 		service.updateVehicleInsuranceStatus(dto.getInsurancePolicyId(), dto.getStatus());
 
 	}
 
-	@PostMapping(path = "/updateTravelInsuranceStatus")
+	@PostMapping("/updateTravelInsuranceStatus")
 	public void updateTravelInsuranceStatus(@RequestBody NewInsuranceStatusDto dto) {
 		service.updateTravelInsuranceStatus(dto.getInsurancePolicyId(), dto.getStatus());
 	}
 
-	@PostMapping(path = "/updateClaimStatus")
+	@PostMapping("/updateClaimStatus")
 	public void updateClaimStatus(@RequestBody NewClaimStatusDto dto) {
 		service.updateClaimStatus(dto.getClaimId(), dto.getClaimAmount(), dto.getStatus());
 
 	}
 
-	public int addVehicleInsurancePlan(VehicleInsurancePlan vip) {
-		return service.addVehicleInsurancePlan(vip);
-	}
-
-	public int addTravelInsurancePlan(TravelInsurancePlan vip) {
-		return service.addTravelInsurancePlan(vip);
-	}
-
-	@PostMapping(path = "/register")
+	@PostMapping("/register")
 	public Status register(@RequestBody UserDto userDto) {
-
 		try {
 			UserDetails userDetails = new UserDetails();
 			BeanUtils.copyProperties(userDto, userDetails);
-
 			int id = service.register(userDetails);
 			Status status = new Status();
 			status.setUserId(id);
 			status.setStatus(StatusType.SUCCESS);
 			status.setMessage("Registration successfull");
-			SimpleMailMessage message = new SimpleMailMessage();
-			message.setFrom("sharmautkarsh815@outlook.com");
-			message.setTo(userDetails.getUserEmail());
-			message.setSubject("Registration Successfull");
-			message.setText("Dear " + userDetails.getUserName() + "!" + "\n\n" + "You are successfully registered."
-					+ "\n" + "This is your user Id " + id + ". Use it for the future refrences." + "\n\n"
-					+ "Have a good day." + "\n" + "LTI Insurance");
-			mailSender.send(message);
+			EmailUtility util = new EmailUtility();
+			util.sendRegisterEmail(mailSender, userDetails, id);
 			return status;
-
 		} catch (ServiceException e) {
 			Status status = new Status();
 			status.setStatus(StatusType.FAILURE);
@@ -236,171 +179,67 @@ public class ControllerImpl {
 
 	}
 
-	@PostMapping(path = "/login")
+	@PostMapping("/login")
 	public LoginStatus login(@RequestBody LoginDto loginDto) {
 		try {
-			// UserDetails userDetails=service.login(loginDto.getUserEmail(),
-			// loginDto.getUserPassword());
-			System.out.println(loginDto.getUserPassword());
 			UserDetails userDetails = service.login(loginDto.getUserId(), loginDto.getUserPassword());
 			LoginStatus loginStatus = new LoginStatus();
+
 			loginStatus.setStatus(StatusType.SUCCESS);
 			loginStatus.setUserId(userDetails.getUserId());
 			loginStatus.setUserName(userDetails.getUserName());
 			loginStatus.setMessage("You are successfully logged in!");
 			return loginStatus;
+
 		} catch (ServiceException e) {
 			LoginStatus loginStatus = new LoginStatus();
 			loginStatus.setStatus(StatusType.FAILURE);
 			loginStatus.setMessage(e.getMessage());
-
 			return loginStatus;
 		}
 	}
 
-	public static class LoginStatus extends Status {
-		private int userId;
-
-		private String userName;
-
-		public int getUserId() {
-			return userId;
-		}
-
-		public void setUserId(int userId) {
-			this.userId = userId;
-		}
-
-		public String getUserName() {
-			return userName;
-		}
-
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
-
-	}
-
-	public static class Status {
-		private int userId;
-
-		public int getUserId() {
-			return userId;
-		}
-
-		public void setUserId(int userId) {
-			this.userId = userId;
-		}
-
-		private StatusType status;
-		private String message;
-
-		public static enum StatusType {
-			SUCCESS, FAILURE;
-		}
-
-		public StatusType getStatus() {
-			return status;
-		}
-
-		public void setStatus(StatusType status) {
-			this.status = status;
-		}
-
-		public String getMessage() {
-			return message;
-		}
-
-		public void setMessage(String message) {
-			this.message = message;
-		}
-
-	}
-
 	@PostMapping(path = "/checkPolicyIdForUserId")
-	public Status1 checkPolicyIdForUserId(@RequestBody ClaimDto claimdto) {
+	public ClaimStatus checkPolicyIdForUserId(@RequestBody ClaimDto claimdto) {
+		ClaimStatus status = new ClaimStatus();
 		List<VehicleInsuranceDetails> vid = service.showUserVehicleInsurance(claimdto.getUserId());
-		System.out.println(claimdto.getUserId() + " " + claimdto.getPolicyId());
+
 		for (VehicleInsuranceDetails details : vid) {
 			if (details.getInsurancePolicyId() == claimdto.getPolicyId()) {
 				long d = service.checkVehicleClaimOnBasisOfStatus(claimdto.getPolicyId());
 				if (d >= 1) {
-					Status1 status = new Status1();
-					status.setStatus(StatusType1.Failure);
+					status.setStatus(ClaimStatusType.Failure);
 					status.setMessage("Claim Already registered");
 					return status;
 				}
-				Status1 status = new Status1();
-				status.setStatus(StatusType1.Success);
+				status.setStatus(ClaimStatusType.Success);
 				status.setMessage("OK");
 				return status;
 			}
 		}
 		List<TravelInsuranceDetails> tid = service.showUserTravelInsurance(claimdto.getUserId());
+
 		for (TravelInsuranceDetails trvdetails : tid) {
-			System.out.println(claimdto.getPolicyId());
 			if (trvdetails.getInsurancePolicyId() == claimdto.getPolicyId()) {
 				long t = service.checkTravelClaimOnBasisOfStatus(claimdto.getPolicyId());
 				if (t >= 1) {
-					Status1 status = new Status1();
-					status.setStatus(StatusType1.Failure);
+					status.setStatus(ClaimStatusType.Failure);
 					status.setMessage("Claim Already registered");
 					return status;
 				}
-				Status1 status = new Status1();
-				status.setStatus(StatusType1.Success);
+				status.setStatus(ClaimStatusType.Success);
 				status.setMessage("OK");
 				return status;
 			}
 		}
-		Status1 status = new Status1();
-		status.setStatus(StatusType1.Failure);
+		status.setStatus(ClaimStatusType.Failure);
 		status.setMessage("This Policy does not exist for this User");
 		return status;
 	}
 
-	public static class Status1 {
+	@PostMapping("/addClaimForUser")
+	public ClaimStatus addClaimForUser(@RequestBody ClaimDto claimDto) {
 
-		private StatusType1 status;
-		private String message;
-		int claimId;
-
-		public int getClaimId() {
-			return claimId;
-		}
-
-		public void setClaimId(int claimId) {
-			this.claimId = claimId;
-		}
-
-		public static enum StatusType1 {
-			Success, Failure
-		}
-
-		public StatusType1 getStatus() {
-			return status;
-		}
-
-		public void setStatus(StatusType1 status) {
-			this.status = status;
-		}
-
-		public String getMessage() {
-			return message;
-		}
-
-		public void setMessage(String message) {
-			this.message = message;
-		}
-
-	}
-
-	@PostMapping(path = "/addClaimForUser")
-	public Status1 addClaimForUser(@RequestBody ClaimDto claimDto) {
-
-		System.out.println(claimDto.getReason());
-		System.out.println(claimDto.getPolicyId());
-		System.out.println(claimDto.getUserId());
 		ClaimDetails claimDetails = new ClaimDetails();
 		claimDetails.setDateOfIncident(claimDto.getDateOfIncident());
 		claimDetails.setClaimDate(claimDto.getClaimDate());
@@ -408,38 +247,33 @@ public class ControllerImpl {
 		claimDetails.setElaborateReason(claimDto.getElaborateReason());
 		claimDetails.setStatus("Pending");
 		if (service.addClaim(claimDto.getPolicyId(), claimDetails) != 0) {
-			Status1 status = new Status1();
-			status.setStatus(StatusType1.Success);
+			ClaimStatus status = new ClaimStatus();
+			status.setStatus(ClaimStatusType.Success);
 			status.setMessage("OK");
+			status.setClaimId(claimDetails.getClaimId());
+
 			UserDetails user = service.findUserById(claimDto.getUserId());
 			EmailUtility util = new EmailUtility();
-			System.out.println(user.getUserId());
-			System.out.println(user.getUserEmail());
-			System.out.println(claimDetails.getClaimId());
-
 			util.sendClaimRegisterEmail(mailSender, user.getUserEmail(), claimDetails.getClaimId());
-			status.setClaimId(claimDetails.getClaimId());
-			System.out.println(claimDetails.getClaimId());
 			return status;
 
 		} else {
-			Status1 status = new Status1();
-			status.setStatus(StatusType1.Failure);
+			ClaimStatus status = new ClaimStatus();
+			status.setStatus(ClaimStatusType.Failure);
 			status.setMessage("Fail");
 			return status;
-
 		}
 
 	}
 
-	@PostMapping(path = "/listAllClaimDetailsForUser")
+	@PostMapping("/listAllClaimDetailsForUser")
 	public List<ClaimDetails> listAllClaimDetailsForUser(@RequestBody ShowDto showdto) {
 		System.out.println(showdto.getUserId());
 		System.out.println(service.getAllClaim(showdto.getUserId()));
 		return service.getAllClaim(showdto.getUserId());
 	}
 
-	@PostMapping(path = "/findUserByPolicyId")
+	@PostMapping("/findUserByPolicyId")
 	public RenewObject findUserByPolicyId(@RequestBody PolicyIdObject pio) {
 		RenewObject renew = new RenewObject();
 		renew.setUserName(service.findUserByPolicyId(pio.getInsurancePolicyId()));
@@ -448,7 +282,7 @@ public class ControllerImpl {
 
 	}
 
-	@PostMapping(path = "/renewInsurance")
+	@PostMapping("/renewInsurance")
 	public LocalDate renewInsurance(@RequestBody PolicyIdObject pio) {
 		VehicleInsuranceDetails vehicle = service.renewInsurance(pio.getInsurancePolicyId(),
 				pio.getInsuranceDuration());
@@ -456,58 +290,33 @@ public class ControllerImpl {
 
 		EmailUtility email = new EmailUtility();
 		email.sendRenewEmail(mailSender, vehicle, user);
-		System.out.println(vehicle.getInsuranceDuration());
+		
 		return vehicle.getInsuranceDuration();
 	}
 
-	@GetMapping(path = "/getAllVehiclePolicies")
+	@GetMapping("/getAllVehiclePolicies")
 	public List<Object> getAllVehiclePolicies() {
 		return service.getAllVehiclePolicies();
 	}
 
-	@GetMapping(path = "/getAllTravelPolicies")
+	@GetMapping("/getAllTravelPolicies")
 	public List<Object> getAllTravelPolicies() {
 		return service.getAllTravelPolicies();
 	}
 
-	@PostMapping(path = "/checkVehiclePolicyId")
+	@PostMapping("/checkVehiclePolicyId")
 	public boolean checkVehiclePolicyId(@RequestBody PolicyIdObject pio) {
 		return service.checkVehiclePolicyId(pio.getInsurancePolicyId());
 	}
+	
+	@PostMapping("/checkIfVehiclePolicyRenewable")
+	public boolean checkIfVehiclePolicyRenewable(@RequestBody PolicyIdObject pio) {
+		 if(service.checkIfRenewable(pio.getInsurancePolicyId()))
+			 return true;
+		 return false;
+	}
 
-//	public Status checkPolicyIdFromuser(@RequestBody PolicyIdObject pio) {
-//
-//		System.out.println(pio.getUserId());
-//		System.out.println(pio.getInsurancePolicyId());
-//		List<VehicleInsuranceDetails> vid = service.showUserVehicleInsurance(pio.getUserId());
-//
-//		for (VehicleInsuranceDetails details : vid) {
-//
-//			if (details.getInsurancePolicyId() == pio.getInsurancePolicyId()) {
-//
-//				Status status = new Status();
-//
-//				status.setStatus(StatusType.SUCCESS);
-//
-//				status.setMessage("OK");
-//
-//				return status;
-//
-//			}
-//
-//		}
-//
-//		Status status = new Status();
-//
-//		status.setStatus(StatusType.FAILURE);
-//
-//		status.setMessage("Fail");
-//
-//		return status;
-//
-//	}
-
-	@PostMapping(path = "/getAllInsurance")
+	@PostMapping("/getAllInsurance")
 	public List<Object> getAllinsurance(@RequestBody DashDto dashDto) {
 		List<Object> list = new ArrayList<>();
 		List<VehicleInsuranceDetails> vl = service.showUserVehicleInsurance(dashDto.getUserId());
@@ -517,9 +326,8 @@ public class ControllerImpl {
 		return list;
 	}
 
-	@PostMapping(path = "/verifyEmail")
+	@PostMapping("/verifyEmail")
 	public EmailStatus verifyEmail(@RequestBody ForgotPasswordDto forgotPasswordDto) {
-		// System.out.println(forgotPasswordDto.getUserEmail());
 		int otp = 0;
 		try {
 			otp = service.findByEmailforOTP(forgotPasswordDto.getUserEmail());
@@ -529,19 +337,16 @@ public class ControllerImpl {
 			emailStatus.setUserOTP(otp);
 			emailStatus.setStatus(StatusType.SUCCESS);
 			return emailStatus;
-
 		} catch (ServiceException e) {
-
 			EmailStatus status = new EmailStatus();
 			status.setStatus(StatusType.FAILURE);
-			// status.setOtp(otp);
 			status.setMessage(e.getMessage());
 			return status;
 		}
 
 	}
 
-	@PostMapping(path = "/forgotPassword")
+	@PostMapping("/forgotPassword")
 	public Status forgotPassword(@RequestBody ForgotPasswordDto forgotPassworddto) {
 
 		try {
@@ -549,47 +354,28 @@ public class ControllerImpl {
 			EmailStatus emailStatus = new EmailStatus();
 			EmailUtility emailUtility = new EmailUtility();
 			emailUtility.resetPasswordEmail(mailSender, forgotPassworddto.getUserEmail());
-
 			emailStatus.setStatus(StatusType.SUCCESS);
 			return emailStatus;
-
 		} catch (ServiceException e) {
-
 			EmailStatus status = new EmailStatus();
 			status.setStatus(StatusType.FAILURE);
-
 			status.setMessage(e.getMessage());
 			return status;
 		}
-
 	}
 
-	public static class EmailStatus extends Status {
-		private int userOTP;
-
-		public int getUserOTP() {
-			return userOTP;
-		}
-
-		public void setUserOTP(int userOTP) {
-			this.userOTP = userOTP;
-		}
-	}
-
-	@PostMapping(path = "/getAllVehiclepoliciesByUserId")
+	@PostMapping("/getAllVehiclepoliciesByUserId")
 	public List<Object> getAllVehiclePoliciesByUserId(@RequestBody DashDto dashDto) {
 		return service.getAllVehiclePoliciesByUserId(dashDto.getUserId());
 	}
 
-	@PostMapping(path = "/getTravelpoliciesByUserId")
+	@PostMapping("/getTravelpoliciesByUserId")
 	public List<Object> getAllTravelPoliciesByUserId(@RequestBody DashDto dashDto) {
 		return service.getAllTravelPoliciesByUserId(dashDto.getUserId());
 	}
 
-	@PostMapping(path = "/findPolicyIdByUserId")
+	@PostMapping("/findPolicyIdByUserId")
 	public Status findPolicyIdByUserId(@RequestBody PolicyIdObject pio) {
-//		System.out.println(pio.getUserId());
-//		System.out.println(pio.getInsurancePolicyId());
 		Status st = new Status();
 		boolean result = service.findPolicyIdByUserId(pio.getInsurancePolicyId(), pio.getUserId());
 		if (result == true) {
@@ -597,7 +383,6 @@ public class ControllerImpl {
 		} else {
 			st.setStatus(StatusType.FAILURE);
 		}
-
 		return st;
 	}
 

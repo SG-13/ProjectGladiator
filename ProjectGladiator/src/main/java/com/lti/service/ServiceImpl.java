@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,14 +134,12 @@ public class ServiceImpl implements ProjectService {
 	public int register(UserDetails userDetails) {
 		if (!repo.findByEmail(userDetails.getUserEmail())) {
 			return repo.addNewUser(userDetails);
-
 		} else
 			throw new ServiceException("Email already registerd");
 	}
 
 	@Override
 	public UserDetails login(int userId, String password) {
-
 		try {
 
 			int id = repo.findByIdAndPassword(userId, password);
@@ -208,7 +207,6 @@ public class ServiceImpl implements ProjectService {
 
 	@Override
 	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId) {
-		// TODO Auto-generated method stub
 		return repo.findUserByVehiclePolicyId(insurancePolicyId);
 	}
 
@@ -260,5 +258,18 @@ public class ServiceImpl implements ProjectService {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean checkIfRenewable(int insurancePolicyId) {
+		VehicleInsuranceDetails vid = repo.getVehicleInsuranceFromPolicyId(insurancePolicyId);
+		int i = LocalDate.now().compareTo(vid.getInsuranceDuration());
+		System.out.println(i);
+		if(i>=0) {
+			if(LocalDate.now().getYear()==vid.getInsuranceDuration().getYear() && LocalDate.now().getMonth()==vid.getInsuranceDuration().getMonth())
+			return true;
+		}
+		return false;
+	}
+	
 
 }

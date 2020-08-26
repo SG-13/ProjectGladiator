@@ -316,41 +316,6 @@ public class RepositoryImpl implements ProjectRepository {
 	}
 
 	public List<ClaimDetails> getAllClaim(int userId) {
-		/*
-		 * List<ClaimDetails> obj=new ArrayList<ClaimDetails>(); //List<ClaimDetails>
-		 * allClaim = new ArrayList<ClaimDetails>();
-		 * 
-		 * UserDetails userObj = em.find(UserDetails.class,userId);
-		 * System.out.println("Email is "+userObj.getUserEmail());
-		 * 
-		 * List<TravelInsuranceDetails> list = userObj.getTravelinsurancedetails();
-		 * System.out.println(list.size());
-		 * 
-		 * for(TravelInsuranceDetails policyNum : list) { String hql =
-		 * "select I from TravelInsuranceDetails I where I.insurancePolicyId=:number";
-		 * Query query = em.createQuery(hql);
-		 * query.setParameter("number",policyNum.getInsurancePolicyId());
-		 * List<TravelInsuranceDetails> allInsurance = query.getResultList();
-		 * 
-		 * for(TravelInsuranceDetails ins:allInsurance) { obj = ins.getClaimdetails();
-		 * //allClaim.add(obj); }
-		 * 
-		 * }
-		 * 
-		 * List<VehicleInsuranceDetails> list1 = userObj.getVechileinsurancedetails();
-		 * System.out.println(list1.size());
-		 * 
-		 * for(VehicleInsuranceDetails policyNum:list1) { String hql =
-		 * "select V from VehicleInsuranceDetails V where V.insurancePolicyId=:number";
-		 * Query query = em.createQuery(hql);
-		 * query.setParameter("number",policyNum.getInsurancePolicyId());
-		 * List<VehicleInsuranceDetails> allInsurance = query.getResultList();
-		 * 
-		 * for(VehicleInsuranceDetails ins:allInsurance) { obj = ins.getClaimdetails();
-		 * //allClaim.add(obj); }
-		 * 
-		 * } return obj;
-		 */
 		String hql = "select cd from ClaimDetails cd where cd.travelinsurancedetails.insurancePolicyId IN (select td from TravelInsuranceDetails td where td.user.userId=:u)";
 		Query query = em.createQuery(hql);
 		query.setParameter("u", userId);
@@ -374,30 +339,23 @@ public class RepositoryImpl implements ProjectRepository {
 	@Transactional
 	public String findUserByPolicyId(int insurancePolicyId) {
 		VehicleInsuranceDetails vid = em.find(VehicleInsuranceDetails.class, insurancePolicyId);
-		// System.out.println(vid.getUser());
 		UserDetails user = vid.getUser();
-		/* System.out.println(user.getUserName()); */
 		return user.getUserName();
 	}
 
 	@Override
 	@Transactional
 	public String findInsuranceByPolicyId(int insurancePolicyId) {
-
 		VehicleInsuranceDetails vid = em.find(VehicleInsuranceDetails.class, insurancePolicyId);
-		/* System.out.println(vid.getUser()); */
 		VehicleInsurancePlan plan = vid.getVehicleinsuranceplan();
-		/* System.out.println(user.getUserName()); */
 		return plan.getInsurancePlan();
-
 	}
 
 	@Override
 	@Transactional
 	public VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceDuration) {
 		VehicleInsuranceDetails vid = em.find(VehicleInsuranceDetails.class, insurancePolicyId);
-
-		LocalDate date = vid.getInsuranceDuration().minusDays(1);
+		LocalDate date =LocalDate.now().minusDays(1);
 		vid.setInsuranceDuration(date.plusYears(insuranceDuration));
 		em.merge(vid);
 
@@ -496,6 +454,11 @@ public class RepositoryImpl implements ProjectRepository {
 		UserDetails user = vid.getUser();
 		int id = user.getUserId();
 		return id;
+	}
+	
+	@Override
+	public VehicleInsuranceDetails getVehicleInsuranceFromPolicyId(int insurancePolicyId) {
+		return em.find(VehicleInsuranceDetails.class, insurancePolicyId);
 	}
 
 }
