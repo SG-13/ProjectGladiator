@@ -221,4 +221,6 @@
       
       #spanRegisterAnchor:hover {
           color: green;
+          font-size: x-large;
+          font-weight: bolder;
       }

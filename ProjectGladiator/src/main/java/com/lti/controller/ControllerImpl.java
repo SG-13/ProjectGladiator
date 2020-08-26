@@ -103,12 +103,20 @@ public class ControllerImpl {
 	}
 
 	@RequestMapping(path = "/addVehicleDetails", method = RequestMethod.POST)
-	public SendVehicleId addVehicleDetails(@RequestBody VehicleDetails vehicle) {
+	public Status addVehicleDetails(@RequestBody VehicleDetails vehicle) {
 		// System.out.println(vehicle.getRegistrationNumber());
-		SendVehicleId vehicleId = new SendVehicleId();
-		vehicleId.setVehicleId(service.addVehicleDetails(vehicle));
-		return vehicleId;
+		Status status = new Status();
+		try {
+			if (service.checkIfVehicleExist(vehicle.getRegistrationNumber())) {
+				status.setMessage("Vehicle is not registered");
+				status.setStatus(StatusType.SUCCESS);
+			}
+		} catch (ServiceException e) {
+			status.setMessage(e.getMessage());
+			status.setStatus(StatusType.FAILURE);
+		}
 
+		return status;
 	}
 
 	@RequestMapping(path = "/addTravelDetails", method = RequestMethod.POST)
@@ -333,12 +341,12 @@ public class ControllerImpl {
 			System.out.println(claimdto.getPolicyId());
 			if (trvdetails.getInsurancePolicyId() == claimdto.getPolicyId()) {
 				long t = service.checkTravelClaimOnBasisOfStatus(claimdto.getPolicyId());
-				if(t>=1) {
-					 Status1 status=new Status1();
+				if (t >= 1) {
+					Status1 status = new Status1();
 					status.setStatus(StatusType1.Failure);
 					status.setMessage("Claim Already registered");
 					return status;
-				 }
+				}
 				Status1 status = new Status1();
 				status.setStatus(StatusType1.Success);
 				status.setMessage("OK");
@@ -448,7 +456,7 @@ public class ControllerImpl {
 
 		EmailUtility email = new EmailUtility();
 		email.sendRenewEmail(mailSender, vehicle, user);
-
+		System.out.println(vehicle.getInsuranceDuration());
 		return vehicle.getInsuranceDuration();
 	}
 
@@ -462,13 +470,11 @@ public class ControllerImpl {
 		return service.getAllTravelPolicies();
 	}
 
-	
 	@PostMapping(path = "/checkVehiclePolicyId")
 	public boolean checkVehiclePolicyId(@RequestBody PolicyIdObject pio) {
 		return service.checkVehiclePolicyId(pio.getInsurancePolicyId());
 	}
 
-	
 //	public Status checkPolicyIdFromuser(@RequestBody PolicyIdObject pio) {
 //
 //		System.out.println(pio.getUserId());
@@ -569,7 +575,6 @@ public class ControllerImpl {
 			this.userOTP = userOTP;
 		}
 	}
-	
 
 	@PostMapping(path = "/getAllVehiclepoliciesByUserId")
 	public List<Object> getAllVehiclePoliciesByUserId(@RequestBody DashDto dashDto) {
@@ -581,7 +586,7 @@ public class ControllerImpl {
 		return service.getAllTravelPoliciesByUserId(dashDto.getUserId());
 	}
 
-	@PostMapping(path="/findPolicyIdByUserId")
+	@PostMapping(path = "/findPolicyIdByUserId")
 	public Status findPolicyIdByUserId(@RequestBody PolicyIdObject pio) {
 //		System.out.println(pio.getUserId());
 //		System.out.println(pio.getInsurancePolicyId());
@@ -592,7 +597,7 @@ public class ControllerImpl {
 		} else {
 			st.setStatus(StatusType.FAILURE);
 		}
-		
+
 		return st;
 	}
 

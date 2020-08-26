@@ -33,6 +33,15 @@ public class ServiceImpl implements ProjectService {
 		return repo.isValidUser(userId, password);
 	}
 
+	public boolean checkIfVehicleExist(String registrationNumber) {
+		if (!repo.checkIfVehicleExist(registrationNumber)) {
+			return true;
+			} 
+		else
+			throw new ServiceException("Vehicle already registerd");
+
+	}
+	
 	public int buyVehicleInsurance(int userId, String regno, int planId, VehicleInsuranceDetails vid) {
 		return repo.buyVehicleInsurance(userId, regno, planId, vid);
 	}
@@ -126,7 +135,7 @@ public class ServiceImpl implements ProjectService {
 			return repo.addNewUser(userDetails);
 
 		} else
-			throw new ServiceException("User already registerd");
+			throw new ServiceException("Email already registerd");
 	}
 
 	@Override

@@ -5,10 +5,10 @@
 
     <div class="formrow">
         <div class="formmain">
-            <div class="formcard">
+            <div class="formcard" >
                 <h2 style="text-align: center; ">Register Here</h2><br><br>
                 <form #registerForm='ngForm' (ngSubmit)='register()'>
-                    <div class="formcontainer">
+                    <div class="formcontainer" *ngIf='showForm'>
 
 
                         <label class="labels"><b>User Name</b></label><br>
@@ -64,8 +64,16 @@
                                 <b>Address is required!</b>
 
                             </span><br><br>
-
+                            
+                            <h3 *ngIf='showerr' style="color: red;" >{{message}}</h3>
+                            <h3 *ngIf='passerr' style="color: red;" >Password Mismatch</h3>
+                            
                         <button type="submit" [disabled]="registerForm.invalid" class="buttons">Register</button>
+                    </div>
+                    <div *ngIf='showsucc' style="text-align: center;">
+                        <h3>You are successfully registered!!</h3>
+                        <h3>Check Your Mail for Confirmation</h3>
+                
                     </div>
                 </form>
             </div>

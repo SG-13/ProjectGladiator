@@ -17,36 +17,52 @@ export class VehicleComponentComponent {
   showRegisterForm:boolean=true;
   showPlanForm:boolean=false;
   showPremium:boolean=false;
+  showMessage:boolean=false;
   vehicle : VehicleDetails = new VehicleDetails();
   policy = Array<VehicleInsurancePlan>();
   buyinsurance : BuyVehicleInsurance = new BuyVehicleInsurance();
+  message:string;
+  maxCoverage:number;
 
   constructor(private service : AngularServiceService,private router: Router) {}
 
 
   showform2(){
     console.log(this.vehicle);
-    this.showRegisterForm=false;
-    this.showPlanForm=true;
     
     this.service.saveVehicleDetails(this.vehicle).subscribe( data => {
-      //alert(data.vehicleId);
-      this.buyinsurance.registrationNumber=data.vehicleId;
-    })
-    
-    this.service.fetchVehicleInsurancePlans().subscribe( data => {
-      this.policy=data;
+      //alert(data.status);
+      
+      if(data.status=="SUCCESS"){
+        this.buyinsurance.registrationNumber=this.vehicle.registrationNumber;
+        this.showRegisterForm=false;
+        this.showPlanForm=true;
+        this.showPolicies();
+        this.showMessage=false;
+      }
+      else{
+        this.showMessage=true;
+        this.message=data.message;
+      }
+      
     })
     
   }
 
+  showPolicies(){
+    this.service.fetchVehicleInsurancePlans().subscribe( data => {
+      this.policy=data;
+    })
+  }
+  
+    
+
   calcPremium(){
     this.showPremium=true;
     this.policy.forEach(p => {
-     
       if(p.insurancePlanId == this.buyinsurance.insurancePlanId)
       { 
-        this.buyinsurance.insurancePremium=Math.round(((p.insuranceCoverageAmount*this.vehicle.vehicleCost)/890)-(this.buyinsurance.duration*1234));
+        this.buyinsurance.insurancePremium=Math.round((((p.insuranceCoverageAmount/10000) *this.vehicle.vehicleCost)*0.4*18)-(this.buyinsurance.duration*37));
       }
     });
     

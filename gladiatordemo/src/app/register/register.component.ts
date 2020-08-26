@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetails } from "../user-details";
 import { Router } from "@angular/router";
-import { DashboardComponent } from "../dashboard/dashboard.component";
 import { AngularServiceService } from "../angular-service.service";
 
 @Component({
@@ -11,7 +10,10 @@ import { AngularServiceService } from "../angular-service.service";
 })
 export class RegisterComponent implements OnInit {
    message:string;
-   
+   showerr:boolean=false; 
+   passerr:boolean=false;
+   showForm:boolean=true; 
+   showsucc:boolean=false;   
    userPassword1:string
    userDetails=new UserDetails();
   constructor(private service : AngularServiceService, private router:Router) { }
@@ -25,18 +27,27 @@ export class RegisterComponent implements OnInit {
         if(data.status=='SUCCESS')
         {
           //alert(JSON.stringify(data))
-          this.router.navigate(['loginLink']);
+          
+          this.showerr=false;
+          this.passerr=false;
+          this.showForm=false;
+          this.showsucc=true;
+          setTimeout(() => {this.router.navigate(['loginLink'])}, 4000);
+
         }
         else(data.status=='FAILURE')
-        { 
-         alert(JSON.stringify(data))      
+        { this.passerr=false;
+          this.showerr=true;
+          this.message=data.message;
+         //alert(JSON.stringify(data))      
         }  
      })
 
     }
     else
-    {
-      alert("User Password didn't match!")
+    { this.passerr=true;
+      this.showerr=false;
+      //alert("User Password didn't match!")
     }
 
   }

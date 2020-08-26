@@ -27,7 +27,8 @@ public class RepositoryImpl implements ProjectRepository {
 
 	@PersistenceContext
 	EntityManager em;
-
+	
+	@Override
 	@Transactional
 	public int addNewUser(UserDetails user) {
 		System.out.println(user);
@@ -36,7 +37,8 @@ public class RepositoryImpl implements ProjectRepository {
 		System.out.println("User added");
 		return userId;
 	}
-
+	
+	@Override
 	public int isValidUser(int userId, String password) {
 		UserDetails user = em.find(UserDetails.class, userId);
 		// System.out.println(user.getUserPassword());
@@ -44,6 +46,15 @@ public class RepositoryImpl implements ProjectRepository {
 			return userId;
 
 		return 0;
+	}
+	
+	@Override
+	@Transactional
+	public boolean checkIfVehicleExist(String registrationNumber) {
+		return (long) em.createQuery(
+				"select count(registrationNumber) from VehicleDetails vd where vd.registrationNumber=:rn ")
+				.setParameter("rn", registrationNumber).getSingleResult() == 1 ? true : false;
+		
 	}
 
 	@Transactional

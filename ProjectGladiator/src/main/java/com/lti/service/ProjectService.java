@@ -17,6 +17,8 @@ public interface ProjectService {
 	int addNewUser(UserDetails user);
 
 	int isValidUser(int userId, String password);
+	
+	boolean checkIfVehicleExist(String registrationNumber);
 
 	int buyVehicleInsurance(int userId, String regno, int planId, VehicleInsuranceDetails vid);
 

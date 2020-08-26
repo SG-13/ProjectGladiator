@@ -22,29 +22,51 @@
                 <form #travelRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="startingDate" class="labels "><b>Starting date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" name="startingDate " [(ngModel)]=travel.startDateOfJourney min={{FromDate}} required><br><br>
+                        <input type="date" placeholder="Enter the date" name="startingDate" [(ngModel)]=travel.startDateOfJourney min={{FromDate}} required #startingDateControl="ngModel"><br>
+                        <span style="color: red;" *ngIf="startingDateControl.invalid && startingDateControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span>
+                        <br><br>
                         
                         <label for="endingDate" class="labels "><b>Ending date of your journey</b></label><br>
-                        <input type="date" placeholder="Enter the date" name="endingDate " [(ngModel)]=travel.endDateOfJourney min={{travel.startDateOfJourney}} required><br><br>
+                        <input type="date" placeholder="Enter the date" name="endingDate" [(ngModel)]=travel.endDateOfJourney min={{travel.startDateOfJourney}} required #endingDateControl="ngModel"><br>
+                        <span style="color: red;" *ngIf="endingDateControl.invalid && endingDateControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span>
+                        <br><br>
 
                         <label for="departureLocation"><b>Departure location</b></label><br>
-                        <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation required><br><br>
+                        <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation required #departureLocationControl="ngModel"><br>
+                        <span style="color: red;" *ngIf="departureLocationControl.invalid && departureLocationControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span>
+                        <br><br>
 
                         <label for="arrivalLocation"><b>Arrival location</b></label><br>
-                        <input type="text" placeholder="Enter arrival location" name="arrivalLocation" [(ngModel)]=travel.arrivalLocation required><br><br>
+                        <input type="text" placeholder="Enter arrival location" name="arrivalLocation" [(ngModel)]=travel.arrivalLocation required #arrivalLocationControl="ngModel"><br>
+                        <span style="color: red;" *ngIf="arrivalLocationControl.invalid && arrivalLocationControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span>
+                        <br><br>
 
                         <label for="modeOfTravel"><b>Mode of Travel</b></label><br>
-                        <select id="modeOfTravel" name="modeOfTravel" [(ngModel)]=travel.modeOfTravel required>
+                        <select id="modeOfTravel" name="modeOfTravel" [(ngModel)]=travel.modeOfTravel required #modeOfTravelControl="ngModel">
                         <option value="Bus">Bus 
                         <option value="Car">Car 
                         <option value="Train">Train
                         <option value="Airplane">Airplane
                         <option value="Ship">Ship
-                        </select><br><br>
+                        </select><br>
+                        <span style="color: red;" *ngIf="modeOfTravelControl.invalid && modeOfTravelControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span>
+                        <br><br>
+                        
                         <label for="travelCost" class="labels"><b>Travel Cost</b></label><br>
-                        <input type="number" placeholder="Enter travel cost " id="travelCost" name="travelCost" min="500" max="1000000" [(ngModel)]=travel.travelCost required><br><br>
-
-
+                        <input type="number" placeholder="Enter travel cost " id="travelCost" name="travelCost" min="500" max="1000000" [(ngModel)]=travel.travelCost required #travelCostControl="ngModel"><br>
+                        <span style="color: red;" *ngIf="travelCostControl.invalid && travelCostControl.touched"> 
+                            <b>Feild Can't be Empty</b>
+                        </span><br><br>
 
                         <button class="buttons" [disabled]="travelRegisterForm.invalid" type="submit" ><h2> Submit</h2></button>
                     </div>
@@ -74,8 +96,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 </body>

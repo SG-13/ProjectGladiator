@@ -32,9 +32,9 @@ export class RenewComponent implements OnInit {
   policyId = new PolicyId();
 
  // userId: number = parseInt(sessionStorage.getItem("userId"));
-  userName: String;
-  policyType: String;
-  duration: any;
+  userName: string;
+  policyType: string;
+  duration: string;
 
   renew(renewForm) {
   }
@@ -58,9 +58,7 @@ export class RenewComponent implements OnInit {
           this.showerr2 = true;
         }
       }
-
     )
-
   }
 
   myFunc() {
@@ -90,9 +88,8 @@ export class RenewComponent implements OnInit {
   myFunc2() {
     this.showm = true;
     this.show = false;
-    this.service.addDuration(this.policyId).subscribe(
-      data => {
-        this.duration = data.insuranceDuration;
+    this.service.addDuration(this.policyId).subscribe( data => {
+        this.duration = data;
         //alert("Your new insurance duration is extended by "+ this.duration+" years.")
       })
   }

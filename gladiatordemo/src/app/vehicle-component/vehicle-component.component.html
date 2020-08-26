@@ -9,10 +9,6 @@
 
 <body>
 
-   
-
-
-
     <div class="formrow">
         <div class="formmain">
 
@@ -22,11 +18,15 @@
                 <form #vehicleRegisterForm='ngForm' (ngSubmit)='showform2()'>
                     <div class="formcontainer">
                         <label for="registrationNo" class="labels "><b>Registration number</b></label><br>
-                        <input type="text" placeholder="Enter the Registration number * " name="registrationNo" [(ngModel)]="vehicle.registrationNumber" minlength="9" maxlength="10" required><br><br>
-
+                        <input type="text" placeholder="Enter the Registration number * " name="registrationNo" [(ngModel)]="vehicle.registrationNumber" minlength="9" maxlength="10" required #registrationNoControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="registrationNoControl.invalid && registrationNoControl.touched"> 
+                            <b>Registration Number Invalid</b>
+                        </span> <br> 
                         <label for="color" class="labels "><b>Color of the vehicle</b></label><br>
-                        <input type="text" placeholder="Enter color " name="color" [(ngModel)]="vehicle.vehicleColour" required><br><br>
-
+                        <input type="text" placeholder="Enter color " name="color" [(ngModel)]="vehicle.vehicleColour" required #colorControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="colorControl.invalid && colorControl.touched"> 
+                            <b>Color is Required</b>
+                        </span> <br>
                         <label for="vehicleType" class="labels" ><b>Type of the vehicle</b></label><br><br>
                         <div>
                             <input type="radio" id="twoWheeler" name="vehicleType" value="Two Wheeler" [(ngModel)]="vehicle.vehicleType" required>
@@ -35,33 +35,43 @@
                             <label for="vehicleType">4 Wheeler</label>
                         </div><br>
 
-                        <label for="model"><b>Model</b></label><br>
-                        <input type="text" placeholder="Enter model * " name="model" [(ngModel)]="vehicle.vehicleModel" required><br><br>
-
-
+                        <label for="model"><b>Car Model</b></label><br>
+                        <input type="text" placeholder="Enter model" name="model" [(ngModel)]="vehicle.vehicleModel" required #modelControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="modelControl.invalid && modelControl.touched"> 
+                            <b>Car Model is Required</b>
+                        </span> <br>
                         <label for="purchaseDate" class="labels"><b>Purchase Date</b></label><br>
-                        <input type="date" placeholder="Enter purchase date " name="purchaseDate " [(ngModel)]="vehicle.vehiclePurchaseDate" max={{FromDate}} required><br><br>
-
-
-                        <label for="manufacturer " class="labels"><b>Manufacturer</b></label><br>
-                        <input type="text" placeholder="Enter Manufacturer " name="manufacturer " [(ngModel)]="vehicle.vehicleManufacturer" required><br><br>
-
-
-                        <label for="engineNo " class="labels"><b>Engine Number</b></label><br>
-                        <input type="text" placeholder="Enter engine number " name="engineNo " [(ngModel)]="vehicle.vehicleEngineNumber" required><br><br>
-
-
-                        <label for="chassisNo " class="labels"><b>Chassis Number</b></label><br>
-                        <input type="text" placeholder="Enter chassis number " name="chassisNo " [(ngModel)]="vehicle.vehicleChassisNumber" required><br><br>
-
-
-                        <label for="vehicleCost " class="labels"><b>Vehicle Cost</b></label><br>
-                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost " [(ngModel)]="vehicle.vehicleCost" min="40000" max="50000000" required><br><br>
-
-
+                        <input type="date" placeholder="Enter purchase date " name="purchaseDate" [(ngModel)]="vehicle.vehiclePurchaseDate" max={{FromDate}} required #purchaseDateControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="purchaseDateControl.invalid && purchaseDateControl.touched"> 
+                            <b>Field is Empty</b>
+                        </span> <br>
+                        <label for="manufacturer" class="labels"><b>Manufacturer</b></label><br>
+                        <input type="text" placeholder="Enter Manufacturer" name="manufacturer" [(ngModel)]="vehicle.vehicleManufacturer" required #manufacturerControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="manufacturerControl.invalid && manufacturerControl.touched"> 
+                            <b>Field is Empty</b>
+                        </span> <br>
+                        <label for="engineNo" class="labels"><b>Engine Number</b></label><br>
+                        <input type="text" placeholder="Enter engine number " name="engineNo" [(ngModel)]="vehicle.vehicleEngineNumber" required #engineNoControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="engineNoControl.invalid && engineNoControl.touched"> 
+                            <b>Field is Empty</b>
+                        </span> <br>
+                        <label for="chassisNo" class="labels"><b>Chassis Number</b></label><br>
+                        <input type="text" placeholder="Enter chassis number " name="chassisNo" [(ngModel)]="vehicle.vehicleChassisNumber" required #chassisNoControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="chassisNoControl.invalid && chassisNoControl.touched"> 
+                            <b>Field is Empty</b>
+                        </span> <br>
+                        <label for="vehicleCost" class="labels"><b>Vehicle Cost</b></label><br>
+                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost" id="vehicleCost" [(ngModel)]="vehicle.vehicleCost" min="40000" max="50000000" required #vehicleCostControl="ngModel"><br><br>
+                        <span style="color: red;" *ngIf="vehicleCostControl.invalid && vehicleCostControl.touched"> 
+                            <b>Invalid Entry</b>
+                        </span> <br>
 
                       <button class="buttons" [disabled]="vehicleRegisterForm.invalid" type="submit" ><h2> Submit</h2></button>
-                    </div>
+                        
+                      <br><br>
+                      <h3 *ngIf='showMessage' style="color: red;">{{message}}</h3>
+                    
+                     </div>
                 </form>
             </div>
             <div class="formcard" *ngIf='showPlanForm'>
@@ -69,9 +79,9 @@
                     <div class="formcontainer">
                         
                         <div class="Form-radio" *ngFor='let p of policy'>
-                            <h1><input type="radio" name="policyId" value={{p.insurancePlanId}} [(ngModel)]=buyinsurance.insurancePlanId required>
-                            <label for="policyId " class="labels">{{p.insurancePlan}}</label></h1><br>
-                            <h2>Maximum Coverage Amount : {{(p.insuranceCoverageAmount*vehicle.vehicleCost)/100}}</h2>
+                            <h1><input type="radio" name="policyId" value={{p.insurancePlanId}} [(ngModel)]=buyinsurance.insurancePlanId required> <br>
+                            <label for="policyId" class="labels">{{p.insurancePlan}}</label></h1><br>
+                            <h2 style="color: khaki;">Maximum Coverage Amount : {{(p.insuranceCoverageAmount*vehicle.vehicleCost)/100}}</h2>
                         </div>
                         <label for="duration"><b>Insurance Duration</b></label><br>
                         <select id="duration" name="duration" [(ngModel)]=buyinsurance.duration required>

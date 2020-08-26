@@ -92,7 +92,7 @@ resetPassword()
         
          this.show2=false;
          this.show3=true;
-         setTimeout(() => {this.router.navigate(['loginLink'])}, 3000);
+         setTimeout(() => {this.router.navigate(['loginLink'])}, 2000);
        }
        else
        {

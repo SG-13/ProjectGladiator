@@ -131,7 +131,7 @@ export class AngularServiceService {
     return this.http.post("http://localhost:8080/checkVehiclePolicyId", insurancePolicyId);
   }
 
-  addDuration(insuranceDuration: PolicyId): Observable<any> {
+  addDuration(insuranceDuration: PolicyId): Observable<any>{
     return this.http.post("http://localhost:8080/renewInsurance", insuranceDuration);
   }
 
