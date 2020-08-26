@@ -10,11 +10,13 @@ table {
     padding: 6px;
     
   }
+  
   tr{
-    
-   
+    font-size: 20px;
   }
+
   tr:hover {background-color:steelblue;
+    color: white;
     
   }
   
@@ -23,5 +25,19 @@ table {
     color: white;
     color: steelblue;
     font-weight: bolder;
-    font-size: larger;
+    font-size: 30px;
   }
+  .heading{
+    margin: auto;
+        margin-bottom: 3%;
+        font-size: 30px;
+        color:white;
+        font-weight: bolder;
+        margin-top: 3%;
+        border:10px double ;
+        text-align: center;
+        background-color: steelblue;
+        height: 70px;
+        padding-top: 45px;
+  }
+  

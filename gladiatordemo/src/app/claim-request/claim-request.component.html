@@ -21,7 +21,11 @@
                         <div *ngIf="polDiv">
                         <label for="policy Id" class="labels "><b>Policy Id</b></label><br>
                         <div>
-                        <input type="text" id="policy" name="id" [(ngModel)]=claim.policyId required>
+                        <input type="text" id="policy" name="id" [(ngModel)]=claim.policyId required #policyIdControl='ngModel'>
+                        <span style="color: red;" *ngIf="policyIdControl.invalid && policyIdControl.touched"> 
+                            <b>Policy Id is required</b>
+
+                        </span><br><br>
                         </div><br><br>
                     
                         <button class="buttons " type="submit "(click)="check()"[disabled]="vehicleRegisterForm.invalid"><h2>Check</h2> </button>
@@ -32,34 +36,54 @@
                         <div *ngIf="visible">
                         <label for="DateOfIncident" class="labels"><b>Date of Incident</b></label><br>
                         <div>
-                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.dateOfIncident max={{FromDate}} required>
+                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.dateOfIncident max={{FromDate}} required #incidentControl='ngModel'>
+                        <span style="color: red;" *ngIf="incidentControl.invalid && incidentControl.touched"> 
+                            <b>Incident Date is required</b>
+
+                        </span><br><br>
                         </div><br><br>
                       
 
                       
                         <label for="ClaimDate" class="labels "><b>Claim Date</b></label><br>
                         <div>
-                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.claimDate min={{FromDate}} max={{FromDate}} required>
+                        <input type="date" id="Incident" name="DateOfIncident" [(ngModel)]=claim.claimDate min={{FromDate}} max={{FromDate}} required #fromControl='ngModel'>
+                        <span style="color: red;" *ngIf="fromControl.invalid && fromControl.touched"> 
+                            <b>Claim Date is required</b>
+
+                        </span><br><br>
                         </div><br><br>
                        
                        
 
                         <label for="Reason" class="labels "><b>Reason for claim</b></label><br><br>
                         <div>
-                            <select name="Reason" id="Reason" [(ngModel)]=claim.reason required>
+                            <select name="Reason" id="Reason" [(ngModel)]=claim.reason required #selectControl='ngModel'>
                                 <option value="NaturalDisaster">Natural Disaster</option>
                                 <option value="Man-MadeDisaster">Man-Made Disaster</option>
                                 <option value="RoadAccident">Road Accident</option>
                                 <option value="Theft">Theft</option>
                               </select>
+                              <span style="color: red;" *ngIf="selectControl.invalid && selectControl.touched"> 
+                                <b>Reason is required</b>
+ 
+                            </span><br><br>
                         </div><br><br>
                         
                             <label for="Elaborate"><b>Elaborate Reason</b></label><br> 
-                            <textarea  type="text" id="reason" name="reason" placeholder="Elaborate your reason" rows="2" cols="20" required [(ngModel)]=claim.elaborateReason required>
+                            <textarea  type="text" id="reason" name="reason" placeholder="Elaborate your reason" rows="2" cols="20" required [(ngModel)]=claim.elaborateReason required #areaControl='ngModel'>
                             </textarea><br><br> 
+                            <span style="color: red;" *ngIf="areaControl.invalid && areaControl.touched"> 
+                                <b>Elaborated Reason is required</b>
+ 
+                            </span><br><br>
                             <label for="Amount"><b>Claim Amount</b></label><br> 
-                            <input  type="number" id="amt" name="am" placeholder="Claim Ammount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required>
+                            <input  type="number" id="amt" name="am" placeholder="Claim Ammount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required #amountControl='ngModel'>
                         <br><br> 
+                        <span style="color: red;" *ngIf="amountControl.invalid && amountControl.touched"> 
+                            <b>Amount is required</b>
+
+                        </span><br><br>
 
 
                          <button class="buttons " type="submit " (click)="register()"[disabled]="vehicleRegisterForm.invalid"><h2>Submit</h2> </button>

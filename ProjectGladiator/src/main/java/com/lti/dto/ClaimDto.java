@@ -11,6 +11,7 @@ public class ClaimDto {
   private String reason;
   private String elaborateReason;
   private int userId;
+  private String status;
   
 public int getPolicyId() {
 	return policyId;
@@ -48,7 +49,12 @@ public int getUserId() {
 public void setUserId(int userId) {
 	this.userId = userId;
 }
- 
+public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
+}
 
 
 }

@@ -19,8 +19,8 @@ sucsMsg=false;
 polDiv=true;
 showerr=false;
 id:number;
-userId:number=parseInt(sessionStorage.getItem("userId"))
-errMsg:string="This Policy Id is Not registerd with you!!";
+userId:number=parseInt(sessionStorage.getItem("userId"));
+errMsg:string;
   
 constructor(private service:AngularServiceService,private router: Router) {}
 
@@ -32,7 +32,7 @@ constructor(private service:AngularServiceService,private router: Router) {}
   check(){
     this.claim.userId=this.userId;
     //alert(JSON.stringify(this.claim))
-    this.service.exist(this.claim).subscribe(data=>{
+    this.service.checkIfPolicyExistForUser(this.claim).subscribe(data=>{
      // alert(JSON.stringify(data));
       if(data.status=="Success"){
        // this.message=data.message;
@@ -40,6 +40,7 @@ constructor(private service:AngularServiceService,private router: Router) {}
         this.showerr=false;
       }
       else{
+        this.errMsg=data.message;
         this.showerr=true;
       }
     })
@@ -47,7 +48,7 @@ constructor(private service:AngularServiceService,private router: Router) {}
   }
   register(){
     //alert(JSON.stringify(this.claim));
-    this.service.add(this.claim).subscribe(data=>{
+    this.service.registerClaimForUser(this.claim).subscribe(data=>{
      // alert(JSON.stringify(data));
       if(data.status="Success"){
         this.message="Claim Registered"

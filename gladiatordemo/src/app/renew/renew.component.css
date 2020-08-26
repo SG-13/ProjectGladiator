@@ -94,3 +94,8 @@ select {
 .buttons:hover {
   background-color: green;
 }
+#errorSpan
+{
+  text-align: center;
+  color: red;
+}

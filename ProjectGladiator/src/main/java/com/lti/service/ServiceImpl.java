@@ -207,7 +207,7 @@ public class ServiceImpl implements ProjectService {
 	public int findByEmailforOTP(String userEmail) {
 
 		if (repo.findByEmail(userEmail)) {
-			return 451215;
+			return (int)(Math.round(Math.random()*899999));
 		} else {
 			throw new ServiceException("Incorrect Email Provided");
 		}
@@ -219,6 +219,37 @@ public class ServiceImpl implements ProjectService {
 		repo.forgotPassword(userEmail, newPassword);
 		return true;
 
+	}
+
+	@Override
+	public List<Object> getAllVehiclePoliciesByUserId(int userId) {
+		return repo.getAllVehiclePoliciesByUserId(userId);
+	}
+
+	@Override
+	public List<Object> getAllTravelPoliciesByUserId(int userId) {
+		return repo.getAllTravelPoliciesByUserId(userId);
+	}
+
+	@Override
+	public long checkVehicleClaimOnBasisOfStatus(int policyId) {
+		return repo.checkVehicleClaimOnBasisOfStatus(policyId);
+	}
+	
+	@Override
+	public long checkTravelClaimOnBasisOfStatus(int policyId) {
+		return repo.chekTravelClaimOnBasisOfStatus(policyId);
+	}
+	
+
+	@Override
+	public boolean findPolicyIdByUserId(int insurancePolicyId, int userId) {
+		int id = repo.findPolicyIdByUserId(insurancePolicyId);
+		if (id == userId) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -161,12 +161,14 @@ input[type=text],input[type=date],input[type=number], select,textarea,:placehold
   border-radius: 25px;
   box-sizing: border-box;
 }
-input:focus,select{
+input:focus,select,textarea,button{
 outline: none;
 }
 input.ng-invalid.ng-touched{border-color:red; color:red;}
 
 select.ng-invalid.ng-touched{border-color: red; color:red;}
+
+textarea.ng-invalid.ng-touched{border-color: red; color:red;}
 
 .buttons[disabled]{
 opacity: 0.3;

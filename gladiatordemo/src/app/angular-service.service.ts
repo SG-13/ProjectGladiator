@@ -13,115 +13,131 @@ import { List } from "./listl";;
 import { User } from "./user";
 import { UpdatedClaimStatus } from "./claim-status-update";
 import { InsuranceStatus } from "./insurance-status-update";
-import { Dash } from "./dash";
 import { ForgotPassword } from "./forgotPassword";
+import { PolicyId } from "./policy";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AngularServiceService {
 
-  constructor(private http : HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  
-  fetchVehicleInsurancePlans():Observable<any>{
-    let url='http://localhost:8080/showVehicleInsurancePlan';
+
+  fetchVehicleInsurancePlans(): Observable<any> {
+    let url = 'http://localhost:8080/showVehicleInsurancePlan';
     return this.http.get(url);
   }
 
-  fetchTravelInsurancePlans():Observable<any>{
-    let url='http://localhost:8080/showTravelInsurancePlan';
+  fetchTravelInsurancePlans(): Observable<any> {
+    let url = 'http://localhost:8080/showTravelInsurancePlan';
     return this.http.get(url);
   }
 
-  saveVehicleDetails(vd:VehicleDetails):Observable<any>{
-    let url='http://localhost:8080/addVehicleDetails';
-    return this.http.post(url,vd);
+  saveVehicleDetails(vd: VehicleDetails): Observable<any> {
+    let url = 'http://localhost:8080/addVehicleDetails';
+    return this.http.post(url, vd);
   }
 
-  saveVehicleInsuranceDetails(bvi:BuyVehicleInsurance):Observable<any>{
-    let url='http://localhost:8080/buyVehicleInsurance';
-    return this.http.post(url,bvi);
+  saveVehicleInsuranceDetails(bvi: BuyVehicleInsurance): Observable<any> {
+    let url = 'http://localhost:8080/buyVehicleInsurance';
+    return this.http.post(url, bvi);
   }
 
-  saveTravelDetails(td:TravelDetails):Observable<any>{
-    let url='http://localhost:8080/addTravelDetails';
-    return this.http.post(url,td);
+  saveTravelDetails(td: TravelDetails): Observable<any> {
+    let url = 'http://localhost:8080/addTravelDetails';
+    return this.http.post(url, td);
   }
 
-  saveTravelInsuranceDetails(bti:BuyTravelInsurance):Observable<any>{
-    let url='http://localhost:8080/buyTravelInsurance';
-    return this.http.post(url,bti);
+  saveTravelInsuranceDetails(bti: BuyTravelInsurance): Observable<any> {
+    let url = 'http://localhost:8080/buyTravelInsurance';
+    return this.http.post(url, bti);
   }
 
-  login(login:Login):Observable<any>
-  {
-      return this.http.post("http://localhost:8080/login",login);
-  }  
-
-  register(userDetails:UserDetails):Observable<any>
-  {
-      return this.http.post("http://localhost:8080/register",userDetails);
-  }  
-
-  exist(claim:Claim):Observable<any>{
-    let url="http://localhost:8080/check";
-    return this.http.post<IdStatus>(url,claim);
-  }
-  
-  add(claim:Claim):Observable<any>{
-    let url="http://localhost:8080/add";
-    return this.http.post<IdStatus>(url,claim);
-  }
-  
-  list(user:User):Observable<any>{
-    let url="http://localhost:8080/list"
-    return this.http.post<List>(url,user);
+  login(login: Login): Observable<any> {
+    return this.http.post("http://localhost:8080/login", login);
   }
 
-  fetchAllVehicleInsurance():Observable<any>{
-    let url='http://localhost:8080/getAllVehiclePolicies';
+  register(userDetails: UserDetails): Observable<any> {
+    return this.http.post("http://localhost:8080/register", userDetails);
+  }
+
+  checkIfPolicyExistForUser(claim: Claim): Observable<any> {
+    let url = "http://localhost:8080/checkPolicyIdForUserId";
+    return this.http.post<IdStatus>(url, claim);
+  }
+
+  registerClaimForUser(claim: Claim): Observable<any> {
+    let url = "http://localhost:8080/addClaimForUser";
+    return this.http.post<IdStatus>(url, claim);
+  }
+
+  fetchAllClaimDetailsForUser(user: User): Observable<any> {
+    let url = "http://localhost:8080/listAllClaimDetailsForUser"
+    return this.http.post<List>(url, user);
+  }
+
+  fetchAllVehicleInsurance(): Observable<any> {
+    let url = 'http://localhost:8080/getAllVehiclePolicies';
     return this.http.get(url);
   }
 
-  fetchAllTravelInsurance():Observable<any>{
-    let url='http://localhost:8080/getAllTravelPolicies';
+  fetchAllTravelInsurance(): Observable<any> {
+    let url = 'http://localhost:8080/getAllTravelPolicies';
     return this.http.get(url);
   }
 
-  fetchAllClaimInsuranceDetails():Observable<any>{
-    let url='http://localhost:8080/showAllClaimDetails';
+  fetchAllClaimInsuranceDetails(): Observable<any> {
+    let url = 'http://localhost:8080/showAllClaimDetails';
     return this.http.get(url);
   }
 
-  sendUpdatedClaimStatus(newClaimStatus:UpdatedClaimStatus):Observable<any>{
-    let url='http://localhost:8080/updateClaimStatus';
-    return this.http.post(url,newClaimStatus);
+  sendUpdatedClaimStatus(newClaimStatus: UpdatedClaimStatus): Observable<any> {
+    let url = 'http://localhost:8080/updateClaimStatus';
+    return this.http.post(url, newClaimStatus);
   }
 
-  sendUpdatedTravelInsuranceStatus(newInsuranceStatus:InsuranceStatus):Observable<any>{
-    let url='http://localhost:8080/updateTravelInsuranceStatus';
-    return this.http.post(url,newInsuranceStatus);
+  sendUpdatedTravelInsuranceStatus(newInsuranceStatus: InsuranceStatus): Observable<any> {
+    let url = 'http://localhost:8080/updateTravelInsuranceStatus';
+    return this.http.post(url, newInsuranceStatus);
   }
 
-  sendUpdatedVehicleInsuranceStatus(newInsuranceStatus:InsuranceStatus):Observable<any>{
-    let url='http://localhost:8080/updateVehicleInsuranceStatus';
-    return this.http.post(url,newInsuranceStatus);
+  sendUpdatedVehicleInsuranceStatus(newInsuranceStatus: InsuranceStatus): Observable<any> {
+    let url = 'http://localhost:8080/updateVehicleInsuranceStatus';
+    return this.http.post(url, newInsuranceStatus);
   }
 
-  dashs(user:User):Observable<any>{
-    let url="http://localhost:8080/getAllInsurance"
-    return this.http.post<Dash>(url,user);
+  verifyEmail(forgotPasswordDetails: ForgotPassword): Observable<any> {
+    return this.http.post("http://localhost:8080/verifyEmail", forgotPasswordDetails);
+  }
+  forgotPassword(forgotPasswordDetails: ForgotPassword): Observable<any> {
+    return this.http.post("http://localhost:8080/forgotPassword", forgotPasswordDetails);
   }
 
-  verifyEmail(forgotPasswordDetails:ForgotPassword):Observable<any>
-  {
-      return this.http.post("http://localhost:8080/verifyEmail",forgotPasswordDetails);
+  fetchVehicledeatilsforUserDash(user: User): Observable<any> {
+    let url = "http://localhost:8080/getAllVehiclepoliciesByUserId"
+    return this.http.post(url, user);
   }
-  forgotPassword(forgotPasswordDetails:ForgotPassword):Observable<any>
-  {
-      return this.http.post("http://localhost:8080/forgotPassword",forgotPasswordDetails);
-  }  
+  fetchTraveldeatilsforUserDash(user: User): Observable<any> {
+    let url = "http://localhost:8080/getTravelpoliciesByUserId"
+    return this.http.post(url, user);
+  }
+
+  getUserNameAndPolicyType(insurancePolicyId: PolicyId): Observable<any> {
+    return this.http.post("http://localhost:8080/findUserByPolicyId", insurancePolicyId);
+  }
+
+  checkPolicyId(insurancePolicyId: PolicyId): Observable<any> {
+    return this.http.post("http://localhost:8080/checkVehiclePolicyId", insurancePolicyId);
+  }
+
+  addDuration(insuranceDuration: PolicyId): Observable<any> {
+    return this.http.post("http://localhost:8080/renewInsurance", insuranceDuration);
+  }
+
+  checkUser(policyIdObject: PolicyId): Observable<any> {
+    return this.http.post("http://localhost:8080/findPolicyIdByUserId", policyIdObject);
+  }
 
 
 }

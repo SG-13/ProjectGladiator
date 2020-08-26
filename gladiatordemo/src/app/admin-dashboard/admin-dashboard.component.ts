@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularServiceService } from "../angular-service.service";
 import { UpdatedClaimStatus } from "../claim-status-update";
 import { InsuranceStatus } from "../insurance-status-update";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,8 +11,9 @@ import { InsuranceStatus } from "../insurance-status-update";
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(private service:AngularServiceService) { }
+  constructor(private service:AngularServiceService,private router:Router) { }
 
+  searchText:any;
   vehicleList:any;
   travelList:any;
   //claimdetails:AllClaimDetails=new AllClaimDetails();
@@ -20,6 +22,11 @@ export class AdminDashboardComponent implements OnInit {
   newInsuranceStatus:InsuranceStatus = new InsuranceStatus();
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem("userId")!="10670596")
+    {   this.router.navigate(['loginLink']);
+    }
+
     this.service.fetchAllVehicleInsurance().subscribe( data => {
       this.vehicleList=data;
     })

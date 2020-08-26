@@ -104,6 +104,7 @@ body {
       }
       .table{
           margin-left: 8%;
+          margin-top: 5%;
       }
       .collection-images{
   
@@ -112,6 +113,7 @@ body {
       }
       .act-policy{
           text-align: center;
+          margin-top: 5%;
       }
 
       .menu-navvv{
@@ -231,4 +233,18 @@ body {
       }
       .claim-head{
        margin-left: 40px;
+      }
+      .dashtitle{
+        margin: auto;
+        margin-bottom: 3%;
+        font-size: 50px;
+        color:white;
+        font-weight: bolder;
+        margin-top: 3%;
+        border:10px double white;
+        text-align: center;
+        background-color: green;
+        height: 150px;
+        padding-top: 75px;
+        
       }

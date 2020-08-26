@@ -14,7 +14,7 @@
             <tr>
                 <td>
                     <div class="formcard">
-                        <h2 class="heading">Fill the details to login</h2>
+                        <h2 class="heading">Fill the details to login</h2><br><br>
                         <form #loginForm='ngForm' (ngSubmit)='login()'>
                             <div class="formcontainer">
 
@@ -33,7 +33,7 @@
                                 </span><br><br>
                                 <span id="spanRegister">
                                     Not Registered?
-                                    <a [routerLink]="['/registerLink']">Register Now</a>
+                                    <a [routerLink]="['/registerLink']" id="spanRegisterAnchor">Register Now</a>
                                 </span>
 
                                 <button class="buttons" [disabled]="loginForm.invalid" type="submit"><b>Submit the details</b></button>

@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'LTI Insurance';
   user:string=sessionStorage.getItem("userName");
   showlogout:boolean=false;
+  showAdminDash:boolean=false;
   
   logout(){
     sessionStorage.clear();
@@ -26,6 +27,12 @@ export class AppComponent {
     }
     else{
       this.showlogout=true;
+      if(sessionStorage.getItem("userId")=="10670596"){
+        this.showAdminDash=true;
+      }
+      else{
+        this.showAdminDash=true;
+      }
     }
    }
 

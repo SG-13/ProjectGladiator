@@ -6,8 +6,13 @@
         <button (click)="showdiv3()" >Show Claim Details</button>
     </div>
 
+    <div class="searchbar">
+        <!-- <input type="text" placeholder="Search.." [(ngModel)]='search'> -->
+        <input  [(ngModel)]="searchText" placeholder="Search Table">
+        </div>
+
     <div *ngIf="show1" style="text-align: center;">
-        <div>
+        
             <h1 class="act-policy">Vehicle Insurance Details</h1>
             <div class="table">
                 <table class="content-table">
@@ -24,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let v of vehicleList'>
+                        <tr *ngFor='let v of vehicleList | filter : searchText'>
                             <td>{{v[0]}}</td>
                             <td>{{v[1]}}</td>
                             <td>&#8377;{{v[2]}}.00/-</td>
@@ -32,18 +37,19 @@
                             <td>{{v[4]}}</td>
                             <td>{{v[5]}}</td>
                             <td>{{v[6]}}</td>
-                            <td><button class="accept-button" (click)='setVehicleInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setVehicleInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='v[3]=="Pending"'><button class="accept-button" (click)='setVehicleInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setVehicleInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='v[3]!="Pending"'></td>
                         </tr>
                         
                     </tbody>
                 </table>
             </div>
     
-        </div>
+        
         
     </div>
     <div *ngIf="show2" style="text-align: center;">
-        <div>
+        
             <h1 class="act-policy">Travel Insurance Details</h1>
             <div class="table">
                 <table class="content-table">
@@ -60,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let v of travelList'>
+                        <tr *ngFor='let v of travelList | filter : searchText'>
                             <td>{{v[0]}}</td>
                             <td>{{v[1]}}</td>
                             <td>&#8377;{{v[2]}}.00/-</td>
@@ -68,18 +74,19 @@
                             <td>{{v[4]}}</td>
                             <td>{{v[5]}}</td>
                             <td>{{v[6]}}</td>
-                            <td><button class="accept-button" (click)='setTravelInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setTravelInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='v[3]=="Pending"'><button class="accept-button" (click)='setTravelInsuranceStatus(v[0],"Accepted")'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setTravelInsuranceStatus(v[0],"Rejected")'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='v[3]!="Pending"'></td>
                         </tr>
                         
                     </tbody>
                 </table>
             </div>
     
-        </div>
+        
         
     </div>
     <div *ngIf="show3" style="text-align: center;">
-        <div>
+       
             <h1 class="act-policy">Claim Details</h1>
             <div class="table">
                 <table class="content-table">
@@ -89,29 +96,30 @@
                             <th>Date of Incident</th>
                             <th>Date of Claim</th>
                             <th>Reason</th>
-                            <th>Elaborate Reason</th>
+                            <th>Reason Elaborated</th>
                             <th>Claim Amount</th>
                             <th>Status</th>
                             <th>Accept/Reject</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let c of claimdetails'>
+                        <tr *ngFor='let c of claimdetails | filter : searchText'>
                             <td>{{c.claimId}}</td>
                             <td>{{c.dateOfIncident}}</td>
                             <td>{{c.claimDate}}</td>
                             <td>{{c.reason}}</td>
-                            <td>{{c.elaborateReason}}</td>
+                            <td><input type="text" name="ereason" disabled [(ngModel)]=c.elaborateReason></td>
                             <td><input type="number" name="claimAmount" [(ngModel)]=c.claimAmount></td>
                             <td>{{c.status}}</td>
-                            <td><button class="accept-button" (click)='setClaimStatus(c.claimId,"Accepted",c.claimAmount)'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setClaimStatus(c.claimId,"Rejected",c.claimAmount)'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='c.status=="Pending"'><button class="accept-button" (click)='setClaimStatus(c.claimId,"Accepted",c.claimAmount)'><i class="fa fa-check"></i></button><button class="reject-button" (click)='setClaimStatus(c.claimId,"Rejected",c.claimAmount)'><i class="fa fa-times"></i></button></td>
+                            <td *ngIf='c.status!="Pending"'></td>
                         </tr>
                         
                     </tbody>
                 </table>
             </div>
     
-        </div>
+       
         
     </div>
 

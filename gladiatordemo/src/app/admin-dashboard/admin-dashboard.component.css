@@ -54,11 +54,32 @@ body {
   .portal-head{
     margin: auto;
     padding: 50px 0px; 
-    width: 100%; 
+    width: 98%; 
     text-align-last: center;
     background-color: coral;
     color: white;
     height: 70px;
+    border: 20px double white;
+  }
+
+  .searchbar{
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+    
+  }
+ 
+  .searchbar input{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    border: 10px double coral;
+    text-align: center;
+  }
+
+  .searchbar input:hover,.searchbar input:focus{
+    border: 10px double rgb(105, 170, 7);
+    outline: none;
   }
     .content-table {
         border-collapse: collapse;
@@ -71,6 +92,7 @@ body {
         padding: 45%;
         font-size: 22px;
         font-weight: bold;
+        margin: auto;
       }
       
       .content-table thead tr {
@@ -106,7 +128,9 @@ body {
         color: coral;
       }
       .table{
-          margin-left: 8%;
+          width: 95%;
+          margin: auto;
+          
       }
       .collection-images{
   
@@ -133,6 +157,7 @@ body {
         background-color: coral;
       }
       .accept-button{
+        width: 60px;
         background-color: lightgreen;
       }
       .accept-button:hover{
@@ -140,11 +165,17 @@ body {
       }
       
       .reject-button{
-        
+        width: 60px;
         background-color: rgb(241, 122, 122);
       }
       .reject-button:hover{
         background-color: red;
+      }
+
+      input[type=text],input[type=number]{
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
       }
 
       .topnav {

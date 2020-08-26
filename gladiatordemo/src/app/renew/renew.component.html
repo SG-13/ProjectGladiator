@@ -16,19 +16,24 @@
         <form #renewForm='ngForm' (ngSubmit)="renew(renewForm)">
           <div class="formcontainer" *ngIf='first'>
 
+
             <label for="policyId " class="labels"><b>Policy Id</b></label><br>
-            <input type="text" name="policyId" [(ngModel)]="policyId.insurancePolicyId" required #policyIdControl="ngModel">
+            <input type="text" name="policyId" [(ngModel)]="policyId.insurancePolicyId" required maxlength="5" #policyIdControl="ngModel">
             <span style="color: red;" *ngIf="policyIdControl.invalid && policyIdControl.touched"> 
               <b>Policy ID is required!</b>
               </span><br><br>
-              <h2 *ngIf='showerr' style="color: red;">{{errMsg}}</h2>
+         
 
             <button [routerLink]="['/renewLink']" (click)="myFunc()" [disabled]="renewForm.invalid" type="submit" class="buttons" >
               <h2>Click</h2>
             </button>
             <br>
           </div>
-
+          <h3 *ngIf='showerr1' id="errorSpan"><b> Invalid Policy Id.</b> </h3>
+          <h3 *ngIf='showerr2' id="errorSpan"><b>This policy is not registered with you.</b> 
+          </h3>
+         
+          
 
           <div class="formcontainer" *ngIf='show'>
             <label for="username " class="labels"><b>User Name</b></label><br>

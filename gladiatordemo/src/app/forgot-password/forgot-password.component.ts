@@ -89,14 +89,16 @@ resetPassword()
       data=>{
       if(data.status=='SUCCESS')
        {
-         this.show3=true;
         
+         this.show2=false;
+         this.show3=true;
          setTimeout(() => {this.router.navigate(['loginLink'])}, 3000);
-
        }
        else
        {
          this.message2=data.message
+         
+          
        }
       }
     )  

@@ -1,63 +1,96 @@
 <body>
-  <div class="menu-navvv">
-      <button (click)="showdivb()" class="bu">Buy</button>
-      <button routerLink="/renewLink" class="ren">Renew</button>
-      <button (click)="showdiv()" class="cla">Claim</button>
+  <div class="dashtitle">{{userName}}'s DashBoard</div>
+<div class="menu-navvv">
+    <button (click)="showdivb()" class="bu">Buy</button>
+    <button routerLink="/renewLink" class="ren">Renew</button>
+    <button (click)="showdiv()" class="cla">Claim</button>
+  </div>
+  
+  <div class="carimage">
+  <!-- <img src="../../assets/car.jpeg">--> 
+    <div *ngIf="show" style="text-align: center;">
+      <h1 class="claim-head">Claim Request</h1>
+<form class="form-style-9">
+<ul>
+   <li><button type="submit"[routerLink]="'/request'" class="but">Claim Request</button></li> 
+   <li><button type="submit" [routerLink]="'/status'" class="but">Claim Status</button></li> 
+</ul>
+</form>
+    </div>
+    <div *ngIf="showb" style="text-align: center;">
+      <h1 class="claim-head">Buy Insurance</h1>
+<form class="form-style-9">
+<ul>
+   <li><button type="submit"[routerLink]="'/vehicleLink'" class="but">Vehicle Insurance</button></li> 
+   <li><button type="submit" [routerLink]="'/travelLink'" class="but">Travel Insurance</button></li> 
+</ul>
+</form>
     </div>
     
-    <div class="carimage">
-      <img src="../../assets/car.jpeg">
-      <div *ngIf="show" style="text-align: center;">
-        <h1 class="claim-head">Claim Request</h1>
-  <form class="form-style-9">
-  <ul>
-     <li><button type="submit"[routerLink]="'/request'" class="but">Claim Request</button></li> 
-     <li><button type="submit" [routerLink]="'/status'" class="but">Claim Status</button></li> 
-  </ul>
-  </form>
-      </div>
-      <div *ngIf="showb" style="text-align: center;">
-        <h1 class="claim-head">Buy Insurance</h1>
-  <form class="form-style-9">
-  <ul>
-     <li><button type="submit"[routerLink]="'/vehicleLink'" class="but">Vehicle Insurance</button></li> 
-     <li><button type="submit" [routerLink]="'/travelLink'" class="but">Travel Insurance</button></li> 
-  </ul>
-  </form>
-      </div>
-      
-      <!--<img class="imgtrvl" src="assets/travel.jpg" style="width: 250px; height: 250px;">-->
+    <!--<img class="imgtrvl" src="assets/travel.jpg" style="width: 250px; height: 250px;">-->
+  </div>
+  <div *ngIf='vehicleList?.length>0'>
+    <h1 class="act-policy">Vehicle Policies</h1>
+    <div class="table">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Policy Id</th>
+            <th>Duration</th>
+            <th>Premium</th>
+            <th>Status</th>
+            <th>Registration Number</th>
+            <th>Plan Id</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of vehicleList">
+            <td>{{v[0]}}</td>
+            <td>{{v[1]}}</td>
+            <td>&#8377;{{v[2]}}.00/-</td>
+            <td>{{v[3]}}</td>
+            <td>{{v[5]}}</td>
+            <td>{{v[6]}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div>
-      <h1 class="act-policy">Active Policy</h1>
-      <div class="table">
-        <table class="content-table">
-          <thead>
-            <tr>
-              <th>Policy Id</th>
-              <th>Status</th>
-              <th>Duration</th>
-              <th>Premium</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let c of dash1">
-              <td>{{ c.insurancePolicyId }}</td>
-              <td>{{ c.insuranceStatus}}</td>
-              <td>{{ c.insuranceDuration| date: 'dd-MM-yyyy'}}</td>
-              <td>&#8377;{{ c.insurancePremium}}.00/-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="collection-images">
-        <img src="../../assets/first.png" >
-        <img src="../../assets/second.png" style="padding-left:13%; ">
-        <img src="../../assets/third.png" style="padding-left:13% ;">
-        <img src="../../assets/fourth.png" style="padding-top: 2%;">
-        <img src="../../assets/fifth.png" style="padding-left:13%;">
-        <img src="../../assets/sixth.png" style="padding-left:13% ;">
-      </div>
-      </div>
-    </body>
-  
+    <div *ngIf='travelList?.length > 0'>
+    <h1 class="act-policy">Travel Policies</h1>
+    <div class="table">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Policy Id</th>
+            <th>Duration</th>
+            <th>Premium</th>
+            <th>Status</th>
+            <th>Travel ID</th>
+            <th>Plan Id</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let v of travelList'>
+            <td>{{v[0]}}</td>
+            <td>{{v[1]}}</td>
+            <td>&#8377;{{v[2]}}.00/-</td>
+            <td>{{v[3]}}</td>
+            <td>{{v[5]}}</td>
+            <td>{{v[6]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="collection-images">
+      <img src="../../assets/first.png" >
+      <img src="../../assets/second.png" style="padding-left:13%; ">
+      <img src="../../assets/third.png" style="padding-left:13% ;">
+      <img src="../../assets/fourth.png" style="padding-top: 2%;">
+      <img src="../../assets/fifth.png" style="padding-left:13%;">
+      <img src="../../assets/sixth.png" style="padding-left:13% ;">
+    </div>
+    </div>
+  </body>

@@ -26,6 +26,11 @@ class ProjectGladiatorApplicationTests {
 	
 	
 	@Test
+	public void otp() {
+		System.out.println(Math.round(Math.random()*899999));
+	}
+	
+	@Test
 	public void addUser() {
 		UserDetails user = new UserDetails();
 		

@@ -79,15 +79,25 @@ public interface ProjectRepository {
 	String findInsuranceByPolicyId(int insurancePolicyId);
 
 	VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceD);
-	
+
 	UserDetails findUserById(int userId);
-	
+
 	List<Object> getAllVehiclePolicies();
-	
+
 	List<Object> getAllTravelPolicies();
-	
+
 	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId);
-	
+
 	public void forgotPassword(String userEmail, String newPassword);
+
+	public List<Object> getAllVehiclePoliciesByUserId(int userId);
+
+	public List<Object> getAllTravelPoliciesByUserId(int userId);
+
+	long checkVehicleClaimOnBasisOfStatus(int policyId);
+	
+	long chekTravelClaimOnBasisOfStatus(int policyId);
+
+	int findPolicyIdByUserId(int insurancePolicyId);
 
 }
