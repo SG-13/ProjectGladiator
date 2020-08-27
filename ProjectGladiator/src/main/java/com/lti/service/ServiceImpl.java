@@ -144,7 +144,6 @@ public class ServiceImpl implements ProjectService {
 
 			int id = repo.findByIdAndPassword(userId, password);
 			UserDetails userDetails = repo.findById(id);
-			System.out.println(userDetails.getUserId());
 			return userDetails;
 
 		} catch (EmptyResultDataAccessException e) {
@@ -183,7 +182,6 @@ public class ServiceImpl implements ProjectService {
 
 	@Override
 	public String findUserByPolicyId(int insurancePolicyId) {
-		System.out.println(repo.findUserByPolicyId(insurancePolicyId));
 		return repo.findUserByPolicyId(insurancePolicyId);
 	}
 
@@ -263,7 +261,6 @@ public class ServiceImpl implements ProjectService {
 	public boolean checkIfRenewable(int insurancePolicyId) {
 		VehicleInsuranceDetails vid = repo.getVehicleInsuranceFromPolicyId(insurancePolicyId);
 		int i = LocalDate.now().compareTo(vid.getInsuranceDuration());
-		System.out.println(i);
 		if(i>=0) {
 			if(LocalDate.now().getYear()==vid.getInsuranceDuration().getYear() && LocalDate.now().getMonth()==vid.getInsuranceDuration().getMonth())
 			return true;

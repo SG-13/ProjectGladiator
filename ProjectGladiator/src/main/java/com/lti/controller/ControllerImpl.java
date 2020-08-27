@@ -241,7 +241,6 @@ public class ControllerImpl {
 
 	@PostMapping("/addClaimForUser")
 	public ClaimStatus addClaimForUser(@RequestBody ClaimDto claimDto) {
-		System.out.println(claimDto.getClaimAmount());
 		ClaimDetails claimDetails = new ClaimDetails();
 		claimDetails.setDateOfIncident(claimDto.getDateOfIncident());
 		claimDetails.setClaimDate(claimDto.getClaimDate());
@@ -271,8 +270,6 @@ public class ControllerImpl {
 
 	@PostMapping("/listAllClaimDetailsForUser")
 	public List<ClaimDetails> listAllClaimDetailsForUser(@RequestBody ShowDto showdto) {
-		System.out.println(showdto.getUserId());
-		System.out.println(service.getAllClaim(showdto.getUserId()));
 		return service.getAllClaim(showdto.getUserId());
 	}
 

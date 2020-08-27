@@ -18,7 +18,7 @@
 
 
             <label for="policyId " class="labels"><b>Policy Id</b></label><br>
-            <input type="text" name="policyId" [(ngModel)]="policyId.insurancePolicyId" required maxlength="5" #policyIdControl="ngModel">
+            <input type="text" name="policyId" [(ngModel)]="policyId.insurancePolicyId" required maxlength="5" pattern="[0-9]+" #policyIdControl="ngModel">
             <span style="color: red;" *ngIf="policyIdControl.invalid && policyIdControl.touched"> 
               <b>Policy ID is required!</b>
               </span><br><br>

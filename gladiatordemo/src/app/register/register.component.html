@@ -12,9 +12,9 @@
 
 
                         <label class="labels"><b>Name</b></label><br>
-                        <input type="text" placeholder="WRITE IN CAPS" name="userName" required [(ngModel)]="userDetails.userName" pattern="[A-Z]*" #userNameControl="ngModel">
+                        <input type="text" placeholder="Name of User" name="userName" required [(ngModel)]="userDetails.userName" pattern="[a-zA-Z\s]+" #userNameControl="ngModel">
                         <span style="color: red;" *ngIf="userNameControl.invalid && userNameControl.touched"> 
-                                <b>User Name is required</b>
+                                <b>User Name is Invalid</b>
 
                             </span><br><br>
 
@@ -28,7 +28,7 @@
                             </span><br><br>
 
                         <label class="labels"><b>User Email</b></label><br>
-                        <input type="email" placeholder="Enter email" name="userEmail" required [(ngModel)]="userDetails.userEmail" email #userEmailControl="ngModel">
+                        <input type="email" placeholder="Enter email" name="userEmail" required [(ngModel)]="userDetails.userEmail" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" email #userEmailControl="ngModel">
                         <span style="color: red;" *ngIf="userEmailControl.invalid && userEmailControl.touched"> 
                                 <b>Email is required!</b>
 
@@ -54,7 +54,7 @@
                         <label class="labels"><b>User Mobile</b></label><br>
                         <input type="text" placeholder="Enter Mobile Number" pattern="[0-9]*" name="userMobile" minlength="10" maxlength="10" required [(ngModel)]="userDetails.userMobile" #userMobileControl="ngModel">
                         <span style="color: red;" *ngIf="userMobileControl.invalid && userMobileControl.touched"> 
-                                <b>Mobile number is required!</b>
+                                <b>Mobile number is Invalid</b>
 
                             </span><br><br>
 

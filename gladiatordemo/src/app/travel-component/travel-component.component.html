@@ -24,28 +24,28 @@
                         <label for="startingDate" class="labels "><b>Starting date of your journey</b></label><br>
                         <input type="date" placeholder="Enter the date" name="startingDate" [(ngModel)]=travel.startDateOfJourney min={{FromDate}} required #startingDateControl="ngModel"><br>
                         <span style="color: red;" *ngIf="startingDateControl.invalid && startingDateControl.touched"> 
-                            <b>Feild Can't be Empty</b>
+                            <b>Feild Invalid</b>
                         </span>
                         <br><br>
                         
                         <label for="endingDate" class="labels "><b>Ending date of your journey</b></label><br>
                         <input type="date" placeholder="Enter the date" name="endingDate" [(ngModel)]=travel.endDateOfJourney min={{travel.startDateOfJourney}} required #endingDateControl="ngModel"><br>
                         <span style="color: red;" *ngIf="endingDateControl.invalid && endingDateControl.touched"> 
-                            <b>Feild Can't be Empty</b>
+                            <b>Feild Invalid</b>
                         </span>
                         <br><br>
 
                         <label for="departureLocation"><b>Departure location</b></label><br>
-                        <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation required #departureLocationControl="ngModel"><br>
+                        <input type="text" placeholder="Enter departure location" name="departureLocation" [(ngModel)]=travel.departureLocation pattern="[a-zA-Z]+" required #departureLocationControl="ngModel"><br>
                         <span style="color: red;" *ngIf="departureLocationControl.invalid && departureLocationControl.touched"> 
-                            <b>Feild Can't be Empty</b>
+                            <b>Feild Invalid</b>
                         </span>
                         <br><br>
 
                         <label for="arrivalLocation"><b>Arrival location</b></label><br>
-                        <input type="text" placeholder="Enter arrival location" name="arrivalLocation" [(ngModel)]=travel.arrivalLocation required #arrivalLocationControl="ngModel"><br>
+                        <input type="text" placeholder="Enter arrival location" name="arrivalLocation" [(ngModel)]=travel.arrivalLocation required pattern="[a-zA-Z]+" #arrivalLocationControl="ngModel"><br>
                         <span style="color: red;" *ngIf="arrivalLocationControl.invalid && arrivalLocationControl.touched"> 
-                            <b>Feild Can't be Empty</b>
+                            <b>Feild Invalid</b>
                         </span>
                         <br><br>
 

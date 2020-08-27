@@ -73,7 +73,6 @@ public interface ProjectService {
 
 	public List<ClaimDetails> getAllClaim(int userId);
 
-	////////////////////////////////
 	VehicleInsuranceDetails renewInsurance(int insurancePolicyId, int insuranceDuration);
 
 	String findUserByPolicyId(int insurancePolicyId);
@@ -86,7 +85,6 @@ public interface ProjectService {
 
 	List<Object> getAllTravelPolicies();
 
-	/////////////////////////////////////////////
 	public UserDetails findUserByVehiclePolicyId(int insurancePolicyId);
 
 	public int findByEmailforOTP(String userEmail);

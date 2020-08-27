@@ -31,7 +31,6 @@ public class RepositoryImpl implements ProjectRepository {
 	@Override
 	@Transactional
 	public int addNewUser(UserDetails user) {
-		System.out.println(user);
 		em.persist(user);
 		int userId = user.getUserId();
 		System.out.println("User added");
@@ -41,7 +40,6 @@ public class RepositoryImpl implements ProjectRepository {
 	@Override
 	public int isValidUser(int userId, String password) {
 		UserDetails user = em.find(UserDetails.class, userId);
-		// System.out.println(user.getUserPassword());
 		if (user != null && user.getUserPassword().equals(password))
 			return userId;
 
@@ -65,11 +63,6 @@ public class RepositoryImpl implements ProjectRepository {
 		List<VehicleInsuranceDetails> vidlist = new ArrayList<VehicleInsuranceDetails>();
 		vidlist.add(vid);
 
-		// System.out.println(vip);
-		
-		System.out.println(vid.getInsurancePremium());
-		System.out.println(vd.getRegistrationNumber());
-		System.out.println(vip.getInsuranceCoverageAmount());
 		user.setVechileinsurancedetails(vidlist);
 		vd.setVehicleinsurancedetails(vid);
 		vip.setVehicleinsurancedetails(vidlist);
@@ -103,7 +96,6 @@ public class RepositoryImpl implements ProjectRepository {
 
 		em.persist(tid);
 		int policyId = tid.getInsurancePolicyId();
-		System.out.println("Travel Insurance added");
 		return policyId;
 	}
 
@@ -275,8 +267,7 @@ public class RepositoryImpl implements ProjectRepository {
 	@Transactional
 	public boolean checkVehicleExist(String registrationNumber) {
 		return (Long) em
-				.createQuery(
-						"select count(vd.registrationNumber) from VehicleDetails vd where vd.registrationNumber=:rn")
+				.createQuery("select count(vd.registrationNumber) from VehicleDetails vd where vd.registrationNumber=:rn")
 				.setParameter("rn", registrationNumber).getSingleResult() == 1 ? true : false;
 	}
 

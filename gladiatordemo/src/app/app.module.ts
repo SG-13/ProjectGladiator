@@ -6,7 +6,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClaimComponent } from './claim/claim.component';
 import { ClaimRequestComponent } from './claim-request/claim-request.component';
 import { ClaimStatusComponent } from './claim-status/claim-status.component';
 import { HomeComponent } from './home/home.component';
@@ -26,7 +25,6 @@ import { FaqPageComponent } from './faq-page/faq-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClaimComponent,
     ClaimRequestComponent,
     ClaimStatusComponent,
     HomeComponent,

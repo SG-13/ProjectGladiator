@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChooseInsuranceComponentComponent } from "./choose-insurance-component/choose-insurance-component.component";
-import { ClaimComponent } from "./claim/claim.component";
 import { ClaimRequestComponent } from "./claim-request/claim-request.component";
 import { ClaimStatusComponent } from "./claim-status/claim-status.component";
 import { VehicleComponentComponent } from "./vehicle-component/vehicle-component.component";
@@ -21,9 +20,6 @@ import { FaqPageComponent } from './faq-page/faq-page.component';
 const routes: Routes = [
   {
     path:'buyLink', component:ChooseInsuranceComponentComponent
-  },
-  {
-    path:'claimLink',component:ClaimComponent
   },
   {
     path:'request',component:ClaimRequestComponent
