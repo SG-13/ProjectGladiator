@@ -20,6 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { FaqPageComponent } from './faq-page/faq-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     DashboardComponent,
     RegisterComponent,
     LogoutComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    PaymentComponent,
+    FaqPageComponent
   ],
   imports: [
     BrowserModule,

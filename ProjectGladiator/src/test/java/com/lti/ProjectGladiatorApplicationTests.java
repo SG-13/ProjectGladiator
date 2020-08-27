@@ -24,6 +24,14 @@ class ProjectGladiatorApplicationTests {
 	@Autowired
 	private ControllerImpl controller;
 	
+	@Test
+	public void checkIfRenewable() {
+			String str= "2020-10-20";
+			LocalDate date= LocalDate.parse(str);
+			System.out.println(LocalDate.now().compareTo(date));
+			
+		}
+	
 	
 	@Test
 	public void otp() {
@@ -41,7 +49,7 @@ class ProjectGladiatorApplicationTests {
 		user.setUserMobileNumber("3432890033");
 		user.setUserDob(LocalDate.of(2003, 3, 21));
 		
-		System.out.println(controller.addNewUser(user));
+		//System.out.println(controller.addNewUser(user));
 
 	}
 	
@@ -80,7 +88,7 @@ class ProjectGladiatorApplicationTests {
 	
 	@Test
 	public void isValidUser() {
-		System.out.println(controller.isValidUser(1105, "dinesh@1234"));
+		//System.out.println(controller.isValidUser(1105, "dinesh@1234"));
 	}
 
 	@Test
@@ -120,12 +128,12 @@ class ProjectGladiatorApplicationTests {
 	
 	@Test
 	public void checkVehiclePolicyId() {
-		System.out.println(controller.checkVehiclePolicyId(50203));
+	//	System.out.println(controller.checkVehiclePolicyId(50203));
 	}
 	
 	@Test
 	public void checkTravelPolicyId() {
-		System.out.println(controller.checkTravelPolicyId(60203));
+	//	System.out.println(controller.checkTravelPolicyId(60203));
 	}
 	
 	@Test
@@ -137,7 +145,7 @@ class ProjectGladiatorApplicationTests {
 		cd.setReason("Theft");
 		cd.setElaborateReason("Stolen from city plaza");
 		
-		System.out.println(controller.addVehicleClaimdetails(50206, cd));
+	//	System.out.println(controller.addVehicleClaimdetails(50206, cd));
 	}
 	
 	@Test
@@ -149,13 +157,13 @@ class ProjectGladiatorApplicationTests {
 		cd.setReason("ROAD Accident");
 		cd.setElaborateReason("Bus crashed with streetlights");
 		
-		System.out.println(controller.addTravelClaimdetails(60203, cd));
+	//	System.out.println(controller.addTravelClaimdetails(60203, cd));
 	}
 	
 	@Test 
 	public void showclaimDetails() {
-		ClaimDetails cd = controller.showClaimDetails(70009);
-		System.out.println(cd.getDateOfIncident());
+		//ClaimDetails cd = controller.showClaimDetails(70009);
+		//System.out.println(cd.getDateOfIncident());
 	}
 	
 	@Test 
@@ -171,20 +179,20 @@ class ProjectGladiatorApplicationTests {
 
 	@Test 
 	public void showuservehicleDetails() {
-		List<VehicleInsuranceDetails> vidlist = controller.showUserVehicleInsurance(1109);
-		for(VehicleInsuranceDetails vid : vidlist)
-		{	//VehicleDetails vd = vid.getVehicledetails();
-			System.out.println(vid.getInsurancePolicyId());
-		}
+		//List<VehicleInsuranceDetails> vidlist = controller.showUserVehicleInsurance(1109);
+//		for(VehicleInsuranceDetails vid : vidlist)
+//		{	//VehicleDetails vd = vid.getVehicledetails();
+//			System.out.println(vid.getInsurancePolicyId());
+//		}
 	}
 	
-	@Test 
-	public void showusertravelDetails() {
-		List<TravelInsuranceDetails> tidlist = controller.showUserTravelInsurance(1107);
-		for(TravelInsuranceDetails tid : tidlist) {
-			System.out.println(tid.getInsuranceDuration());
-		}
-	}
+//	@Test 
+//	public void showusertravelDetails() {
+//		List<TravelInsuranceDetails> tidlist = controller.showUserTravelInsurance(1107);
+//		for(TravelInsuranceDetails tid : tidlist) {
+//			System.out.println(tid.getInsuranceDuration());
+//		}
+//	}
 
 	@Test
 	public void showAllVehicleInsuranceDetails() {
@@ -225,7 +233,7 @@ class ProjectGladiatorApplicationTests {
 		vip.setInsurancePlan("Comprehensive Zero D");
 		vip.setInsuranceCoverageAmount(100);
 		
-		System.out.println(controller.addVehicleInsurancePlan(vip));
+//		System.out.println(controller.addVehicleInsurancePlan(vip));
 		
 	}
 	
@@ -235,7 +243,7 @@ class ProjectGladiatorApplicationTests {
 		tip.setInsurancePlan("Silver");
 		tip.setInsuranceCoverageAmount(1000000.0);
 		
-		System.out.println(controller.addTravelInsurancePlan(tip));
+	//	System.out.println(controller.addTravelInsurancePlan(tip));
 		
 	}
 

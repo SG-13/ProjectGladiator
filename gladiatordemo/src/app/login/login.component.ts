@@ -39,28 +39,6 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("userId",this.userId);
       sessionStorage.setItem("userName",this.userName);
       window.location.reload();
-      
-      if(localStorage.getItem("buyinsurance") !== null){
-       var buyinsurance : BuyVehicleInsurance = JSON.parse(localStorage.getItem("buyinsurance"));
-       buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
-       this.service.saveVehicleInsuranceDetails(buyinsurance).subscribe( data =>{
-         //alert(JSON.stringify(data));
-       })
-       localStorage.clear();
-      }
-
-
-      if(localStorage.getItem("buyinsurance1") !== null){
-        var buyinsurance1 : BuyTravelInsurance = JSON.parse(localStorage.getItem("buyinsurance1"));
-        buyinsurance1.userId=parseInt(sessionStorage.getItem("userId"));
-        this.service.saveTravelInsuranceDetails(buyinsurance1).subscribe( data =>{
-          //alert(JSON.stringify(data));
-        })
-        localStorage.clear();
-       }
-
-      this.router.navigate(['dashLink']);
-      
    
    }
        else
@@ -73,7 +51,27 @@ export class LoginComponent implements OnInit {
     }
     ngOnInit(): void {
       if(sessionStorage.getItem("userId")!=null)
-    {   this.router.navigate(['dashLink']);
+    {   
+    if(localStorage.getItem("buyinsurance") !== null){
+      var buyinsurance : BuyVehicleInsurance = JSON.parse(localStorage.getItem("buyinsurance"));
+      buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
+      localStorage.clear();
+      localStorage.setItem("buyinsurance", JSON.stringify(buyinsurance));
+      this.router.navigate(['paymentLink']);
+     }
+
+     else if(localStorage.getItem("buyinsurance1") !== null){
+      var buyinsurance1 : BuyTravelInsurance = JSON.parse(localStorage.getItem("buyinsurance1"));
+      buyinsurance1.userId=parseInt(sessionStorage.getItem("userId"));
+      localStorage.clear();
+      localStorage.setItem("buyinsurance1", JSON.stringify(buyinsurance1));
+      this.router.navigate(['paymentLink']);
+     }
+
+     else{
+      this.router.navigate(['dashLink']);
+
+     }
     }
 
   }

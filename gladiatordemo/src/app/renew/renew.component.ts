@@ -36,6 +36,7 @@ export class RenewComponent implements OnInit {
   userName: string;
   policyType: string;
   duration: string;
+  premium:number;
 
   renew(renewForm) {
   }
@@ -62,6 +63,7 @@ export class RenewComponent implements OnInit {
       data => {
         this.userName = data.userName;
         this.policyType = data.policyType;
+        this.premium = data.insurancePremium;
       })
   }
 
@@ -103,14 +105,12 @@ checkDuration(){
 
 }
 
-
   myFunc2() {
     this.showm = true;
     this.show = false;
-    this.service.addDuration(this.policyId).subscribe( data => {
-        this.duration = data;
-        
-      })
+    localStorage.setItem("policyId",JSON.stringify(this.policyId));
+    localStorage.setItem("premium",JSON.stringify(this.premium));
+    this.router.navigate(['paymentLink']);
   }
 
 }

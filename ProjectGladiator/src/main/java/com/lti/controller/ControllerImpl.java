@@ -70,6 +70,7 @@ public class ControllerImpl {
 		vid.setInsuranceDuration(date.plusYears(buyvehicleinsurancedto.getDuration()));
 		vid.setInsuranceStatus("Pending");
 		UserDetails user = service.findUserById(buyvehicleinsurancedto.getUserId());
+
 		sendId.setId(service.buyVehicleInsurance(buyvehicleinsurancedto.getUserId(),
 				buyvehicleinsurancedto.getRegistrationNumber(), buyvehicleinsurancedto.getInsurancePlanId(), vid));
 		EmailUtility eutility = new EmailUtility();
@@ -97,6 +98,7 @@ public class ControllerImpl {
 		Status status = new Status();
 		try {
 			if (service.checkIfVehicleExist(vehicle.getRegistrationNumber())) {
+				service.addVehicleDetails(vehicle);
 				status.setMessage("Vehicle is not registered");
 				status.setStatus(StatusType.SUCCESS);
 			}
@@ -239,13 +241,14 @@ public class ControllerImpl {
 
 	@PostMapping("/addClaimForUser")
 	public ClaimStatus addClaimForUser(@RequestBody ClaimDto claimDto) {
-
+		System.out.println(claimDto.getClaimAmount());
 		ClaimDetails claimDetails = new ClaimDetails();
 		claimDetails.setDateOfIncident(claimDto.getDateOfIncident());
 		claimDetails.setClaimDate(claimDto.getClaimDate());
 		claimDetails.setReason(claimDto.getReason());
 		claimDetails.setElaborateReason(claimDto.getElaborateReason());
 		claimDetails.setStatus("Pending");
+		claimDetails.setClaimAmount(claimDto.getClaimAmount());
 		if (service.addClaim(claimDto.getPolicyId(), claimDetails) != 0) {
 			ClaimStatus status = new ClaimStatus();
 			status.setStatus(ClaimStatusType.Success);
@@ -276,8 +279,11 @@ public class ControllerImpl {
 	@PostMapping("/findUserByPolicyId")
 	public RenewObject findUserByPolicyId(@RequestBody PolicyIdObject pio) {
 		RenewObject renew = new RenewObject();
+		
 		renew.setUserName(service.findUserByPolicyId(pio.getInsurancePolicyId()));
 		renew.setPolicyType(service.findInsuranceByPolicyId(pio.getInsurancePolicyId()));
+		renew.setInsurancePremium(service.getPolicyPremiumfromPolicyId(pio.getInsurancePolicyId()));
+		
 		return renew;
 
 	}
@@ -290,7 +296,7 @@ public class ControllerImpl {
 
 		EmailUtility email = new EmailUtility();
 		email.sendRenewEmail(mailSender, vehicle, user);
-		
+
 		return vehicle.getInsuranceDuration();
 	}
 

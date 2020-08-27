@@ -104,4 +104,6 @@ public interface ProjectService {
 	boolean findPolicyIdByUserId(int insurancePolicyId, int userId);
 	
 	boolean checkIfRenewable(int insurancePolicyId);
+	
+	double getPolicyPremiumfromPolicyId(int insurancePolicyId);
 }

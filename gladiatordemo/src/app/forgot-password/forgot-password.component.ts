@@ -15,6 +15,7 @@ constructor(private forgotPasswordService : AngularServiceService, private route
   show1:boolean=false
   show2:boolean=false
   show3:boolean=false
+  timeout:number;
   userOtp:any;
   userEmail:any;
   forgotPasswordDetails:ForgotPassword=new ForgotPassword()
@@ -41,17 +42,18 @@ constructor(private forgotPasswordService : AngularServiceService, private route
          this.show1=true;
          this.show2=false;
          this.show3=false;
-         this.message=""
-         this.message1=""
-         this.message2=""
-         this.message3=""
+         this.message="";
+         this.message1="";
+         this.message2="";
+         this.message3="";
+         
        }
        else
        {
-         this.message=data.message
-         this.message1=""
-         this.message2=""
-         this.message3=""  
+         this.message=data.message;
+         this.message1="";
+         this.message2="";
+         this.message3="";  
         
        }
      })
@@ -65,17 +67,17 @@ verifyOTP()
          this.show1=false;
          this.show2=true;
          this.show3=false;
-         this.message=""
-         this.message1=""
-         this.message2=""
-         this.message3=""
+         this.message="";
+         this.message1="";
+         this.message2="";
+         this.message3="";
   }
   else
   {
-    this.message1="OTP verification failed!"
-    this.message=""
-    this.message2=""
-    this.message3=""
+    this.message1="OTP verification failed!";
+    this.message="";
+    this.message2="";
+    this.message3="";
     
   }
 }
@@ -96,7 +98,7 @@ resetPassword()
        }
        else
        {
-         this.message2=data.message
+         this.message2=data.message;
          
           
        }
@@ -105,16 +107,18 @@ resetPassword()
   }
   else
   {
-           this.message2="Password didn't match!"
-           this.message1=""
-           this.message=""
-           this.message3=""
+           this.message2="Password didn't match!";
+           this.message1="";
+           this.message="";
+           this.message3="";
   }
-
 }
-  
-
   ngOnInit(): void {
+    this.timeout=setTimeout(() => {window.location.reload()}, 120000);
   }
   
+  ngOnDestroy(): void{
+    clearTimeout(this.timeout);
+  }
+
 }

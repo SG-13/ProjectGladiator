@@ -12,6 +12,7 @@ public class ClaimDto {
   private String elaborateReason;
   private int userId;
   private String status;
+  private double claimAmount;
   
 public int getPolicyId() {
 	return policyId;
@@ -55,6 +56,15 @@ public String getStatus() {
 public void setStatus(String status) {
 	this.status = status;
 }
+
+public double getClaimAmount() {
+	return claimAmount;
+}
+public void setClaimAmount(double claimAmount) {
+	this.claimAmount = claimAmount;
+}
+
+
 
 
 }

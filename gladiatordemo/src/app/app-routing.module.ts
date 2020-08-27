@@ -16,6 +16,8 @@ import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { FaqPageComponent } from './faq-page/faq-page.component';
 const routes: Routes = [
   {
     path:'buyLink', component:ChooseInsuranceComponentComponent
@@ -61,6 +63,12 @@ const routes: Routes = [
   },
   {
     path:'adminDashLink',component:AdminDashboardComponent
+  },
+  {
+    path:'paymentLink',component:PaymentComponent
+  },
+  {
+    path:'faqLink',component:FaqPageComponent
   }
 ];
 

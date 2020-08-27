@@ -69,20 +69,17 @@ export class VehicleComponentComponent {
   }
 
   buyInsurance(){
-    
+
     if(sessionStorage.getItem("userId")==null){
       localStorage.setItem("buyinsurance", JSON.stringify(this.buyinsurance));
       this.router.navigate(['loginLink']);
     }
-    else{
-   // this.buyinsurance.userId=1105;
-    this.buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
-    this.service.saveVehicleInsuranceDetails(this.buyinsurance).subscribe( data =>{
-      //alert(JSON.stringify(data));
-    })
-    this.router.navigate(['dashLink']);
-  }
-  }
-  //policy : Array<VehicleInsurancePlan> = [new VehicleInsurancePlan(123,"policy1",400),new VehicleInsurancePlan(456,"policy2",800),new VehicleInsurancePlan(789,"policy3",1200)];
 
+    else{
+    this.buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
+    localStorage.setItem("buyinsurance", JSON.stringify(this.buyinsurance));
+    this.router.navigate(['paymentLink']);
+  }
+  }
+ 
 }

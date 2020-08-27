@@ -66,16 +66,19 @@ public class RepositoryImpl implements ProjectRepository {
 		vidlist.add(vid);
 
 		// System.out.println(vip);
-
+		
+		System.out.println(vid.getInsurancePremium());
+		System.out.println(vd.getRegistrationNumber());
+		System.out.println(vip.getInsuranceCoverageAmount());
 		user.setVechileinsurancedetails(vidlist);
 		vd.setVehicleinsurancedetails(vid);
 		vip.setVehicleinsurancedetails(vidlist);
-
+		
 		vid.setUser(user);
 		vid.setVehicledetails(vd);
 		vid.setVehicleinsuranceplan(vip);
 
-		em.persist(user);
+		em.persist(vid);
 		int policyId = vid.getInsurancePolicyId();
 		System.out.println("Vehicle Insurance added");
 		return policyId;
@@ -98,7 +101,7 @@ public class RepositoryImpl implements ProjectRepository {
 		tid.setTraveldetails(td);
 		tid.setTravelinsuranceplan(tip);
 
-		em.persist(user);
+		em.persist(tid);
 		int policyId = tid.getInsurancePolicyId();
 		System.out.println("Travel Insurance added");
 		return policyId;
@@ -357,6 +360,7 @@ public class RepositoryImpl implements ProjectRepository {
 		VehicleInsuranceDetails vid = em.find(VehicleInsuranceDetails.class, insurancePolicyId);
 		LocalDate date =LocalDate.now().minusDays(1);
 		vid.setInsuranceDuration(date.plusYears(insuranceDuration));
+		vid.setInsuranceStatus("Pending");
 		em.merge(vid);
 
 		return vid;

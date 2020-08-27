@@ -114,6 +114,7 @@ body {
       .act-policy{
           text-align: center;
           margin-top: 5%;
+          color: steelblue;
       }
 
       .menu-navvv{
@@ -128,7 +129,7 @@ body {
         color: white;
       }
       button:hover{
-        background-color: green;
+        background-color: steelblue;
       }
       .topnav {
         overflow: hidden;
@@ -243,8 +244,45 @@ body {
         margin-top: 3%;
         border:10px double white;
         text-align: center;
-        background-color: green;
+        background-color: steelblue;
         height: 150px;
         padding-top: 75px;
         
       }
+     .card {
+      box-shadow: 0 12px 12px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 60%;
+      margin: auto;
+      margin-bottom: 20px;
+      background-color: rgb(70, 130, 180,0.8);
+      border-radius: 30px;
+
+      }
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        cursor: pointer;
+      }
+      .container {
+        padding: 2px 16px;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: larger;
+        letter-spacing: 2px;
+        margin-left: 60px;
+      }
+   
+        .vehicle{
+          
+          width: 97%;
+          
+        }
+        .travel{
+        
+          width: 97%;
+        }
+        label:hover{
+          font-size: x-large;
+          color: khaki;
+        }
+        

@@ -21,9 +21,9 @@
                         <div *ngIf="polDiv">
                         <label for="policy Id" class="labels "><b>Policy Id</b></label><br>
                         <div>
-                        <input type="text" id="policy" name="id" [(ngModel)]=claim.policyId required #policyIdControl='ngModel'>
+                        <input type="text" id="policy" name="id" [(ngModel)]=claim.policyId required minlength="5" maxlength="5" #policyIdControl='ngModel'>
                         <span style="color: red;" *ngIf="policyIdControl.invalid && policyIdControl.touched"> 
-                            <b>Policy Id is required</b>
+                            <b>Policy Id Invalid</b>
 
                         </span><br><br>
                         </div><br><br>
@@ -78,7 +78,7 @@
  
                             </span><br><br>
                             <label for="Amount"><b>Claim Amount</b></label><br> 
-                            <input  type="number" id="amt" name="am" placeholder="Claim Ammount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required #amountControl='ngModel'>
+                            <input  type="number" id="amt" name="am" placeholder="Claim Amount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required #amountControl='ngModel'>
                         <br><br> 
                         <span style="color: red;" *ngIf="amountControl.invalid && amountControl.touched"> 
                             <b>Amount is required</b>

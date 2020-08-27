@@ -46,6 +46,9 @@
             <label for="policyType " class="labels"><b>Policy Type</b></label><br>
             <input type="text" placeholder="policyType" name="policyType" [(ngModel)]="policyType"  disabled><br><br>
 
+            <label for="policyPremium" class="labels"><b>Policy Premium</b></label><br>
+            <input type="text" placeholder="policyPremium" name="policyPremium" [(ngModel)]="premium"  disabled><br><br>
+
             <label for="Duration"  class="labels " required><b>Duration</b></label><br><br>
             <div>
               <select id="checkList" name="Duration" placeholder="Select Duration"   [(ngModel)]="policyId.insuranceDuration"  #durationControl="ngModel"> 
@@ -70,7 +73,7 @@
 
 
           <div class="formcontainer" *ngIf='showm'>
-            <p> <b>Thank you! Your Insurance is extended by {{duration| date: 'dd-MM-yyyy'}}. </b></p>
+            <p> <b>Thank you! Your Insurance is extended till {{duration| date: 'dd-MM-yyyy'}}. </b></p>
           </div>
         </form>
 

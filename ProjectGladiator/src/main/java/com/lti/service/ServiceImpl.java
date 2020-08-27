@@ -271,5 +271,11 @@ public class ServiceImpl implements ProjectService {
 		return false;
 	}
 	
+	@Override
+	public double getPolicyPremiumfromPolicyId(int insurancePolicyId) {
+		VehicleInsuranceDetails vid = repo.getVehicleInsuranceFromPolicyId(insurancePolicyId);
+		return vid.getInsurancePremium();
+	}
+	
 
 }

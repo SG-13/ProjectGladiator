@@ -1,11 +1,11 @@
 package com.lti.dto;
 
 
-
 public class PolicyIdObject {
 private int insurancePolicyId;
 private int userId;
 private int insuranceDuration;
+
 
 public int getInsurancePolicyId() {
 	return insurancePolicyId;
@@ -30,6 +30,7 @@ public int getUserId() {
 public void setUserId(int userId) {
 	this.userId = userId;
 }
+
 
 
 }

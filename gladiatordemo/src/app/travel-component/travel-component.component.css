@@ -188,7 +188,7 @@ select {
     box-sizing: border-box;
 }
 
-input:focus, select:focus{
+input:focus, select:focus,button:focus{
   outline: none;
 }
 
@@ -201,7 +201,7 @@ input:focus, select:focus{
   border-style: double;
   border-radius: 20px;
   margin: 25px auto;
-  background-color: rgba(101, 143, 179, 0.3);
+  background-color: rgba(101, 143, 179, 0.7);
 }
 
 .Form-radio h1{

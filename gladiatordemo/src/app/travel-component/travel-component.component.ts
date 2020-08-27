@@ -68,13 +68,10 @@ export class TravelComponentComponent {
     }
     
     else{
-   // this.buyinsurance.userId=1105;
     this.buyinsurance.userId=parseInt(sessionStorage.getItem("userId"));
-    this.service.saveTravelInsuranceDetails(this.buyinsurance).subscribe( data =>{
-      //alert(JSON.stringify(data));
-    })
-
-    this.router.navigate(['dashLink']);
+    localStorage.setItem("buyinsurance1", JSON.stringify(this.buyinsurance));
+    this.router.navigate(['paymentLink']);
+   
   }
   }
 }

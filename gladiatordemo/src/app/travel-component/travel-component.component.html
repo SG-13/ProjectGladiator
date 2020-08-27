@@ -78,14 +78,14 @@
                         
                         <div class="Form-radio" *ngFor='let p of policy'>
                             <h1><input type="radio" name="policyId" value={{p.insurancePlanId}} [(ngModel)]=buyinsurance.insurancePlanId required>
-                            <label for="policyId " class="labels">{{p.insurancePlan}}</label></h1><br>
-                            <h2>Coverage Amount : {{p.insuranceCoverageAmount}}</h2>
+                            <label for="policyId " class="labels" style="color:khaki">{{p.insurancePlan}}</label></h1><br>
+                            <h2 style="color:white">Coverage Amount : {{p.insuranceCoverageAmount}}</h2>
                         </div>
                         
                         <!-- {{buyinsurance.insurancePlanId}} -->
 
                         <div *ngIf='showPremium'>
-                            <label for="insurancePremium" class="labels" style="color: black;"><b><h1>Premium</h1></b></label>
+                            <label for="insurancePremium" class="labels" style="color:black" ><b><h1>Premium</h1></b></label>
                             <h2>&#8377;{{buyinsurance.insurancePremium}}.00/-</h2><br>
                         </div>
 
