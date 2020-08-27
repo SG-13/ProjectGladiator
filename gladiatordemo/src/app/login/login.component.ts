@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   userId:string;
   userName:string;
   loginDetails=new Login();
+  showerr:boolean=true;
   constructor(private service : AngularServiceService, private router:Router) { }
 
   login()
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
        
        if(data.status=='SUCCESS')
        { 
+         this.showerr=false;
          //alert(JSON.stringify(data))
         this.userId=data.userId;
         this.userName=data.userName;
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
    }
        else
        {
+         this.showerr=true;
          this.message=data.message;       
          //alert("wrong password")
         }

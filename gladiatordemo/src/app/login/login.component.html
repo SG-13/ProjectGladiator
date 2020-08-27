@@ -19,7 +19,7 @@
                             <div class="formcontainer">
 
                                 <label><b>User ID </b></label><br>
-                                <input type="number" placeholder="Enter the ID" name="userId" required [(ngModel)]="loginDetails.userId" #userIdControl="ngModel">
+                                <input type="text" placeholder="Enter the ID" name="userId" required [(ngModel)]="loginDetails.userId" pattern="[0-9]*" #userIdControl="ngModel">
                                 <span style="color: red;" *ngIf="userIdControl.invalid && userIdControl.touched"> 
                                 <b>User ID is required!</b>
 
@@ -39,6 +39,7 @@
                                 <button class="buttons" [disabled]="loginForm.invalid" type="submit"><b>Submit the details</b></button>
                                 <button [routerLink]="['/forgotLink']" class="buttons"><b>Forgot password?</b></button>
 
+                                <div *ngIf='showerr' style="color: red; text-align-last: center;">{{message}}</div>
                             </div>
                         </form>
 

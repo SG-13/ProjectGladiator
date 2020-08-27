@@ -61,7 +61,7 @@
                             <b>Field is Empty</b>
                         </span> <br><br>
                         <label for="vehicleCost" class="labels"><b>Vehicle Cost</b></label><br>
-                        <input type="number" placeholder="Enter vehicle cost " name="vehicleCost" id="vehicleCost" [(ngModel)]="vehicle.vehicleCost" min="40000" max="50000000" required #vehicleCostControl="ngModel"><br>
+                        <input type="text" placeholder="Enter vehicle cost " name="vehicleCost" id="vehicleCost" [(ngModel)]="vehicle.vehicleCost" pattern="[0-9]*" required #vehicleCostControl="ngModel"><br>
                         <span style="color: red;" *ngIf="vehicleCostControl.invalid && vehicleCostControl.touched"> 
                             <b>Invalid Entry</b>
                         </span> <br><br>

@@ -33,9 +33,9 @@ export class PaymentComponent implements OnInit {
       this.premium = JSON.parse(localStorage.getItem("premium"));
     }
 
-    else{
-      this.router.navigate(['']);
-    }
+     else{
+       this.router.navigate(['']);
+     }
     
   }
 

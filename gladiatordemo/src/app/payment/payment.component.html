@@ -7,19 +7,19 @@
                 <form #checkoutForm='ngForm' (ngSubmit)='showconfirmPayment()'>
                     <div class="card">
                         <label class="labelbox">Name on Card</label>
-                        <input placeholder="e.g. Richard Bovell" id="cardholdername" type="text" name="cardHolderName" required class="input1">
+                        <input placeholder="WRITE IN CAPS " id="cardholdername" type="text" name="cardHolderName"  pattern="[A-Z]*" required class="input1" ngModel>
                         
                     </div>
 
                     <div class="card">
                         <label class="labelbox">Card number</label>
-                        <input type="text" class="input1" placeholder="1111 2222 3333 4444" name="userAccount" id="cardnumber"  required>
+                        <input type="tel" class="input1" placeholder="1111 2222 3333 4444" name="userAccount" id="cardnumber" pattern="[0-9]*" minlength="16" maxlength="16"  required ngModel>
                         
                     </div>
 
                     <div class="card">
                         <label class="labelbox">Expiry</label>
-                        <select id="expiry-month" name="expiryMonth" required>
+                        <select id="expiry-month" name="expiryMonth" required ngModel>
                             <option value="1">01</option>
                             <option value="2">02</option>
                             <option value="3">03</option>
@@ -34,7 +34,7 @@
                             <option value="12">12</option>
                         </select>
                         <span>/</span>
-                        <select id="expiry-year" name="expiryYear" required>
+                        <select id="expiry-year" name="expiryYear" required ngModel>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
                             <option value="2022">2022</option>
@@ -54,7 +54,7 @@
                         </select>
                         <span class="error">Choose Valid Expiry Date</span>
                         <label id="cvvlabel" class="labelbox">CVC/CVV</label>
-                        <input type="text" minlength="3" placeholder="123" id="cvv" name="cvv" required>
+                        <input type="text" placeholder="123" id="cvv" name="cvv" pattern="[0-9]*" minlength="3" maxlength="3" required ngModel>
                         
                     </div>
                     <div class="pay-button">

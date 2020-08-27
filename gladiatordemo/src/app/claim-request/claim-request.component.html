@@ -78,7 +78,7 @@
  
                             </span><br><br>
                             <label for="Amount"><b>Claim Amount</b></label><br> 
-                            <input  type="number" id="amt" name="am" placeholder="Claim Amount" rows="2" cols="20" required [(ngModel)]=claim.claimAmount required #amountControl='ngModel'>
+                            <input  type="text" id="am" name="am" placeholder="Claim Amount" pattern="[0-9]*" [(ngModel)]=claim.claimAmount required #amountControl='ngModel'>
                         <br><br> 
                         <span style="color: red;" *ngIf="amountControl.invalid && amountControl.touched"> 
                             <b>Amount is required</b>

@@ -18,6 +18,7 @@ export class RenewComponent implements OnInit {
     if (sessionStorage.getItem("userId") == null) {
       this.router.navigate(['loginLink']);
     }
+   
   }
 
   constructor(private service: AngularServiceService, private router: Router) { }

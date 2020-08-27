@@ -63,7 +63,7 @@
                         <br><br>
                         
                         <label for="travelCost" class="labels"><b>Travel Cost</b></label><br>
-                        <input type="number" placeholder="Enter travel cost " id="travelCost" name="travelCost" min="500" max="1000000" [(ngModel)]=travel.travelCost required #travelCostControl="ngModel"><br>
+                        <input type="text" placeholder="Enter travel cost" id="travelCost" name="travelCost" pattern="[0-9]*" min [(ngModel)]=travel.travelCost required #travelCostControl="ngModel"><br>
                         <span style="color: red;" *ngIf="travelCostControl.invalid && travelCostControl.touched"> 
                             <b>Feild Can't be Empty</b>
                         </span><br><br>
